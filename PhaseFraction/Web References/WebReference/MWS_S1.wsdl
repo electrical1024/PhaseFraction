@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/MWS_Services/MWS_S1" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/MWS_Services/MWS_S1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/MWS_Services/MWS_S1">
+      <s:element name="MWS_IO_POOL_INSERT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mac" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uptime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MWS_IO_POOL_INSERTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MWS_IO_POOL_INSERTResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="mws_io_timingcheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mac" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uptime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="mws_io_timingcheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mws_io_timingcheckResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_Zvr_Up_file_list">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Mac" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sysname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NowVr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_Zvr_Up_file_listResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_Zvr_Up_file_listResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_Zvr_New_Vr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mac" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sysname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OldVr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_Zvr_New_VrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_Zvr_New_VrResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UP_Zvr_up_sys_log">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mac" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sysname" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewVr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UP_Zvr_up_sys_logResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UP_Zvr_up_sys_logResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="MWS_IO_POOL_INSERTSoapIn">
+    <wsdl:part name="parameters" element="tns:MWS_IO_POOL_INSERT" />
+  </wsdl:message>
+  <wsdl:message name="MWS_IO_POOL_INSERTSoapOut">
+    <wsdl:part name="parameters" element="tns:MWS_IO_POOL_INSERTResponse" />
+  </wsdl:message>
+  <wsdl:message name="mws_io_timingcheckSoapIn">
+    <wsdl:part name="parameters" element="tns:mws_io_timingcheck" />
+  </wsdl:message>
+  <wsdl:message name="mws_io_timingcheckSoapOut">
+    <wsdl:part name="parameters" element="tns:mws_io_timingcheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_Zvr_Up_file_listSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_Zvr_Up_file_list" />
+  </wsdl:message>
+  <wsdl:message name="Get_Zvr_Up_file_listSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_Zvr_Up_file_listResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_Zvr_New_VrSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_Zvr_New_Vr" />
+  </wsdl:message>
+  <wsdl:message name="Get_Zvr_New_VrSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_Zvr_New_VrResponse" />
+  </wsdl:message>
+  <wsdl:message name="UP_Zvr_up_sys_logSoapIn">
+    <wsdl:part name="parameters" element="tns:UP_Zvr_up_sys_log" />
+  </wsdl:message>
+  <wsdl:message name="UP_Zvr_up_sys_logSoapOut">
+    <wsdl:part name="parameters" element="tns:UP_Zvr_up_sys_logResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MWS_S1Soap">
+    <wsdl:operation name="MWS_IO_POOL_INSERT">
+      <wsdl:input message="tns:MWS_IO_POOL_INSERTSoapIn" />
+      <wsdl:output message="tns:MWS_IO_POOL_INSERTSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="mws_io_timingcheck">
+      <wsdl:input message="tns:mws_io_timingcheckSoapIn" />
+      <wsdl:output message="tns:mws_io_timingcheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_Zvr_Up_file_list">
+      <wsdl:input message="tns:Get_Zvr_Up_file_listSoapIn" />
+      <wsdl:output message="tns:Get_Zvr_Up_file_listSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_Zvr_New_Vr">
+      <wsdl:input message="tns:Get_Zvr_New_VrSoapIn" />
+      <wsdl:output message="tns:Get_Zvr_New_VrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UP_Zvr_up_sys_log">
+      <wsdl:input message="tns:UP_Zvr_up_sys_logSoapIn" />
+      <wsdl:output message="tns:UP_Zvr_up_sys_logSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MWS_S1Soap" type="tns:MWS_S1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MWS_IO_POOL_INSERT">
+      <soap:operation soapAction="http://tempuri.org/MWS_Services/MWS_S1/MWS_IO_POOL_INSERT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mws_io_timingcheck">
+      <soap:operation soapAction="http://tempuri.org/MWS_Services/MWS_S1/mws_io_timingcheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Zvr_Up_file_list">
+      <soap:operation soapAction="http://tempuri.org/MWS_Services/MWS_S1/Get_Zvr_Up_file_list" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Zvr_New_Vr">
+      <soap:operation soapAction="http://tempuri.org/MWS_Services/MWS_S1/Get_Zvr_New_Vr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UP_Zvr_up_sys_log">
+      <soap:operation soapAction="http://tempuri.org/MWS_Services/MWS_S1/UP_Zvr_up_sys_log" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MWS_S1Soap12" type="tns:MWS_S1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MWS_IO_POOL_INSERT">
+      <soap12:operation soapAction="http://tempuri.org/MWS_Services/MWS_S1/MWS_IO_POOL_INSERT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mws_io_timingcheck">
+      <soap12:operation soapAction="http://tempuri.org/MWS_Services/MWS_S1/mws_io_timingcheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Zvr_Up_file_list">
+      <soap12:operation soapAction="http://tempuri.org/MWS_Services/MWS_S1/Get_Zvr_Up_file_list" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Zvr_New_Vr">
+      <soap12:operation soapAction="http://tempuri.org/MWS_Services/MWS_S1/Get_Zvr_New_Vr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UP_Zvr_up_sys_log">
+      <soap12:operation soapAction="http://tempuri.org/MWS_Services/MWS_S1/UP_Zvr_up_sys_log" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MWS_S1">
+    <wsdl:port name="MWS_S1Soap" binding="tns:MWS_S1Soap">
+      <soap:address location="http://10.86.16.186/MWS_Services/MWS_S1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MWS_S1Soap12" binding="tns:MWS_S1Soap12">
+      <soap12:address location="http://10.86.16.186/MWS_Services/MWS_S1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
