@@ -58,6 +58,7 @@ namespace PhaseFraction
             {
                 MessageofSocketClass("開啟TCP服務器失敗！IP：" + localIP + "，Port：" + localPort + ex.Message, LogType.FlowLog, false);
                 return false;
+
             }
         }
 
