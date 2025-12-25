@@ -931,6 +931,11 @@ namespace PhaseFraction
             CameraSet.Visible = true;
             CameraSet.Show();
         }
+
+        private void ucConduit7_Load(object sender, EventArgs e)
+        {
+
+        }
     }
     }
 

@@ -49,6 +49,7 @@ namespace PhaseFraction
                 threadwatch.IsBackground = true;
 
                 //启动线程     
+
                 threadwatch.Start();
 
                 MessageofSocketClass("開啟TCP服務器成功！IP：" + localIP + "，Port：" + localPort, LogType.FlowLog, false);
@@ -58,6 +59,7 @@ namespace PhaseFraction
             {
                 MessageofSocketClass("開啟TCP服務器失敗！IP：" + localIP + "，Port：" + localPort + ex.Message, LogType.FlowLog, false);
                 return false;
+
             }
         }
 
