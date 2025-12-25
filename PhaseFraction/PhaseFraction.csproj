@@ -114,9 +114,22 @@
     <Compile Include="Class\AccessDbClass.cs" />
     <Compile Include="Class\AutoSizeFormClass.cs" />
     <Compile Include="Class\PLCClass.cs" />
+    <Compile Include="Class\SocketClass.cs" />
     <Compile Include="Class\TimeoutUtilsClass.cs" />
     <Compile Include="Class\AlgorithmClass.cs" />
     <Compile Include="Class\VisionClass.cs" />
+    <Compile Include="Form\FormCameraSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormCameraSet.Designer.cs">
+      <DependentUpon>FormCameraSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormTempCurve.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormTempCurve.Designer.cs">
+      <DependentUpon>FormTempCurve.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +170,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form\FormCameraSet.resx">
+      <DependentUpon>FormCameraSet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

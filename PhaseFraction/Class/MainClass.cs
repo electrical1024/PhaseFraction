@@ -450,6 +450,7 @@ namespace PhaseFraction
         public void Init()
         {
             LogClass.SingletonInstance.LogRecord();
+          
             bool ret = InitCommunicationParam();
             //if (ret) ret = ConnectToDAM();
             // if (ret) StartTimer();
@@ -483,36 +484,12 @@ namespace PhaseFraction
                 ADStopBits = int.Parse(config.ReadINIConfig("StopBits"));
                 Analog1 = int.Parse(config.ReadINIConfig("Analog1"));
                 Analog2 = int.Parse(config.ReadINIConfig("Analog2"));
-                if (config.ReadINIConfig("IsLog") == "1") { IsLog = true; }
-                if (parity == "0") { ADParity = DAM3000M.DAM3000M_PARITY_NONE; }
-                else if (parity == "1") { ADParity = DAM3000M.DAM3000M_PARITY_ODD; }
-                else if (parity == "2") { ADParity = DAM3000M.DAM3000M_PARITY_EVEN; }
-                else
-                {
-                    MsgofMain("AD模块奇偶参数设置错误，请检查配置文件后重启程序！", LogType.FlowLog, true);
-                    return false;
-                }
-
-                if (baud == 1200) { ADBaud = 0; }
-                else if (baud == 2400) { ADBaud = 1; }
-                else if (baud == 4800) { ADBaud = 2; }
-                else if (baud == 9600) { ADBaud = 3; }
-                else if (baud == 19200) { ADBaud = 4; }
-                else if (baud == 38400) { ADBaud = 5; }
-                else if (baud == 57600) { ADBaud = 6; }
-                else if (baud == 115200) { ADBaud = 7; }
-                else
-                {
-                    {
-                        MsgofMain("AD模块波特率参数设置错误，请检查配置文件后重启程序！", LogType.FlowLog, true);
-                        return false;
-                    }
-                }
+              
                 return true;
             }
             catch (Exception ex)
             {
-                MsgofMain("AD模块参数设置错误，请检查配置文件后重启程序！" + ex.Message, LogType.FlowLog, true);
+                MsgofMain("参数设置错误，请检查配置文件后重启程序！" + ex.Message, LogType.FlowLog, true);
                 return false;
             }
         }
@@ -2102,15 +2079,15 @@ namespace PhaseFraction
             MsgofMain("DAM设备初始化成功！", LogType.FlowLog, false);
         }
 
-        public bool CreatConnectionToPLC()
+        public bool CreateConnectionToPLC()
         {
             try
             {
                 if (PLCClass.FinsUDP.UDPOpen(PLCIP, PLCPort, LocalIP, LocalPort, 0, 0))
                 {
                     IsConnectPLC = true;
-                    RunMainClass();
-                    //MsgofMain("PLC连接成功", LogType.FlowLog, false);
+                   
+                    MsgofMain("PLC连接成功", LogType.FlowLog, false);
                     return true;
                 }
                 else
