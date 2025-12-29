@@ -44,10 +44,10 @@ namespace PhaseFraction
 
                 //笔记本相机
               
-                HOperatorSet.OpenFramegrabber("DirectShow", 1, 1, 0, 0, 0, 0, "default", 8, "rgb", -1, "false", "default", "[0] ", 0, -1, out hv_AcqHandle);
+                //HOperatorSet.OpenFramegrabber("DirectShow", 1, 1, 0, 0, 0, 0, "default", 8, "rgb", -1, "false", "default", "[0] ", 0, -1, out hv_AcqHandle);
                 //工控相机
-                //HOperatorSet.OpenFramegrabber("GigEVision2", 0, 0, 0, 0, 0, 0, "progressive", -1, "default", -1, "false", "default", "b0b35368a881_Hikrobot_MVCE12010GM", 0, -1, out hv_AcqHandle);
-                //HOperatorSet.SetFramegrabberParam(hv_AcqHandle, "TriggerMode", "Off");
+                HOperatorSet.OpenFramegrabber("GigEVision2", 0, 0, 0, 0, 0, 0, "progressive", -1, "default", -1, "false", "default", "b0b35368a881_Hikrobot_MVCE12010GM", 0, -1, out hv_AcqHandle);
+                HOperatorSet.SetFramegrabberParam(hv_AcqHandle, "TriggerMode", "Off");
 
                 HObject MyImage;
                 HOperatorSet.GrabImageStart(hv_AcqHandle, -1);

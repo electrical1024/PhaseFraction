@@ -266,6 +266,7 @@ namespace PhaseFraction
             //asc.controlAutoSize(this);
             MainClass.MsgofMain += AlarmEvent;
            VisionClass. MsgofVision += AlarmEvent;
+            SocketClass.MessageofSocketClass += AlarmEvent;
             MouseWheel += FormMainMouseWheel;
             MainClass.instance().Init();
             string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -690,8 +691,18 @@ namespace PhaseFraction
                 MsgofMainFrm("相机连接失败!", LogType.FlowLog, true);
                  return;
             }
-            ret = socket.SocketServerStart(MainClass.LocalIP, MainClass.LocalPort);
-            if (!ret) return;
+            ret = socket.SocketServerStart(MainClass.WLANIP, MainClass.WLANPort);
+            if (ret)
+            {
+                LblSensorState.Text = "已连接";
+                LblSensorState.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                LblSensorState.Text = "未连接";
+                LblSensorState.BackColor = Color.Pink;
+                return;
+            }
             ret = MainClass.instance().CreateConnectionToPLC();
             if (ret)
             {
@@ -906,13 +917,71 @@ namespace PhaseFraction
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            SocketClass socket = new SocketClass();
-            bool ret = VisionClass.instance().CreateConnectionToCamera();
+           bool ret = MainClass.instance().CreateConnectionToPLC();
             if (ret)
             {
-                LblCameraState.Text = "已连接";
-                LblCameraState.BackColor = Color.LightGreen;
-                MsgofMainFrm("相机连接成功!", LogType.FlowLog, false);
+                PLC.PLCWrite(PLC.CreatConnection, false);
+
+                if (PLC.PLCWrite(PLC.CreatConnection, true))
+                {
+                    PLC.PLCRead(PLC.PLCW1);
+                    Delay(100);
+                    if (PLC.PLCW1.Data[1])
+                    {
+                        LblPLCState.Text = "已连接";
+                        LblPLCState.BackColor = Color.LightGreen;
+                        MsgofMainFrm("PLC连接成功!", LogType.FlowLog, false);
+                        BtnPause.Enabled = true;
+                        TmrRefresh.Enabled = true;
+                        BtnCreatConnect.Enabled = false;
+
+                    }
+                    else
+                    {
+                        //MainClass.instance().CreatConnectionToPLC();
+                        PLC.PLCWrite(PLC.CreatConnection, false);
+                        PLC.PLCWrite(PLC.CreatConnection, true);
+                        PLC.PLCRead(PLC.PLCW1);
+                        Delay(100);
+                        if (PLC.PLCW1.Data[1])
+                        {
+                            LblPLCState.Text = "已连接";
+                            LblPLCState.BackColor = Color.LightGreen;
+                            MsgofMainFrm("PLC连接成功!", LogType.FlowLog, false);
+
+                            BtnPause.Enabled = true;
+                            BtnAlarmReset.Enabled = true;
+
+                            TmrRefresh.Enabled = true;
+                            BtnCreatConnect.Enabled = false;
+
+                        }
+                        else
+                        {
+                            LblPLCState.Text = "未连接";
+                            LblPLCState.BackColor = Color.Pink;
+                            MsgofMainFrm("PLC连接失败!", LogType.FlowLog, false);
+                        }
+
+                        //LblPLCConnState.Text = "未连接";
+                        //LblPLCConnState.BackColor = Color.Pink;
+                        //MsgofMainFrm("PLC连接失败!", LogType.FlowLog, false);
+                    }
+                }
+                else
+                {
+                    LblPLCState.Text = "未连接";
+                    LblPLCState.BackColor = Color.Pink;
+                    MsgofMainFrm("PLC连接失败!", LogType.FlowLog, false);
+                }
+                Delay(500);
+                PLC.PLCWrite(PLC.CreatConnection, false);
+            }
+            else
+            {
+                LblPLCState.Text = "未连接";
+                LblPLCState.BackColor = Color.Pink;
+                MsgofMainFrm("PLC连接失败!", LogType.FlowLog, false);
             }
         }
 
