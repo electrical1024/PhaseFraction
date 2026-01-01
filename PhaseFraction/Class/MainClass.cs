@@ -97,10 +97,12 @@ namespace PhaseFraction
         public static bool IsConnectPLC = false;
         public static string PLCIP = String.Empty ;
         public static string LocalIP = String.Empty;
+        public static string WLANIP = String.Empty;
         public static int PLCPort = 9600;
         public static int LocalPort = 9600;
+        public static int WLANPort = 8080;
 
-      
+
         const Int32 MAX_PATH = 260;
 
         public void RunMainClass()
@@ -467,8 +469,10 @@ namespace PhaseFraction
                 ConfigClass config = new ConfigClass();
                 PLCIP = config.ReadINIConfig("PLCIP");
                 LocalIP = config.ReadINIConfig("LocalIP");
+                WLANIP = config.ReadINIConfig("WLANIP");
                 PLCPort = int.Parse(config.ReadINIConfig("PLCPort"));
                 LocalPort = int.Parse(config.ReadINIConfig("LocalPort"));
+                WLANPort = int.Parse(config.ReadINIConfig("WLANPort"));
 
                 string parity = config.ReadINIConfig("Parity");
                 int baud = int.Parse(config.ReadINIConfig("BaudRate"));
@@ -2087,7 +2091,7 @@ namespace PhaseFraction
                 {
                     IsConnectPLC = true;
                    
-                    MsgofMain("PLC连接成功", LogType.FlowLog, false);
+                   // MsgofMain("PLC连接成功", LogType.FlowLog, false);
                     return true;
                 }
                 else

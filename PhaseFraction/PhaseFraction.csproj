@@ -118,6 +118,12 @@
     <Compile Include="Class\TimeoutUtilsClass.cs" />
     <Compile Include="Class\AlgorithmClass.cs" />
     <Compile Include="Class\VisionClass.cs" />
+    <Compile Include="Form\FormValueControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormValueControl.Designer.cs">
+      <DependentUpon>FormValueControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\FormCameraSet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FormTorqueCurve.resx">
       <DependentUpon>FormTorqueCurve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormValueControl.resx">
+      <DependentUpon>FormValueControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
