@@ -97,6 +97,7 @@
             this.label33 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.ValueSetTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.CmsChangeState.SuspendLayout();
             this.MnsMain.SuspendLayout();
@@ -239,6 +240,7 @@
             this.MnsMain.ImageScalingSize = new System.Drawing.Size(50, 50);
             this.MnsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CameraSetTSMI,
+            this.ValueSetTSMI,
             this.TempCurveTSMI,
             this.PressureCurveTSMI,
             this.TorqueCurveTSMI,
@@ -355,7 +357,7 @@
             this.BtnPause.TabIndex = 34;
             this.BtnPause.Text = "停止测量";
             this.BtnPause.UseVisualStyleBackColor = true;
-            this.BtnPause.Click += new System.EventHandler(this.BtnPause_Click);
+          
             // 
             // TmrRefresh
             // 
@@ -872,6 +874,14 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // ValueSetTSMI
+            // 
+            this.ValueSetTSMI.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ValueSetTSMI.Name = "ValueSetTSMI";
+            this.ValueSetTSMI.Size = new System.Drawing.Size(121, 39);
+            this.ValueSetTSMI.Text = "电磁阀控制";
+            this.ValueSetTSMI.Click += new System.EventHandler(this.ValueSetTSMI_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -998,6 +1008,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         public HalconDotNet.HSmartWindowControl hSmartWindowControl1;
+        private System.Windows.Forms.ToolStripMenuItem ValueSetTSMI;
     }
 }
 

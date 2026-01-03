@@ -37,6 +37,7 @@ namespace PhaseFraction
         public FormTorqueCurve TorqueCurve = new FormTorqueCurve();
         public FormTempCurve TempCurve = new FormTempCurve();
         public FormCameraSet CameraSet = new FormCameraSet();
+        public FormValueControl ValueControl = new FormValueControl();
         public static  bool PLCAlarmOccur=false;
         public static bool ServoAlarmOccur = false;
         public static bool EmergencyOccur = false;
@@ -810,25 +811,7 @@ namespace PhaseFraction
 
     
 
-        private void BtnPause_Click(object sender, EventArgs e)
-        {
-            PLC.PLCWrite(PLC.Stop, false);
-
-            if (PLC.PLCWrite(PLC.Stop, true))
-            {
-                MainClass.instance().StopTimer();
-                MsgofMainFrm("发送停止信号成功！", LogType.FlowLog, false);
-               
-            }
-            else
-            {
-
-                MsgofMainFrm("发送PLC停止信号失败！", LogType.FlowLog, false);
-            }
-            Delay(500);
-            PLC.PLCWrite(PLC.Stop, false);
-           
-        }
+  
 
         private void BtnAlarmReset_Click(object sender, EventArgs e)
         {
@@ -941,6 +924,17 @@ namespace PhaseFraction
         private void ucConduit7_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void ValueSetTSMI_Click(object sender, EventArgs e)
+        {
+            if (ValueControl == null || ValueControl.IsDisposed)
+            {
+                ValueControl = new FormValueControl();
+            }
+            ValueControl.TopLevel = true;
+            ValueControl.Visible = true;
+            ValueControl.Show();
         }
     }
     }
