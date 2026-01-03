@@ -24,6 +24,7 @@ namespace PhaseFraction
         public Button[] BarcodeButton = new Button[60];
         private ConfigClass Config =new ConfigClass();
         delegate void MsgD(string msg, LogType i, bool bWarnFormShow);
+        delegate void MsgSocket(string msg);
         public static FormMain MainFrm;
         public string Source;
         WarningMessage WarningMessage1;
@@ -175,8 +176,25 @@ namespace PhaseFraction
             }
         }
 
+        private void SocketEvent(string msg)
+        {
+            try
+            {
+                MsgSocket g = new MsgSocket(MsgofSocket);
+                BeginInvoke(g, msg);
+            }
+            catch (Exception)
+            {
+            }
+        }
 
-
+        public void MsgofSocket(string msg)
+        {
+            string str= msg.Replace("//","/");
+            string[] dataAvary = msg.Split('/');
+            LblPressure.Text  = dataAvary[2];
+            LblTemp.Text = dataAvary[4];
+        }
         public FormMain()
         {
             InitializeComponent();
@@ -268,6 +286,7 @@ namespace PhaseFraction
             MainClass.MsgofMain += AlarmEvent;
            VisionClass. MsgofVision += AlarmEvent;
             SocketClass.MessageofSocketClass += AlarmEvent;
+            SocketClass.MessageofSocket += SocketEvent;
             MouseWheel += FormMainMouseWheel;
             MainClass.instance().Init();
             string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -907,7 +926,7 @@ namespace PhaseFraction
 
         private void button2_Click(object sender, EventArgs e)
         {
-            VisionClass.instance().TakePhoto();
+           
         }
 
         private void CameraSetTSMI_Click(object sender, EventArgs e)

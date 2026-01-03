@@ -32,6 +32,7 @@ namespace PhaseFraction
         Camera4 = 3,
     }
     public delegate void Alarmshow(string str, LogType i = LogType.FlowLog, bool bWarnFormShow = true);
+    public delegate void SocketMsg(string str);
     public delegate void Logshow(string str, string path);
     public delegate void UpdateChart(double analogData,int channel);
 

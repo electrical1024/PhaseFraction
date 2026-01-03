@@ -47,6 +47,7 @@
             this.WhUnlock = new System.Windows.Forms.ToolStripMenuItem();
             this.MnsMain = new System.Windows.Forms.MenuStrip();
             this.CameraSetTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.ValueSetTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.TempCurveTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.PressureCurveTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.TorqueCurveTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,15 +90,14 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.LblLevel = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.LblPressure = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
+            this.LblTemp = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.ValueSetTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.CmsChangeState.SuspendLayout();
             this.MnsMain.SuspendLayout();
@@ -261,6 +261,14 @@
             this.CameraSetTSMI.Text = "相机设定";
             this.CameraSetTSMI.Click += new System.EventHandler(this.CameraSetTSMI_Click);
             // 
+            // ValueSetTSMI
+            // 
+            this.ValueSetTSMI.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ValueSetTSMI.Name = "ValueSetTSMI";
+            this.ValueSetTSMI.Size = new System.Drawing.Size(121, 39);
+            this.ValueSetTSMI.Text = "电磁阀控制";
+            this.ValueSetTSMI.Click += new System.EventHandler(this.ValueSetTSMI_Click);
+            // 
             // TempCurveTSMI
             // 
             this.TempCurveTSMI.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -357,7 +365,6 @@
             this.BtnPause.TabIndex = 34;
             this.BtnPause.Text = "停止测量";
             this.BtnPause.UseVisualStyleBackColor = true;
-          
             // 
             // TmrRefresh
             // 
@@ -772,11 +779,11 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.LblLevel);
             this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.LblPressure);
             this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.label31);
+            this.groupBox3.Controls.Add(this.LblTemp);
             this.groupBox3.Controls.Add(this.label33);
             this.groupBox3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox3.Location = new System.Drawing.Point(590, 190);
@@ -786,16 +793,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "分离器参数";
             // 
-            // label15
+            // LblLevel
             // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Yellow;
-            this.label15.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(13, 242);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(39, 16);
-            this.label15.TabIndex = 43;
-            this.label15.Text = "####";
+            this.LblLevel.AutoSize = true;
+            this.LblLevel.BackColor = System.Drawing.Color.Yellow;
+            this.LblLevel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LblLevel.Location = new System.Drawing.Point(13, 242);
+            this.LblLevel.Name = "LblLevel";
+            this.LblLevel.Size = new System.Drawing.Size(39, 16);
+            this.LblLevel.TabIndex = 43;
+            this.LblLevel.Text = "####";
             // 
             // label17
             // 
@@ -808,16 +815,16 @@
             this.label17.TabIndex = 42;
             this.label17.Text = "液位：";
             // 
-            // label18
+            // LblPressure
             // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Yellow;
-            this.label18.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.Location = new System.Drawing.Point(13, 158);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(39, 16);
-            this.label18.TabIndex = 41;
-            this.label18.Text = "####";
+            this.LblPressure.AutoSize = true;
+            this.LblPressure.BackColor = System.Drawing.Color.Yellow;
+            this.LblPressure.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LblPressure.Location = new System.Drawing.Point(13, 158);
+            this.LblPressure.Name = "LblPressure";
+            this.LblPressure.Size = new System.Drawing.Size(39, 16);
+            this.LblPressure.TabIndex = 41;
+            this.LblPressure.Text = "####";
             // 
             // label21
             // 
@@ -830,16 +837,16 @@
             this.label21.TabIndex = 40;
             this.label21.Text = "压力：";
             // 
-            // label31
+            // LblTemp
             // 
-            this.label31.AutoSize = true;
-            this.label31.BackColor = System.Drawing.Color.Yellow;
-            this.label31.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label31.Location = new System.Drawing.Point(13, 74);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(39, 16);
-            this.label31.TabIndex = 3;
-            this.label31.Text = "####";
+            this.LblTemp.AutoSize = true;
+            this.LblTemp.BackColor = System.Drawing.Color.Yellow;
+            this.LblTemp.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LblTemp.Location = new System.Drawing.Point(13, 74);
+            this.LblTemp.Name = "LblTemp";
+            this.LblTemp.Size = new System.Drawing.Size(39, 16);
+            this.LblTemp.TabIndex = 3;
+            this.LblTemp.Text = "####";
             // 
             // label33
             // 
@@ -873,14 +880,6 @@
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // ValueSetTSMI
-            // 
-            this.ValueSetTSMI.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ValueSetTSMI.Name = "ValueSetTSMI";
-            this.ValueSetTSMI.Size = new System.Drawing.Size(121, 39);
-            this.ValueSetTSMI.Text = "电磁阀控制";
-            this.ValueSetTSMI.Click += new System.EventHandler(this.ValueSetTSMI_Click);
             // 
             // FormMain
             // 
@@ -998,11 +997,11 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ToolStripMenuItem TempCurveTSMI;
         public System.Windows.Forms.GroupBox groupBox3;
-        public System.Windows.Forms.Label label15;
+        public System.Windows.Forms.Label LblLevel;
         public System.Windows.Forms.Label label17;
-        public System.Windows.Forms.Label label18;
+        public System.Windows.Forms.Label LblPressure;
         public System.Windows.Forms.Label label21;
-        public System.Windows.Forms.Label label31;
+        public System.Windows.Forms.Label LblTemp;
         public System.Windows.Forms.Label label33;
         private System.Windows.Forms.ToolStripMenuItem CameraSetTSMI;
         private System.Windows.Forms.Button button1;

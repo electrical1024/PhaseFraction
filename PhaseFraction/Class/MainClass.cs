@@ -37,6 +37,7 @@ namespace PhaseFraction
         public delegate void delegateDisplay(byte[] inputByte);
         public static delegateDisplay DeleReceive;
         public static Alarmshow MsgofMain = null;   //報警(寫在ggevent函數內)
+       
         public static MainClass m_instance;
         public static int AutoGoHomeStep;
         public static int AutoLocationRunStep;
