@@ -69,15 +69,12 @@ namespace PhaseFraction
             }
         }
 
-        //打开视频的线程
-        public void OpenCamera()       //实时检测 
+      
+        public void OpenCamera()       
         {
-                       try
+            try
             {
-               
                 HObject image;
-                //设置窗口参数
-
                 while (true)
                 {
                     Application.DoEvents();
@@ -87,8 +84,8 @@ namespace PhaseFraction
                         TakePhoto(image, DisplayWindow);
                     }
                     else if (IsVideo)
-                    { 
-                    TakeVideo(image, DisplayWindow);
+                    {
+                        TakeVideo(image, DisplayWindow);
                     }
                 }
             }
@@ -96,11 +93,11 @@ namespace PhaseFraction
             {
                 IsVideo = false;
                 IsPhoto = false;
-                MsgofVision("打开相机错误"+exp.Message, LogType.ListShow, true);
+                MsgofVision("打开相机错误" + exp.Message, LogType.ListShow, true);
             }
         }
 
-     
+
 
         public void TakePhoto(HObject image, HTuple displayWindow)
         {
@@ -146,61 +143,9 @@ namespace PhaseFraction
             }
         }
 
-        //打开视频的线程
-        public void TakeVideo()       //实时检测 
-        {
-            IsVideo = true;
-            try
-            {
-                HTuple hv_HeightWin, hv_WidthWin;
-                HObject MyImage;
-                //设置窗口参数
+       
 
-                HOperatorSet.GrabImageAsync(out MyImage, AcqHandle, -1);
-                HOperatorSet.GetImageSize(MyImage, out hv_HeightWin, out hv_WidthWin);// 获取输入图像的尺寸
-                HOperatorSet.SetPart(FormMain.MainFrm.hSmartWindowControl1.HalconWindow, 0, 0, hv_WidthWin, hv_HeightWin);//将获得的图像铺满整个窗口
-                while (IsVideo)
-                {
-                    Application.DoEvents();
-                    HOperatorSet.GrabImageAsync(out MyImage, AcqHandle, -1);
-                    HOperatorSet.ClearWindow(FormMain.MainFrm.hSmartWindowControl1.HalconWindow);
-                    HOperatorSet.DispObj(MyImage, FormMain.MainFrm.hSmartWindowControl1.HalconWindow);   //视频显示 
-                   
-                }
-            }
-            catch (Exception exp)
-            {
-                IsVideo = false;
-                MsgofVision(exp.Message, LogType.ListShow, true);
-            }
-        }
-        public void TakePhoto()
-        {
-            try
-            {
-                HTuple hv_HeightWin, hv_WidthWin;
-                HObject MyImage;
-                //设置窗口参数
-                //HOperatorSet.GrabImageStart(hv_AcqHandle, -1);
-                HOperatorSet.GrabImageAsync(out MyImage, AcqHandle, -1);
-                HOperatorSet.GetImageSize(MyImage, out hv_HeightWin, out hv_WidthWin);// 获取输入图像的尺寸
-                HOperatorSet.SetPart(FormMain.MainFrm.hSmartWindowControl1.HalconWindow, 0, 0, hv_WidthWin, hv_HeightWin);//将获得的图像铺满整个窗口
-               
-                    HOperatorSet.ClearWindow(FormMain.MainFrm.hSmartWindowControl1.HalconWindow);
-                    HOperatorSet.DispObj(MyImage, FormMain.MainFrm.hSmartWindowControl1.HalconWindow);   //视频显示 
-                //HOperatorSet.CloseFramegrabber(hv_AcqHandle);
-                MyImage.Dispose();
-
-               // hv_AcqHandle.Dispose();
-
-            }
-            catch (Exception exp)
-            {
-                MsgofVision(exp.Message, LogType.ListShow, true);
-            }
-        }
-
-        public void ProcessImage(HObject MyImage)
+        public void ProcessImage(HObject image)
         {
 
             try
@@ -210,7 +155,7 @@ namespace PhaseFraction
             }
             catch (Exception exp)
             {
-                MsgofVision(exp.Message, LogType.ListShow, true);
+                MsgofVision("图像处理错误：" + exp.Message, LogType.ListShow, true);
             }
         }
     }
