@@ -677,7 +677,7 @@ namespace PhaseFraction
         private void BtnCreatConnect_Click(object sender, EventArgs e)
         {
             SocketClass socket = new SocketClass();
-            bool ret = VisionClass.instance().CreateConnectionToCamera();
+            bool ret = VisionClass.instance().ConnectCamera();
             if (ret)
             {
                 LblCameraState.Text = "已连接";
@@ -917,72 +917,9 @@ namespace PhaseFraction
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-           bool ret = MainClass.instance().CreateConnectionToPLC();
-            if (ret)
-            {
-                PLC.PLCWrite(PLC.CreatConnection, false);
-
-                if (PLC.PLCWrite(PLC.CreatConnection, true))
-                {
-                    PLC.PLCRead(PLC.PLCW1);
-                    Delay(100);
-                    if (PLC.PLCW1.Data[1])
-                    {
-                        LblPLCState.Text = "已连接";
-                        LblPLCState.BackColor = Color.LightGreen;
-                        MsgofMainFrm("PLC连接成功!", LogType.FlowLog, false);
-                        BtnPause.Enabled = true;
-                        TmrRefresh.Enabled = true;
-                        BtnCreatConnect.Enabled = false;
-
-                    }
-                    else
-                    {
-                        //MainClass.instance().CreatConnectionToPLC();
-                        PLC.PLCWrite(PLC.CreatConnection, false);
-                        PLC.PLCWrite(PLC.CreatConnection, true);
-                        PLC.PLCRead(PLC.PLCW1);
-                        Delay(100);
-                        if (PLC.PLCW1.Data[1])
-                        {
-                            LblPLCState.Text = "已连接";
-                            LblPLCState.BackColor = Color.LightGreen;
-                            MsgofMainFrm("PLC连接成功!", LogType.FlowLog, false);
-
-                            BtnPause.Enabled = true;
-                            BtnAlarmReset.Enabled = true;
-
-                            TmrRefresh.Enabled = true;
-                            BtnCreatConnect.Enabled = false;
-
-                        }
-                        else
-                        {
-                            LblPLCState.Text = "未连接";
-                            LblPLCState.BackColor = Color.Pink;
-                            MsgofMainFrm("PLC连接失败!", LogType.FlowLog, false);
-                        }
-
-                        //LblPLCConnState.Text = "未连接";
-                        //LblPLCConnState.BackColor = Color.Pink;
-                        //MsgofMainFrm("PLC连接失败!", LogType.FlowLog, false);
-                    }
-                }
-                else
-                {
-                    LblPLCState.Text = "未连接";
-                    LblPLCState.BackColor = Color.Pink;
-                    MsgofMainFrm("PLC连接失败!", LogType.FlowLog, false);
-                }
-                Delay(500);
-                PLC.PLCWrite(PLC.CreatConnection, false);
-            }
-            else
-            {
-                LblPLCState.Text = "未连接";
-                LblPLCState.BackColor = Color.Pink;
-                MsgofMainFrm("PLC连接失败!", LogType.FlowLog, false);
-            }
+            VisionClass.instance().DisplayWindow = hSmartWindowControl1.HalconWindow;
+            VisionClass.instance().IsPhoto = true;
+                       
         }
 
         private void button2_Click(object sender, EventArgs e)
