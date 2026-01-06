@@ -955,6 +955,144 @@ namespace PhaseFraction
             ValueControl.Visible = true;
             ValueControl.Show();
         }
+
+        private void ByPassValue_Click(object sender, EventArgs e)
+        {
+            if (ByPassValue.BackColor == Color.Pink)
+            {
+                DialogResult result = MessageBox.Show(
+                   "确定要打开阀门？",  // 确认提示语
+                   "操作确认",                  // 对话框标题
+                   MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                   MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    ByPassValue.BackColor = Color.Lime;
+                    PLC.PLCWrite(PLC.ByPassValue, true);
+                }
+            }
+            else if (ByPassValue.BackColor == Color.Lime)
+            {
+                DialogResult result = MessageBox.Show(
+                     "确定要关闭阀门？",  // 确认提示语
+                     "操作确认",                  // 对话框标题
+                     MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                     MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    ByPassValue.BackColor = Color.Pink;
+                    PLC.PLCWrite(PLC.ByPassValue, false);
+                }
+            }
+        }
+
+        private void OutGasValue_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void InLiquidValue_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OutGasValue_Click(object sender, EventArgs e)
+        {
+            if (OutGasValue.BackColor == Color.Pink)
+            {
+                DialogResult result = MessageBox.Show(
+                   "确定要打开阀门？",  // 确认提示语
+                   "操作确认",                  // 对话框标题
+                   MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                   MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    OutGasValue.BackColor = Color.Lime;
+                    PLC.PLCWrite(PLC.OutGasValue, true);
+                }
+            }
+            else if (OutGasValue.BackColor == Color.Lime)
+            {
+                DialogResult result = MessageBox.Show(
+                     "确定要关闭阀门？",  // 确认提示语
+                     "操作确认",                  // 对话框标题
+                     MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                     MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    OutGasValue.BackColor = Color.Pink;
+                    PLC.PLCWrite(PLC.OutGasValue, false);
+                }
+            }
+        }
+
+        private void OutLiquidValue_Click(object sender, EventArgs e)
+        {
+            if (OutLiquidValue.BackColor == Color.Pink)
+            {
+                DialogResult result = MessageBox.Show(
+                   "确定要打开阀门？",  // 确认提示语
+                   "操作确认",                  // 对话框标题
+                   MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                   MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    OutLiquidValue.BackColor = Color.Lime;
+                    PLC.PLCWrite(PLC.OutLiquidValue, true);
+                }
+            }
+            else if (OutLiquidValue.BackColor == Color.Lime)
+            {
+                DialogResult result = MessageBox.Show(
+                     "确定要关闭阀门？",  // 确认提示语
+                     "操作确认",                  // 对话框标题
+                     MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                     MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    OutLiquidValue.BackColor = Color.Pink;
+                    PLC.PLCWrite(PLC.OutLiquidValue, false);
+                }
+            }
+        }
+
+        private void InLiquidValue_Click(object sender, EventArgs e)
+        {
+            if (InLiquidValue.BackColor == Color.Pink)
+            {
+                DialogResult result = MessageBox.Show(
+                   "确定要打开阀门？",  // 确认提示语
+                   "操作确认",                  // 对话框标题
+                   MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                   MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    InLiquidValue.BackColor = Color.Lime;
+                    PLC.PLCWrite(PLC.InLiquidValue, true);
+                }
+            }
+            else if (InLiquidValue.BackColor == Color.Lime)
+            {
+                DialogResult result = MessageBox.Show(
+                     "确定要关闭阀门？",  // 确认提示语
+                     "操作确认",                  // 对话框标题
+                     MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                     MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    InLiquidValue.BackColor = Color.Pink;
+                    PLC.PLCWrite(PLC.InLiquidValue, false);
+                }
+            }
+        }
     }
     }
 
