@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using HalconDotNet;
@@ -20,7 +21,7 @@ namespace PhaseFraction
         Thread CameraThread, th3;
         public HTuple AcqHandle = null;         //创建相机的ID
         public HTuple DisplayWindow = null;
-
+        public HObject CurrentImage = null;
         public bool IsVideo = false;
         public bool IsPhoto = false;
 
@@ -111,11 +112,12 @@ namespace PhaseFraction
                 HTuple heightWin, widthWin;
                 HOperatorSet.GetImageSize(image, out heightWin, out widthWin);// 获取输入图像的尺寸
                 HOperatorSet.SetPart(displayWindow, 0, 0, widthWin, heightWin);//将获得的图像铺满整个窗口
-
+                CurrentImage = image;
                 HOperatorSet.ClearWindow(displayWindow);
-                HOperatorSet.DispObj(image, displayWindow);  
-               
-                image.Dispose();
+                HOperatorSet.DispObj(CurrentImage, displayWindow);
+                         
+
+                //image.Dispose();
                 IsPhoto = false;
 
 

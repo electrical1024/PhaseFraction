@@ -75,10 +75,19 @@ namespace PhaseFraction
                     string path = dialog.FileName;
                     if (!path.Equals(""))
                     {
-                       
-                        HOperatorSet.DumpWindowImage(out HObject currentImage, FormMain.MainFrm.hSmartWindowControl1.HalconWindow);
-                        HOperatorSet.WriteImage(currentImage, "bmp", 0, path + ".bmp");
 
+                        HOperatorSet.DumpWindowImage(out HObject currentImage1, FormMain.MainFrm.hSmartWindowControl1.HalconWindow);
+                        if (VisionClass.instance().CurrentImage != null)
+                        {
+                            HObject currentImage = new HObject();
+                            currentImage = VisionClass.instance().CurrentImage;
+                            HOperatorSet.WriteImage(currentImage, "bmp", 0, path + ".bmp");
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("图像不能为空！");
+                        }
                     }
                 }
             }

@@ -40,7 +40,7 @@
             // BtnPhoto
             // 
             this.BtnPhoto.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnPhoto.Location = new System.Drawing.Point(416, 43);
+            this.BtnPhoto.Location = new System.Drawing.Point(53, 28);
             this.BtnPhoto.Name = "BtnPhoto";
             this.BtnPhoto.Size = new System.Drawing.Size(133, 30);
             this.BtnPhoto.TabIndex = 39;
@@ -51,7 +51,7 @@
             // Btnvideo
             // 
             this.Btnvideo.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Btnvideo.Location = new System.Drawing.Point(416, 98);
+            this.Btnvideo.Location = new System.Drawing.Point(53, 83);
             this.Btnvideo.Name = "Btnvideo";
             this.Btnvideo.Size = new System.Drawing.Size(133, 30);
             this.Btnvideo.TabIndex = 38;
@@ -62,7 +62,7 @@
             // BtnCalib
             // 
             this.BtnCalib.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnCalib.Location = new System.Drawing.Point(416, 313);
+            this.BtnCalib.Location = new System.Drawing.Point(53, 298);
             this.BtnCalib.Name = "BtnCalib";
             this.BtnCalib.Size = new System.Drawing.Size(133, 30);
             this.BtnCalib.TabIndex = 40;
@@ -72,7 +72,7 @@
             // BtnOpen
             // 
             this.BtnOpen.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnOpen.Location = new System.Drawing.Point(416, 152);
+            this.BtnOpen.Location = new System.Drawing.Point(53, 137);
             this.BtnOpen.Name = "BtnOpen";
             this.BtnOpen.Size = new System.Drawing.Size(133, 30);
             this.BtnOpen.TabIndex = 41;
@@ -83,7 +83,7 @@
             // BtnDrawRoi
             // 
             this.BtnDrawRoi.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnDrawRoi.Location = new System.Drawing.Point(416, 205);
+            this.BtnDrawRoi.Location = new System.Drawing.Point(53, 190);
             this.BtnDrawRoi.Name = "BtnDrawRoi";
             this.BtnDrawRoi.Size = new System.Drawing.Size(133, 30);
             this.BtnDrawRoi.TabIndex = 42;
@@ -94,7 +94,7 @@
             // BtnGenRoi
             // 
             this.BtnGenRoi.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnGenRoi.Location = new System.Drawing.Point(416, 259);
+            this.BtnGenRoi.Location = new System.Drawing.Point(53, 244);
             this.BtnGenRoi.Name = "BtnGenRoi";
             this.BtnGenRoi.Size = new System.Drawing.Size(133, 30);
             this.BtnGenRoi.TabIndex = 43;
@@ -105,7 +105,7 @@
             // BtnSaveImage
             // 
             this.BtnSaveImage.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnSaveImage.Location = new System.Drawing.Point(416, 366);
+            this.BtnSaveImage.Location = new System.Drawing.Point(53, 351);
             this.BtnSaveImage.Name = "BtnSaveImage";
             this.BtnSaveImage.Size = new System.Drawing.Size(133, 30);
             this.BtnSaveImage.TabIndex = 44;
@@ -117,7 +117,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 430);
+            this.ClientSize = new System.Drawing.Size(258, 430);
             this.Controls.Add(this.BtnSaveImage);
             this.Controls.Add(this.BtnGenRoi);
             this.Controls.Add(this.BtnDrawRoi);
