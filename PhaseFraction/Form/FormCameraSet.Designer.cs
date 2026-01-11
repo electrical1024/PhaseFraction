@@ -34,6 +34,7 @@
             this.BtnOpen = new System.Windows.Forms.Button();
             this.BtnDrawRoi = new System.Windows.Forms.Button();
             this.BtnGenRoi = new System.Windows.Forms.Button();
+            this.BtnSaveImage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnPhoto
@@ -101,18 +102,30 @@
             this.BtnGenRoi.UseVisualStyleBackColor = true;
             this.BtnGenRoi.Click += new System.EventHandler(this.BtnGenRoi_Click);
             // 
+            // BtnSaveImage
+            // 
+            this.BtnSaveImage.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.BtnSaveImage.Location = new System.Drawing.Point(416, 366);
+            this.BtnSaveImage.Name = "BtnSaveImage";
+            this.BtnSaveImage.Size = new System.Drawing.Size(133, 30);
+            this.BtnSaveImage.TabIndex = 44;
+            this.BtnSaveImage.Text = "保存图像";
+            this.BtnSaveImage.UseVisualStyleBackColor = true;
+            this.BtnSaveImage.Click += new System.EventHandler(this.BtnSaveImage_Click);
+            // 
             // FormCameraSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 406);
+            this.ClientSize = new System.Drawing.Size(603, 430);
+            this.Controls.Add(this.BtnSaveImage);
             this.Controls.Add(this.BtnGenRoi);
             this.Controls.Add(this.BtnDrawRoi);
             this.Controls.Add(this.BtnOpen);
             this.Controls.Add(this.BtnCalib);
             this.Controls.Add(this.BtnPhoto);
             this.Controls.Add(this.Btnvideo);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormCameraSet";
             this.Text = "FormCameraSet";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormCameraSet_FormClosing);
@@ -129,5 +142,6 @@
         public System.Windows.Forms.Button BtnOpen;
         public System.Windows.Forms.Button BtnDrawRoi;
         public System.Windows.Forms.Button BtnGenRoi;
+        public System.Windows.Forms.Button BtnSaveImage;
     }
 }

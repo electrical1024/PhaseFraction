@@ -65,6 +65,29 @@ namespace PhaseFraction
                 ShowImage(m_SrcImage);
             }
         }
+        private void BtnSaveImage_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            try
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    string path = dialog.FileName;
+                    if (!path.Equals(""))
+                    {
+                       
+                        HOperatorSet.DumpWindowImage(out HObject currentImage, FormMain.MainFrm.hSmartWindowControl1.HalconWindow);
+                        HOperatorSet.WriteImage(currentImage, "bmp", 0, path + ".bmp");
+
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
         public void ShowImage(HObject image)
         {
             if (image == null)
@@ -133,5 +156,9 @@ namespace PhaseFraction
         {
             GenROI();
         }
+
+      
+
     }
 }
+
