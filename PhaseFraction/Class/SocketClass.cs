@@ -17,11 +17,12 @@ namespace PhaseFraction
     public class SocketClass
     {
         public static Alarmshow MessageofSocketClass = null;   //報警(寫在ggevent函數內)
+        public static SocketMsg MessageofSocket = null;
         // 创建一个和客户端通信的套接字
         public Socket SocketWatch = null;
         //定义一个集合，存储客户端信息
         public Dictionary<string, Socket> clientConnectionItems = new Dictionary<string, Socket> { };
-
+        public String ReceiveMsg = string.Empty;
         public bool SocketServerStart(string localIP, int localPort)
         {
             try
@@ -148,9 +149,10 @@ namespace PhaseFraction
                     if (length > 10 && receiveMsg != "1")
                     {
                         MessageofSocketClass("接收客戶端" + socketClient.RemoteEndPoint + "：" + receiveMsg, LogType.FlowLog, false);
-                      
+                        //1//702.34//36.21//0.09//3.65
+                        MessageofSocket(receiveMsg);
                     }
-                   
+
 
                 }
                 catch (Exception ex)

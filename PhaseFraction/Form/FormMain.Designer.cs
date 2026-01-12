@@ -47,6 +47,7 @@
             this.WhUnlock = new System.Windows.Forms.ToolStripMenuItem();
             this.MnsMain = new System.Windows.Forms.MenuStrip();
             this.CameraSetTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.ValueSetTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.TempCurveTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.PressureCurveTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.TorqueCurveTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,24 +58,24 @@
             this.BtnAlarmReset = new System.Windows.Forms.Button();
             this.BtnPause = new System.Windows.Forms.Button();
             this.TmrRefresh = new System.Windows.Forms.Timer(this.components);
-            this.ucValve1 = new HZH_Controls.Controls.UCValve();
+            this.ByPassValue = new HZH_Controls.Controls.UCValve();
             this.label13 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.ucConduit10 = new HZH_Controls.Controls.UCConduit();
-            this.ucValve4 = new HZH_Controls.Controls.UCValve();
-            this.ucConduit4 = new HZH_Controls.Controls.UCConduit();
-            this.ucConduit7 = new HZH_Controls.Controls.UCConduit();
-            this.ucConduit8 = new HZH_Controls.Controls.UCConduit();
-            this.ucValve3 = new HZH_Controls.Controls.UCValve();
-            this.ucConduit9 = new HZH_Controls.Controls.UCConduit();
-            this.ucConduit6 = new HZH_Controls.Controls.UCConduit();
-            this.ucConduit5 = new HZH_Controls.Controls.UCConduit();
-            this.ucValve2 = new HZH_Controls.Controls.UCValve();
-            this.ucConduit3 = new HZH_Controls.Controls.UCConduit();
-            this.ucConduit2 = new HZH_Controls.Controls.UCConduit();
-            this.ucConduit1 = new HZH_Controls.Controls.UCConduit();
+            this.OutGasConduit2 = new HZH_Controls.Controls.UCConduit();
+            this.OutLiquidValue = new HZH_Controls.Controls.UCValve();
+            this.OutLiquidConduit1 = new HZH_Controls.Controls.UCConduit();
+            this.OutGasConduit3 = new HZH_Controls.Controls.UCConduit();
+            this.OutLiquidConduit2 = new HZH_Controls.Controls.UCConduit();
+            this.OutGasValue = new HZH_Controls.Controls.UCValve();
+            this.OutLiquidConduit3 = new HZH_Controls.Controls.UCConduit();
+            this.OutGasConduit1 = new HZH_Controls.Controls.UCConduit();
+            this.InLiquidConduit3 = new HZH_Controls.Controls.UCConduit();
+            this.InLiquidValue = new HZH_Controls.Controls.UCValve();
+            this.InLiquidConduit2 = new HZH_Controls.Controls.UCConduit();
+            this.ByPassConduit1 = new HZH_Controls.Controls.UCConduit();
+            this.InLiquidConduit1 = new HZH_Controls.Controls.UCConduit();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.LblSensorState = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -89,14 +90,16 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.LblLevel = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.LblPressure = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
+            this.LblTemp = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.ucConduit1 = new HZH_Controls.Controls.UCConduit();
+            this.ucConduit3 = new HZH_Controls.Controls.UCConduit();
             this.groupBox1.SuspendLayout();
             this.CmsChangeState.SuspendLayout();
             this.MnsMain.SuspendLayout();
@@ -239,6 +242,7 @@
             this.MnsMain.ImageScalingSize = new System.Drawing.Size(50, 50);
             this.MnsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CameraSetTSMI,
+            this.ValueSetTSMI,
             this.TempCurveTSMI,
             this.PressureCurveTSMI,
             this.TorqueCurveTSMI,
@@ -258,6 +262,15 @@
             this.CameraSetTSMI.Size = new System.Drawing.Size(101, 39);
             this.CameraSetTSMI.Text = "相机设定";
             this.CameraSetTSMI.Click += new System.EventHandler(this.CameraSetTSMI_Click);
+            // 
+            // ValueSetTSMI
+            // 
+            this.ValueSetTSMI.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ValueSetTSMI.Name = "ValueSetTSMI";
+            this.ValueSetTSMI.Size = new System.Drawing.Size(121, 39);
+            this.ValueSetTSMI.Text = "电磁阀控制";
+            this.ValueSetTSMI.Visible = false;
+            this.ValueSetTSMI.Click += new System.EventHandler(this.ValueSetTSMI_Click);
             // 
             // TempCurveTSMI
             // 
@@ -355,29 +368,30 @@
             this.BtnPause.TabIndex = 34;
             this.BtnPause.Text = "停止测量";
             this.BtnPause.UseVisualStyleBackColor = true;
-            this.BtnPause.Click += new System.EventHandler(this.BtnPause_Click);
             // 
             // TmrRefresh
             // 
             this.TmrRefresh.Interval = 200;
             this.TmrRefresh.Tick += new System.EventHandler(this.m);
             // 
-            // ucValve1
+            // ByPassValue
             // 
-            this.ucValve1.AsisBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucValve1.AxisColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucValve1.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucValve1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucValve1.LiquidSpeed = 100;
-            this.ucValve1.Location = new System.Drawing.Point(376, 607);
-            this.ucValve1.Margin = new System.Windows.Forms.Padding(2);
-            this.ucValve1.Name = "ucValve1";
-            this.ucValve1.Opened = true;
-            this.ucValve1.Size = new System.Drawing.Size(86, 64);
-            this.ucValve1.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
-            this.ucValve1.TabIndex = 2159;
-            this.ucValve1.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucValve1.ValveStyle = HZH_Controls.Controls.ValveStyle.Horizontal_Top;
+            this.ByPassValue.AsisBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.ByPassValue.AxisColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.ByPassValue.BackColor = System.Drawing.Color.Pink;
+            this.ByPassValue.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.ByPassValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.ByPassValue.LiquidSpeed = 100;
+            this.ByPassValue.Location = new System.Drawing.Point(376, 607);
+            this.ByPassValue.Margin = new System.Windows.Forms.Padding(2);
+            this.ByPassValue.Name = "ByPassValue";
+            this.ByPassValue.Opened = true;
+            this.ByPassValue.Size = new System.Drawing.Size(86, 64);
+            this.ByPassValue.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
+            this.ByPassValue.TabIndex = 2159;
+            this.ByPassValue.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.ByPassValue.ValveStyle = HZH_Controls.Controls.ValveStyle.Horizontal_Top;
+            this.ByPassValue.Click += new System.EventHandler(this.ByPassValue_Click);
             // 
             // label13
             // 
@@ -386,9 +400,9 @@
             this.label13.Location = new System.Drawing.Point(394, 591);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(63, 16);
+            this.label13.Size = new System.Drawing.Size(55, 16);
             this.label13.TabIndex = 2175;
-            this.label13.Text = "电动阀4";
+            this.label13.Text = "直通阀";
             // 
             // label9
             // 
@@ -397,9 +411,9 @@
             this.label9.Location = new System.Drawing.Point(82, 572);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(63, 16);
+            this.label9.Size = new System.Drawing.Size(55, 16);
             this.label9.TabIndex = 2174;
-            this.label9.Text = "电动阀2";
+            this.label9.Text = "进液阀";
             // 
             // label8
             // 
@@ -408,9 +422,9 @@
             this.label8.Location = new System.Drawing.Point(606, 124);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 16);
+            this.label8.Size = new System.Drawing.Size(55, 16);
             this.label8.TabIndex = 2173;
-            this.label8.Text = "电动阀1";
+            this.label8.Text = "排气阀";
             // 
             // label7
             // 
@@ -419,201 +433,209 @@
             this.label7.Location = new System.Drawing.Point(620, 548);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 16);
+            this.label7.Size = new System.Drawing.Size(55, 16);
             this.label7.TabIndex = 2158;
-            this.label7.Text = "电动阀3";
+            this.label7.Text = "出液阀";
             // 
-            // ucConduit10
+            // OutGasConduit2
             // 
-            this.ucConduit10.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucConduit10.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Horizontal_None_None;
-            this.ucConduit10.ConduitWidth = 60;
-            this.ucConduit10.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucConduit10.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucConduit10.LiquidSpeed = 100;
-            this.ucConduit10.Location = new System.Drawing.Point(552, 84);
-            this.ucConduit10.Margin = new System.Windows.Forms.Padding(2);
-            this.ucConduit10.Name = "ucConduit10";
-            this.ucConduit10.Size = new System.Drawing.Size(169, 15);
-            this.ucConduit10.TabIndex = 2172;
+            this.OutGasConduit2.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.OutGasConduit2.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Horizontal_None_None;
+            this.OutGasConduit2.ConduitWidth = 60;
+            this.OutGasConduit2.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.OutGasConduit2.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.OutGasConduit2.LiquidSpeed = 100;
+            this.OutGasConduit2.Location = new System.Drawing.Point(552, 84);
+            this.OutGasConduit2.Margin = new System.Windows.Forms.Padding(2);
+            this.OutGasConduit2.Name = "OutGasConduit2";
+            this.OutGasConduit2.Size = new System.Drawing.Size(169, 15);
+            this.OutGasConduit2.TabIndex = 2172;
             // 
-            // ucValve4
+            // OutLiquidValue
             // 
-            this.ucValve4.AsisBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucValve4.AxisColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucValve4.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucValve4.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucValve4.LiquidSpeed = 100;
-            this.ucValve4.Location = new System.Drawing.Point(598, 569);
-            this.ucValve4.Margin = new System.Windows.Forms.Padding(2);
-            this.ucValve4.Name = "ucValve4";
-            this.ucValve4.Opened = true;
-            this.ucValve4.Size = new System.Drawing.Size(90, 64);
-            this.ucValve4.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
-            this.ucValve4.TabIndex = 2171;
-            this.ucValve4.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucValve4.ValveStyle = HZH_Controls.Controls.ValveStyle.Horizontal_Top;
+            this.OutLiquidValue.AsisBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.OutLiquidValue.AxisColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.OutLiquidValue.BackColor = System.Drawing.Color.Pink;
+            this.OutLiquidValue.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.OutLiquidValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.OutLiquidValue.LiquidSpeed = 100;
+            this.OutLiquidValue.Location = new System.Drawing.Point(598, 569);
+            this.OutLiquidValue.Margin = new System.Windows.Forms.Padding(2);
+            this.OutLiquidValue.Name = "OutLiquidValue";
+            this.OutLiquidValue.Opened = true;
+            this.OutLiquidValue.Size = new System.Drawing.Size(90, 64);
+            this.OutLiquidValue.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
+            this.OutLiquidValue.TabIndex = 2171;
+            this.OutLiquidValue.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.OutLiquidValue.ValveStyle = HZH_Controls.Controls.ValveStyle.Horizontal_Top;
+            this.OutLiquidValue.Click += new System.EventHandler(this.OutLiquidValue_Click);
             // 
-            // ucConduit4
+            // OutLiquidConduit1
             // 
-            this.ucConduit4.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucConduit4.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Vertical_None_Right;
-            this.ucConduit4.ConduitWidth = 50;
-            this.ucConduit4.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucConduit4.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucConduit4.LiquidSpeed = 100;
-            this.ucConduit4.Location = new System.Drawing.Point(504, 562);
-            this.ucConduit4.Margin = new System.Windows.Forms.Padding(2);
-            this.ucConduit4.Name = "ucConduit4";
-            this.ucConduit4.Size = new System.Drawing.Size(22, 63);
-            this.ucConduit4.TabIndex = 2170;
+            this.OutLiquidConduit1.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.OutLiquidConduit1.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Vertical_None_Right;
+            this.OutLiquidConduit1.ConduitWidth = 50;
+            this.OutLiquidConduit1.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.OutLiquidConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.OutLiquidConduit1.LiquidSpeed = 100;
+            this.OutLiquidConduit1.Location = new System.Drawing.Point(504, 562);
+            this.OutLiquidConduit1.Margin = new System.Windows.Forms.Padding(2);
+            this.OutLiquidConduit1.Name = "OutLiquidConduit1";
+            this.OutLiquidConduit1.Size = new System.Drawing.Size(22, 63);
+            this.OutLiquidConduit1.TabIndex = 2170;
             // 
-            // ucConduit7
+            // OutGasConduit3
             // 
-            this.ucConduit7.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucConduit7.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Vertical_Left_None;
-            this.ucConduit7.ConduitWidth = 60;
-            this.ucConduit7.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucConduit7.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucConduit7.LiquidSpeed = 100;
-            this.ucConduit7.Location = new System.Drawing.Point(720, 83);
-            this.ucConduit7.Margin = new System.Windows.Forms.Padding(2);
-            this.ucConduit7.Name = "ucConduit7";
-            this.ucConduit7.Size = new System.Drawing.Size(15, 523);
-            this.ucConduit7.TabIndex = 2167;
-            this.ucConduit7.Load += new System.EventHandler(this.ucConduit7_Load);
+            this.OutGasConduit3.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.OutGasConduit3.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Vertical_Left_None;
+            this.OutGasConduit3.ConduitWidth = 60;
+            this.OutGasConduit3.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.OutGasConduit3.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.OutGasConduit3.LiquidSpeed = 100;
+            this.OutGasConduit3.Location = new System.Drawing.Point(720, 83);
+            this.OutGasConduit3.Margin = new System.Windows.Forms.Padding(2);
+            this.OutGasConduit3.Name = "OutGasConduit3";
+            this.OutGasConduit3.Size = new System.Drawing.Size(15, 523);
+            this.OutGasConduit3.TabIndex = 2167;
+            this.OutGasConduit3.Load += new System.EventHandler(this.ucConduit7_Load);
             // 
-            // ucConduit8
+            // OutLiquidConduit2
             // 
-            this.ucConduit8.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucConduit8.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Horizontal_None_Down;
-            this.ucConduit8.ConduitWidth = 50;
-            this.ucConduit8.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucConduit8.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucConduit8.LiquidSpeed = 100;
-            this.ucConduit8.Location = new System.Drawing.Point(522, 601);
-            this.ucConduit8.Margin = new System.Windows.Forms.Padding(2);
-            this.ucConduit8.Name = "ucConduit8";
-            this.ucConduit8.Size = new System.Drawing.Size(253, 24);
-            this.ucConduit8.TabIndex = 2169;
+            this.OutLiquidConduit2.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.OutLiquidConduit2.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Horizontal_None_Down;
+            this.OutLiquidConduit2.ConduitWidth = 50;
+            this.OutLiquidConduit2.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.OutLiquidConduit2.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.OutLiquidConduit2.LiquidSpeed = 100;
+            this.OutLiquidConduit2.Location = new System.Drawing.Point(522, 601);
+            this.OutLiquidConduit2.Margin = new System.Windows.Forms.Padding(2);
+            this.OutLiquidConduit2.Name = "OutLiquidConduit2";
+            this.OutLiquidConduit2.Size = new System.Drawing.Size(253, 24);
+            this.OutLiquidConduit2.TabIndex = 2169;
             // 
-            // ucValve3
+            // OutGasValue
             // 
-            this.ucValve3.AsisBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucValve3.AxisColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucValve3.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucValve3.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucValve3.LiquidSpeed = 100;
-            this.ucValve3.Location = new System.Drawing.Point(606, 53);
-            this.ucValve3.Margin = new System.Windows.Forms.Padding(2);
-            this.ucValve3.Name = "ucValve3";
-            this.ucValve3.Opened = true;
-            this.ucValve3.Size = new System.Drawing.Size(63, 61);
-            this.ucValve3.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
-            this.ucValve3.TabIndex = 2166;
-            this.ucValve3.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucValve3.ValveStyle = HZH_Controls.Controls.ValveStyle.Horizontal_Top;
+            this.OutGasValue.AsisBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.OutGasValue.AxisColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.OutGasValue.BackColor = System.Drawing.Color.Pink;
+            this.OutGasValue.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.OutGasValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.OutGasValue.LiquidSpeed = 100;
+            this.OutGasValue.Location = new System.Drawing.Point(590, 53);
+            this.OutGasValue.Margin = new System.Windows.Forms.Padding(2);
+            this.OutGasValue.Name = "OutGasValue";
+            this.OutGasValue.Opened = true;
+            this.OutGasValue.Size = new System.Drawing.Size(98, 61);
+            this.OutGasValue.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
+            this.OutGasValue.TabIndex = 2166;
+            this.OutGasValue.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.OutGasValue.ValveStyle = HZH_Controls.Controls.ValveStyle.Horizontal_Top;
+            this.OutGasValue.Load += new System.EventHandler(this.OutGasValue_Load);
+            this.OutGasValue.Click += new System.EventHandler(this.OutGasValue_Click);
             // 
-            // ucConduit9
+            // OutLiquidConduit3
             // 
-            this.ucConduit9.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucConduit9.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Vertical_None_None;
-            this.ucConduit9.ConduitWidth = 50;
-            this.ucConduit9.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucConduit9.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucConduit9.LiquidSpeed = 100;
-            this.ucConduit9.Location = new System.Drawing.Point(753, 621);
-            this.ucConduit9.Margin = new System.Windows.Forms.Padding(2);
-            this.ucConduit9.Name = "ucConduit9";
-            this.ucConduit9.Size = new System.Drawing.Size(22, 30);
-            this.ucConduit9.TabIndex = 2168;
+            this.OutLiquidConduit3.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.OutLiquidConduit3.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Vertical_None_None;
+            this.OutLiquidConduit3.ConduitWidth = 50;
+            this.OutLiquidConduit3.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.OutLiquidConduit3.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.OutLiquidConduit3.LiquidSpeed = 100;
+            this.OutLiquidConduit3.Location = new System.Drawing.Point(753, 614);
+            this.OutLiquidConduit3.Margin = new System.Windows.Forms.Padding(2);
+            this.OutLiquidConduit3.Name = "OutLiquidConduit3";
+            this.OutLiquidConduit3.Size = new System.Drawing.Size(22, 37);
+            this.OutLiquidConduit3.TabIndex = 2168;
             // 
-            // ucConduit6
+            // OutGasConduit1
             // 
-            this.ucConduit6.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucConduit6.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Vertical_Right_None;
-            this.ucConduit6.ConduitWidth = 50;
-            this.ucConduit6.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucConduit6.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucConduit6.LiquidSpeed = 100;
-            this.ucConduit6.Location = new System.Drawing.Point(537, 83);
-            this.ucConduit6.Margin = new System.Windows.Forms.Padding(2);
-            this.ucConduit6.Name = "ucConduit6";
-            this.ucConduit6.Size = new System.Drawing.Size(15, 49);
-            this.ucConduit6.TabIndex = 2165;
+            this.OutGasConduit1.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.OutGasConduit1.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Vertical_Right_None;
+            this.OutGasConduit1.ConduitWidth = 50;
+            this.OutGasConduit1.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.OutGasConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Backward;
+            this.OutGasConduit1.LiquidSpeed = 100;
+            this.OutGasConduit1.Location = new System.Drawing.Point(537, 83);
+            this.OutGasConduit1.Margin = new System.Windows.Forms.Padding(2);
+            this.OutGasConduit1.Name = "OutGasConduit1";
+            this.OutGasConduit1.Size = new System.Drawing.Size(15, 49);
+            this.OutGasConduit1.TabIndex = 2165;
             // 
-            // ucConduit5
+            // InLiquidConduit3
             // 
-            this.ucConduit5.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucConduit5.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Vertical_None_None;
-            this.ucConduit5.ConduitWidth = 50;
-            this.ucConduit5.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucConduit5.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucConduit5.LiquidSpeed = 100;
-            this.ucConduit5.Location = new System.Drawing.Point(303, 562);
-            this.ucConduit5.Margin = new System.Windows.Forms.Padding(2);
-            this.ucConduit5.Name = "ucConduit5";
-            this.ucConduit5.Size = new System.Drawing.Size(22, 35);
-            this.ucConduit5.TabIndex = 2164;
+            this.InLiquidConduit3.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.InLiquidConduit3.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Vertical_None_None;
+            this.InLiquidConduit3.ConduitWidth = 50;
+            this.InLiquidConduit3.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.InLiquidConduit3.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Backward;
+            this.InLiquidConduit3.LiquidSpeed = 100;
+            this.InLiquidConduit3.Location = new System.Drawing.Point(303, 562);
+            this.InLiquidConduit3.Margin = new System.Windows.Forms.Padding(2);
+            this.InLiquidConduit3.Name = "InLiquidConduit3";
+            this.InLiquidConduit3.Size = new System.Drawing.Size(22, 35);
+            this.InLiquidConduit3.TabIndex = 2164;
             // 
-            // ucValve2
+            // InLiquidValue
             // 
-            this.ucValve2.AsisBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucValve2.AxisColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucValve2.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucValve2.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucValve2.LiquidSpeed = 100;
-            this.ucValve2.Location = new System.Drawing.Point(137, 562);
-            this.ucValve2.Margin = new System.Windows.Forms.Padding(2);
-            this.ucValve2.Name = "ucValve2";
-            this.ucValve2.Opened = true;
-            this.ucValve2.Size = new System.Drawing.Size(90, 64);
-            this.ucValve2.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
-            this.ucValve2.TabIndex = 2163;
-            this.ucValve2.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucValve2.ValveStyle = HZH_Controls.Controls.ValveStyle.Horizontal_Top;
+            this.InLiquidValue.AsisBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.InLiquidValue.AxisColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.InLiquidValue.BackColor = System.Drawing.Color.Pink;
+            this.InLiquidValue.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.InLiquidValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.InLiquidValue.LiquidSpeed = 100;
+            this.InLiquidValue.Location = new System.Drawing.Point(137, 562);
+            this.InLiquidValue.Margin = new System.Windows.Forms.Padding(2);
+            this.InLiquidValue.Name = "InLiquidValue";
+            this.InLiquidValue.Opened = true;
+            this.InLiquidValue.Size = new System.Drawing.Size(90, 64);
+            this.InLiquidValue.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
+            this.InLiquidValue.TabIndex = 2163;
+            this.InLiquidValue.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.InLiquidValue.ValveStyle = HZH_Controls.Controls.ValveStyle.Horizontal_Top;
+            this.InLiquidValue.Load += new System.EventHandler(this.InLiquidValue_Load);
+            this.InLiquidValue.Click += new System.EventHandler(this.InLiquidValue_Click);
             // 
-            // ucConduit3
+            // InLiquidConduit2
             // 
-            this.ucConduit3.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucConduit3.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Horizontal_None_Up;
-            this.ucConduit3.ConduitWidth = 50;
-            this.ucConduit3.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucConduit3.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucConduit3.LiquidSpeed = 100;
-            this.ucConduit3.Location = new System.Drawing.Point(72, 594);
-            this.ucConduit3.Margin = new System.Windows.Forms.Padding(2);
-            this.ucConduit3.Name = "ucConduit3";
-            this.ucConduit3.Size = new System.Drawing.Size(253, 24);
-            this.ucConduit3.TabIndex = 2162;
+            this.InLiquidConduit2.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.InLiquidConduit2.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Horizontal_None_Up;
+            this.InLiquidConduit2.ConduitWidth = 50;
+            this.InLiquidConduit2.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.InLiquidConduit2.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.InLiquidConduit2.LiquidSpeed = 100;
+            this.InLiquidConduit2.Location = new System.Drawing.Point(72, 594);
+            this.InLiquidConduit2.Margin = new System.Windows.Forms.Padding(2);
+            this.InLiquidConduit2.Name = "InLiquidConduit2";
+            this.InLiquidConduit2.Size = new System.Drawing.Size(253, 24);
+            this.InLiquidConduit2.TabIndex = 2162;
             // 
-            // ucConduit2
+            // ByPassConduit1
             // 
-            this.ucConduit2.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucConduit2.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Horizontal_None_None;
-            this.ucConduit2.ConduitWidth = 100;
-            this.ucConduit2.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucConduit2.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucConduit2.LiquidSpeed = 100;
-            this.ucConduit2.Location = new System.Drawing.Point(18, 639);
-            this.ucConduit2.Margin = new System.Windows.Forms.Padding(2);
-            this.ucConduit2.Name = "ucConduit2";
-            this.ucConduit2.Size = new System.Drawing.Size(801, 24);
-            this.ucConduit2.TabIndex = 2161;
+            this.ByPassConduit1.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.ByPassConduit1.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Horizontal_None_None;
+            this.ByPassConduit1.ConduitWidth = 100;
+            this.ByPassConduit1.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.ByPassConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.ByPassConduit1.LiquidSpeed = 100;
+            this.ByPassConduit1.Location = new System.Drawing.Point(73, 639);
+            this.ByPassConduit1.Margin = new System.Windows.Forms.Padding(2);
+            this.ByPassConduit1.Name = "ByPassConduit1";
+            this.ByPassConduit1.Size = new System.Drawing.Size(685, 24);
+            this.ByPassConduit1.TabIndex = 2161;
             // 
-            // ucConduit1
+            // InLiquidConduit1
             // 
-            this.ucConduit1.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ucConduit1.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Vertical_Right_None;
-            this.ucConduit1.ConduitWidth = 50;
-            this.ucConduit1.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
-            this.ucConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
-            this.ucConduit1.LiquidSpeed = 100;
-            this.ucConduit1.Location = new System.Drawing.Point(52, 593);
-            this.ucConduit1.Margin = new System.Windows.Forms.Padding(2);
-            this.ucConduit1.Name = "ucConduit1";
-            this.ucConduit1.Size = new System.Drawing.Size(22, 58);
-            this.ucConduit1.TabIndex = 2160;
+            this.InLiquidConduit1.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.InLiquidConduit1.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Vertical_Right_None;
+            this.InLiquidConduit1.ConduitWidth = 50;
+            this.InLiquidConduit1.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.InLiquidConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Backward;
+            this.InLiquidConduit1.LiquidSpeed = 100;
+            this.InLiquidConduit1.Location = new System.Drawing.Point(52, 593);
+            this.InLiquidConduit1.Margin = new System.Windows.Forms.Padding(2);
+            this.InLiquidConduit1.Name = "InLiquidConduit1";
+            this.InLiquidConduit1.Size = new System.Drawing.Size(22, 58);
+            this.InLiquidConduit1.TabIndex = 2160;
             // 
             // groupBox4
             // 
@@ -770,11 +792,11 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.LblLevel);
             this.groupBox3.Controls.Add(this.label17);
-            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.LblPressure);
             this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.label31);
+            this.groupBox3.Controls.Add(this.LblTemp);
             this.groupBox3.Controls.Add(this.label33);
             this.groupBox3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox3.Location = new System.Drawing.Point(590, 190);
@@ -784,16 +806,16 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "分离器参数";
             // 
-            // label15
+            // LblLevel
             // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Yellow;
-            this.label15.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label15.Location = new System.Drawing.Point(13, 242);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(39, 16);
-            this.label15.TabIndex = 43;
-            this.label15.Text = "####";
+            this.LblLevel.AutoSize = true;
+            this.LblLevel.BackColor = System.Drawing.Color.Yellow;
+            this.LblLevel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LblLevel.Location = new System.Drawing.Point(13, 242);
+            this.LblLevel.Name = "LblLevel";
+            this.LblLevel.Size = new System.Drawing.Size(39, 16);
+            this.LblLevel.TabIndex = 43;
+            this.LblLevel.Text = "####";
             // 
             // label17
             // 
@@ -806,16 +828,16 @@
             this.label17.TabIndex = 42;
             this.label17.Text = "液位：";
             // 
-            // label18
+            // LblPressure
             // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Yellow;
-            this.label18.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.Location = new System.Drawing.Point(13, 158);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(39, 16);
-            this.label18.TabIndex = 41;
-            this.label18.Text = "####";
+            this.LblPressure.AutoSize = true;
+            this.LblPressure.BackColor = System.Drawing.Color.Yellow;
+            this.LblPressure.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LblPressure.Location = new System.Drawing.Point(13, 158);
+            this.LblPressure.Name = "LblPressure";
+            this.LblPressure.Size = new System.Drawing.Size(39, 16);
+            this.LblPressure.TabIndex = 41;
+            this.LblPressure.Text = "####";
             // 
             // label21
             // 
@@ -828,16 +850,16 @@
             this.label21.TabIndex = 40;
             this.label21.Text = "压力：";
             // 
-            // label31
+            // LblTemp
             // 
-            this.label31.AutoSize = true;
-            this.label31.BackColor = System.Drawing.Color.Yellow;
-            this.label31.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label31.Location = new System.Drawing.Point(13, 74);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(39, 16);
-            this.label31.TabIndex = 3;
-            this.label31.Text = "####";
+            this.LblTemp.AutoSize = true;
+            this.LblTemp.BackColor = System.Drawing.Color.Yellow;
+            this.LblTemp.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LblTemp.Location = new System.Drawing.Point(13, 74);
+            this.LblTemp.Name = "LblTemp";
+            this.LblTemp.Size = new System.Drawing.Size(39, 16);
+            this.LblTemp.TabIndex = 3;
+            this.LblTemp.Text = "####";
             // 
             // label33
             // 
@@ -872,11 +894,41 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // ucConduit1
+            // 
+            this.ucConduit1.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.ucConduit1.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Horizontal_None_None;
+            this.ucConduit1.ConduitWidth = 100;
+            this.ucConduit1.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.ucConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.ucConduit1.LiquidSpeed = 100;
+            this.ucConduit1.Location = new System.Drawing.Point(25, 639);
+            this.ucConduit1.Margin = new System.Windows.Forms.Padding(2);
+            this.ucConduit1.Name = "ucConduit1";
+            this.ucConduit1.Size = new System.Drawing.Size(49, 24);
+            this.ucConduit1.TabIndex = 2183;
+            // 
+            // ucConduit3
+            // 
+            this.ucConduit3.ConduitColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.ucConduit3.ConduitStyle = HZH_Controls.Controls.ConduitStyle.Horizontal_None_None;
+            this.ucConduit3.ConduitWidth = 100;
+            this.ucConduit3.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
+            this.ucConduit3.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
+            this.ucConduit3.LiquidSpeed = 100;
+            this.ucConduit3.Location = new System.Drawing.Point(753, 639);
+            this.ucConduit3.Margin = new System.Windows.Forms.Padding(2);
+            this.ucConduit3.Name = "ucConduit3";
+            this.ucConduit3.Size = new System.Drawing.Size(49, 24);
+            this.ucConduit3.TabIndex = 2184;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 682);
+            this.Controls.Add(this.ucConduit3);
+            this.Controls.Add(this.ucConduit1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox3);
@@ -884,27 +936,27 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.ucValve1);
+            this.Controls.Add(this.ByPassValue);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.ucConduit10);
-            this.Controls.Add(this.ucValve4);
-            this.Controls.Add(this.ucConduit4);
-            this.Controls.Add(this.ucConduit7);
-            this.Controls.Add(this.ucConduit8);
-            this.Controls.Add(this.ucValve3);
-            this.Controls.Add(this.ucConduit9);
-            this.Controls.Add(this.ucConduit6);
-            this.Controls.Add(this.ucConduit5);
-            this.Controls.Add(this.ucValve2);
-            this.Controls.Add(this.ucConduit3);
-            this.Controls.Add(this.ucConduit2);
-            this.Controls.Add(this.ucConduit1);
+            this.Controls.Add(this.OutGasConduit2);
+            this.Controls.Add(this.OutLiquidValue);
+            this.Controls.Add(this.OutLiquidConduit1);
+            this.Controls.Add(this.OutGasConduit3);
+            this.Controls.Add(this.OutLiquidConduit2);
+            this.Controls.Add(this.OutGasValue);
+            this.Controls.Add(this.OutGasConduit1);
+            this.Controls.Add(this.InLiquidConduit3);
+            this.Controls.Add(this.InLiquidValue);
+            this.Controls.Add(this.InLiquidConduit2);
+            this.Controls.Add(this.ByPassConduit1);
+            this.Controls.Add(this.InLiquidConduit1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.MnsMain);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.OutLiquidConduit3);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "多相流分相含率在线测量系统";
@@ -955,24 +1007,24 @@
         public System.Windows.Forms.Label label25;
         private System.Windows.Forms.Timer TmrRefresh;
         private System.Windows.Forms.ToolStripMenuItem TorqueCurveTSMI;
-        private HZH_Controls.Controls.UCValve ucValve1;
+        private HZH_Controls.Controls.UCValve ByPassValue;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private HZH_Controls.Controls.UCConduit ucConduit10;
-        private HZH_Controls.Controls.UCValve ucValve4;
-        private HZH_Controls.Controls.UCConduit ucConduit4;
-        private HZH_Controls.Controls.UCConduit ucConduit7;
-        private HZH_Controls.Controls.UCConduit ucConduit8;
-        private HZH_Controls.Controls.UCValve ucValve3;
-        private HZH_Controls.Controls.UCConduit ucConduit9;
-        private HZH_Controls.Controls.UCConduit ucConduit6;
-        private HZH_Controls.Controls.UCConduit ucConduit5;
-        private HZH_Controls.Controls.UCValve ucValve2;
-        private HZH_Controls.Controls.UCConduit ucConduit3;
-        private HZH_Controls.Controls.UCConduit ucConduit2;
-        private HZH_Controls.Controls.UCConduit ucConduit1;
+        private HZH_Controls.Controls.UCConduit OutGasConduit2;
+        private HZH_Controls.Controls.UCValve OutLiquidValue;
+        private HZH_Controls.Controls.UCConduit OutLiquidConduit1;
+        private HZH_Controls.Controls.UCConduit OutGasConduit3;
+        private HZH_Controls.Controls.UCConduit OutLiquidConduit2;
+        private HZH_Controls.Controls.UCValve OutGasValue;
+        private HZH_Controls.Controls.UCConduit OutLiquidConduit3;
+        private HZH_Controls.Controls.UCConduit OutGasConduit1;
+        private HZH_Controls.Controls.UCConduit InLiquidConduit3;
+        private HZH_Controls.Controls.UCValve InLiquidValue;
+        private HZH_Controls.Controls.UCConduit InLiquidConduit2;
+        private HZH_Controls.Controls.UCConduit ByPassConduit1;
+        private HZH_Controls.Controls.UCConduit InLiquidConduit1;
         public System.Windows.Forms.GroupBox groupBox4;
         public System.Windows.Forms.Label label19;
         public System.Windows.Forms.Label label20;
@@ -988,16 +1040,19 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ToolStripMenuItem TempCurveTSMI;
         public System.Windows.Forms.GroupBox groupBox3;
-        public System.Windows.Forms.Label label15;
+        public System.Windows.Forms.Label LblLevel;
         public System.Windows.Forms.Label label17;
-        public System.Windows.Forms.Label label18;
+        public System.Windows.Forms.Label LblPressure;
         public System.Windows.Forms.Label label21;
-        public System.Windows.Forms.Label label31;
+        public System.Windows.Forms.Label LblTemp;
         public System.Windows.Forms.Label label33;
         private System.Windows.Forms.ToolStripMenuItem CameraSetTSMI;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         public HalconDotNet.HSmartWindowControl hSmartWindowControl1;
+        private System.Windows.Forms.ToolStripMenuItem ValueSetTSMI;
+        private HZH_Controls.Controls.UCConduit ucConduit1;
+        private HZH_Controls.Controls.UCConduit ucConduit3;
     }
 }
 

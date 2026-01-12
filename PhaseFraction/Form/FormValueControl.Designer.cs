@@ -41,8 +41,9 @@
             this.BtnInLiquidValue.Name = "BtnInLiquidValue";
             this.BtnInLiquidValue.Size = new System.Drawing.Size(186, 30);
             this.BtnInLiquidValue.TabIndex = 43;
-            this.BtnInLiquidValue.Text = "进液电磁阀";
+            this.BtnInLiquidValue.Text = "打开进液电磁阀";
             this.BtnInLiquidValue.UseVisualStyleBackColor = true;
+            this.BtnInLiquidValue.Click += new System.EventHandler(this.BtnInLiquidValue_Click);
             // 
             // BtnByPassValue
             // 
@@ -51,7 +52,7 @@
             this.BtnByPassValue.Name = "BtnByPassValue";
             this.BtnByPassValue.Size = new System.Drawing.Size(186, 30);
             this.BtnByPassValue.TabIndex = 42;
-            this.BtnByPassValue.Text = "打开旁路电磁阀";
+            this.BtnByPassValue.Text = "打开直通电磁阀";
             this.BtnByPassValue.UseVisualStyleBackColor = true;
             this.BtnByPassValue.Click += new System.EventHandler(this.BtnByPassValue_Click);
             // 
@@ -62,8 +63,9 @@
             this.BtnOutGasValue.Name = "BtnOutGasValue";
             this.BtnOutGasValue.Size = new System.Drawing.Size(186, 30);
             this.BtnOutGasValue.TabIndex = 41;
-            this.BtnOutGasValue.Text = "排气电磁阀";
+            this.BtnOutGasValue.Text = "打开排气电磁阀";
             this.BtnOutGasValue.UseVisualStyleBackColor = true;
+            this.BtnOutGasValue.Click += new System.EventHandler(this.BtnOutGasValue_Click);
             // 
             // BtnOutLiquidValue
             // 
@@ -72,8 +74,9 @@
             this.BtnOutLiquidValue.Name = "BtnOutLiquidValue";
             this.BtnOutLiquidValue.Size = new System.Drawing.Size(186, 30);
             this.BtnOutLiquidValue.TabIndex = 44;
-            this.BtnOutLiquidValue.Text = "出液电磁阀";
+            this.BtnOutLiquidValue.Text = "打开出液电磁阀";
             this.BtnOutLiquidValue.UseVisualStyleBackColor = true;
+            this.BtnOutLiquidValue.Click += new System.EventHandler(this.BtnOutLiquidValue_Click);
             // 
             // FormValueControl
             // 

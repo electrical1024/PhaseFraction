@@ -1,7 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using HalconDotNet;
+using HZH_Controls;
 
 
 namespace PhaseFraction
@@ -16,18 +18,21 @@ namespace PhaseFraction
                 m_instance = new VisionClass();
             return m_instance;
         }
-        Thread th2, th3;
-        HTuple hv_AcqHandle = null;         //创建相机的ID
-      public  bool IsVideo=false;
+        Thread CameraThread, th3;
+        public HTuple AcqHandle = null;         //创建相机的ID
+        public HTuple DisplayWindow = null;
+        public HObject CurrentImage = null;
+        public bool IsVideo = false;
+        public bool IsPhoto = false;
 
 
         public bool ConnectCamera()
         {
             try
             {
-                th2 = new Thread(TakeVideo);
-                CreateConnectionToCamera();      //初始化相机 
-                th2.Start();
+                CameraThread = new Thread(OpenCamera);
+                InitCamera();      //初始化相机 
+                CameraThread.Start();
                 return true;
             }
             catch
@@ -37,7 +42,7 @@ namespace PhaseFraction
             }
         }
 
-        public bool CreateConnectionToCamera()  //初始化相机 
+        public bool InitCamera()  //初始化相机 
         {
             try
             {
@@ -46,11 +51,11 @@ namespace PhaseFraction
               
                 //HOperatorSet.OpenFramegrabber("DirectShow", 1, 1, 0, 0, 0, 0, "default", 8, "rgb", -1, "false", "default", "[0] ", 0, -1, out hv_AcqHandle);
                 //工控相机
-                HOperatorSet.OpenFramegrabber("GigEVision2", 0, 0, 0, 0, 0, 0, "progressive", -1, "default", -1, "false", "default", "b0b35368a881_Hikrobot_MVCE12010GM", 0, -1, out hv_AcqHandle);
-                HOperatorSet.SetFramegrabberParam(hv_AcqHandle, "TriggerMode", "Off");
+                HOperatorSet.OpenFramegrabber("GigEVision2", 0, 0, 0, 0, 0, 0, "progressive", -1, "default", -1, "false", "default", "b0b35368a881_Hikrobot_MVCE12010GM", 0, -1, out AcqHandle);
+                HOperatorSet.SetFramegrabberParam(AcqHandle, "TriggerMode", "Off");
+                HOperatorSet.SetFramegrabberParam(AcqHandle, "AcquisitionMode", "Continuous");
 
-                HObject MyImage;
-                HOperatorSet.GrabImageStart(hv_AcqHandle, -1);
+                HOperatorSet.GrabImageStart(AcqHandle, -1);
                
 
                 //HOperatorSet.SetFramegrabberParam(hv_AcqHandleLeft, "grab_timeout", -1);
@@ -65,67 +70,94 @@ namespace PhaseFraction
             }
         }
 
-        //打开视频的线程
-        public void TakeVideo()       //实时检测 
+      
+        public void OpenCamera()       
         {
-            IsVideo = true;
             try
             {
-                HTuple hv_HeightWin, hv_WidthWin;
-                HObject MyImage;
-                //设置窗口参数
-
-                HOperatorSet.GrabImageAsync(out MyImage, hv_AcqHandle, -1);
-                HOperatorSet.GetImageSize(MyImage, out hv_HeightWin, out hv_WidthWin);// 获取输入图像的尺寸
-                HOperatorSet.SetPart(FormMain.MainFrm.hSmartWindowControl1.HalconWindow, 0, 0, hv_WidthWin, hv_HeightWin);//将获得的图像铺满整个窗口
-                while (IsVideo)
+                HObject image;
+                while (true)
                 {
                     Application.DoEvents();
-                    HOperatorSet.GrabImageAsync(out MyImage, hv_AcqHandle, -1);
-                    HOperatorSet.ClearWindow(FormMain.MainFrm.hSmartWindowControl1.HalconWindow);
-                    HOperatorSet.DispObj(MyImage, FormMain.MainFrm.hSmartWindowControl1.HalconWindow);   //视频显示 
-                   
+                    HOperatorSet.GrabImageAsync(out image, AcqHandle, -1);
+                    if (IsPhoto)
+                    {
+                        TakePhoto(image, DisplayWindow);
+                    }
+                    else if (IsVideo)
+                    {
+                        TakeVideo(image, DisplayWindow);
+                    }
                 }
             }
             catch (Exception exp)
             {
                 IsVideo = false;
-                MsgofVision(exp.Message, LogType.ListShow, true);
-            }
-        }
-        public void TakePhoto()
-        {
-            try
-            {
-                HTuple hv_HeightWin, hv_WidthWin;
-                HObject MyImage;
-                //设置窗口参数
-
-                HOperatorSet.GrabImageAsync(out MyImage, hv_AcqHandle, -1);
-                HOperatorSet.GetImageSize(MyImage, out hv_HeightWin, out hv_WidthWin);// 获取输入图像的尺寸
-                HOperatorSet.SetPart(FormMain.MainFrm.hSmartWindowControl1.HalconWindow, 0, 0, hv_WidthWin, hv_HeightWin);//将获得的图像铺满整个窗口
-               
-                    HOperatorSet.ClearWindow(FormMain.MainFrm.hSmartWindowControl1.HalconWindow);
-                    HOperatorSet.DispObj(MyImage, FormMain.MainFrm.hSmartWindowControl1.HalconWindow);   //视频显示 
-                  
-            }
-            catch (Exception exp)
-            {
-                MsgofVision(exp.Message, LogType.ListShow, true);
+                IsPhoto = false;
+                MsgofVision("打开相机错误" + exp.Message, LogType.ListShow, true);
             }
         }
 
-        public void ProcessImage(HObject MyImage)
-        {
 
+
+        public void TakePhoto(HObject image, HTuple displayWindow)
+        {
+            if (image == null || displayWindow == null)
+            {
+                MsgofVision("图像或窗口为空！", LogType.ListShow, true);
+                return;
+            }
             try
             {
+                HTuple heightWin, widthWin;
+                HOperatorSet.GetImageSize(image, out heightWin, out widthWin);// 获取输入图像的尺寸
+                HOperatorSet.SetPart(displayWindow, 0, 0, widthWin, heightWin);//将获得的图像铺满整个窗口
+                CurrentImage = image;
+                HOperatorSet.ClearWindow(displayWindow);
+                HOperatorSet.DispObj(CurrentImage, displayWindow);
+                         
+
+                //image.Dispose();
+                IsPhoto = false;
 
 
             }
             catch (Exception exp)
             {
-                MsgofVision(exp.Message, LogType.ListShow, true);
+                MsgofVision("拍照错误：" + exp.Message, LogType.ListShow, true);
+            }
+        }
+
+        public void TakeVideo(HObject image, HTuple displayWindow)      //实时检测 
+        {
+            try
+            {
+                HTuple heightWin, widthWin;
+                HOperatorSet.GetImageSize(image, out heightWin, out widthWin);// 获取输入图像的尺寸
+                HOperatorSet.SetPart(displayWindow, 0, 0, widthWin, heightWin);//将获得的图像铺满整个窗口
+                HOperatorSet.ClearWindow(displayWindow);
+                HOperatorSet.DispObj(image, displayWindow);   //视频显示 
+                image.Dispose();
+            }
+            catch (Exception exp)
+            {
+                MsgofVision("录像错误："+exp.Message, LogType.ListShow, true);
+            }
+        }
+
+       
+
+        public void ProcessImage(HObject image)
+        {
+
+            try
+            {
+
+
+            }
+            catch (Exception exp)
+            {
+                MsgofVision("图像处理错误：" + exp.Message, LogType.ListShow, true);
             }
         }
     }

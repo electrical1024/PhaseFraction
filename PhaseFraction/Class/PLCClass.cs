@@ -78,16 +78,17 @@ namespace PhaseFraction
         public static FinsUDP FinsUDP = new FinsUDP();
         //bool
         public GeneralPLC<bool> CreatConnection = new GeneralPLC<bool>(_eMemory.WR, 1, 1, DataType.BoolType(1), 0);         
-        public GeneralPLC<bool> HomeStart = new GeneralPLC<bool>(_eMemory.WR, 10, 1, DataType.BoolType(1), 0);
-        public GeneralPLC<bool> AlarmReset = new GeneralPLC<bool>(_eMemory.WR, 1, 1, DataType.BoolType(1), 2);
-        public GeneralPLC<bool> Stop = new GeneralPLC<bool>(_eMemory.WR, 1, 1, DataType.BoolType(1), 3);
-        public GeneralPLC<bool> ForewardRun = new GeneralPLC<bool>(_eMemory.WR, 2, 1, DataType.BoolType(1), 0);
+        public GeneralPLC<bool> ByPassValue = new GeneralPLC<bool>(_eMemory.WR, 2, 1, DataType.BoolType(1), 0);
+        public GeneralPLC<bool> OutGasValue = new GeneralPLC<bool>(_eMemory.WR, 2, 1, DataType.BoolType(1), 3);
+        public GeneralPLC<bool> InLiquidValue = new GeneralPLC<bool>(_eMemory.WR, 2, 1, DataType.BoolType(1), 1);
+        public GeneralPLC<bool> OutLiquidValue = new GeneralPLC<bool>(_eMemory.WR, 2, 1, DataType.BoolType(1), 2);
         public GeneralPLC<bool> ReverseRun = new GeneralPLC<bool>(_eMemory.WR, 2, 1, DataType.BoolType(1), 1);
         public GeneralPLC<bool> LocationRun = new GeneralPLC<bool>(_eMemory.WR, 10, 1, DataType.BoolType(1), 4);
         public GeneralPLC<bool> BackRun = new GeneralPLC<bool>(_eMemory.WR, 2, 1, DataType.BoolType(1), 2);
         public GeneralPLC<bool> AccRun = new GeneralPLC<bool>(_eMemory.WR, 10, 1, DataType.BoolType(1), 8);
         public GeneralPLC<bool> DecRun = new GeneralPLC<bool>(_eMemory.WR, 10, 1, DataType.BoolType(1), 11);
         public GeneralPLC<bool> FlowFinish = new GeneralPLC<bool>(_eMemory.WR, 1, 1, DataType.BoolType(1), 5);
+        public GeneralPLC<bool> AlarmReset = new GeneralPLC<bool>(_eMemory.WR, 1, 1, DataType.BoolType(1), 5);
 
         public GeneralPLC<bool> PLCW1 = new GeneralPLC<bool>(_eMemory.WR, 1, 7, DataType.BoolType(7), 0);//
         public GeneralPLC<bool> ConnSuccess = new GeneralPLC<bool>(_eMemory.WR, 1, 1, DataType.BoolType(1), 1);//

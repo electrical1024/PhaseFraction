@@ -24,6 +24,7 @@ namespace PhaseFraction
         public Button[] BarcodeButton = new Button[60];
         private ConfigClass Config =new ConfigClass();
         delegate void MsgD(string msg, LogType i, bool bWarnFormShow);
+        delegate void MsgSocket(string msg);
         public static FormMain MainFrm;
         public string Source;
         WarningMessage WarningMessage1;
@@ -37,6 +38,7 @@ namespace PhaseFraction
         public FormTorqueCurve TorqueCurve = new FormTorqueCurve();
         public FormTempCurve TempCurve = new FormTempCurve();
         public FormCameraSet CameraSet = new FormCameraSet();
+        public FormValueControl ValueControl = new FormValueControl();
         public static  bool PLCAlarmOccur=false;
         public static bool ServoAlarmOccur = false;
         public static bool EmergencyOccur = false;
@@ -174,8 +176,25 @@ namespace PhaseFraction
             }
         }
 
+        private void SocketEvent(string msg)
+        {
+            try
+            {
+                MsgSocket g = new MsgSocket(MsgofSocket);
+                BeginInvoke(g, msg);
+            }
+            catch (Exception)
+            {
+            }
+        }
 
-
+        public void MsgofSocket(string msg)
+        {
+            string str= msg.Replace("//","/");
+            string[] dataAvary = msg.Split('/');
+            LblPressure.Text  = dataAvary[2];
+            LblTemp.Text = dataAvary[4];
+        }
         public FormMain()
         {
             InitializeComponent();
@@ -267,6 +286,7 @@ namespace PhaseFraction
             MainClass.MsgofMain += AlarmEvent;
            VisionClass. MsgofVision += AlarmEvent;
             SocketClass.MessageofSocketClass += AlarmEvent;
+            SocketClass.MessageofSocket += SocketEvent;
             MouseWheel += FormMainMouseWheel;
             MainClass.instance().Init();
             string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -677,7 +697,7 @@ namespace PhaseFraction
         private void BtnCreatConnect_Click(object sender, EventArgs e)
         {
             SocketClass socket = new SocketClass();
-            bool ret = VisionClass.instance().CreateConnectionToCamera();
+            bool ret = VisionClass.instance().ConnectCamera();
             if (ret)
             {
                 LblCameraState.Text = "已连接";
@@ -810,25 +830,7 @@ namespace PhaseFraction
 
     
 
-        private void BtnPause_Click(object sender, EventArgs e)
-        {
-            PLC.PLCWrite(PLC.Stop, false);
-
-            if (PLC.PLCWrite(PLC.Stop, true))
-            {
-                MainClass.instance().StopTimer();
-                MsgofMainFrm("发送停止信号成功！", LogType.FlowLog, false);
-               
-            }
-            else
-            {
-
-                MsgofMainFrm("发送PLC停止信号失败！", LogType.FlowLog, false);
-            }
-            Delay(500);
-            PLC.PLCWrite(PLC.Stop, false);
-           
-        }
+  
 
         private void BtnAlarmReset_Click(object sender, EventArgs e)
         {
@@ -918,77 +920,14 @@ namespace PhaseFraction
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-           bool ret = MainClass.instance().CreateConnectionToPLC();
-            if (ret)
-            {
-                PLC.PLCWrite(PLC.CreatConnection, false);
-
-                if (PLC.PLCWrite(PLC.CreatConnection, true))
-                {
-                    PLC.PLCRead(PLC.PLCW1);
-                    Delay(100);
-                    if (PLC.PLCW1.Data[1])
-                    {
-                        LblPLCState.Text = "已连接";
-                        LblPLCState.BackColor = Color.LightGreen;
-                        MsgofMainFrm("PLC连接成功!", LogType.FlowLog, false);
-                        BtnPause.Enabled = true;
-                        TmrRefresh.Enabled = true;
-                        BtnCreatConnect.Enabled = false;
-
-                    }
-                    else
-                    {
-                        //MainClass.instance().CreatConnectionToPLC();
-                        PLC.PLCWrite(PLC.CreatConnection, false);
-                        PLC.PLCWrite(PLC.CreatConnection, true);
-                        PLC.PLCRead(PLC.PLCW1);
-                        Delay(100);
-                        if (PLC.PLCW1.Data[1])
-                        {
-                            LblPLCState.Text = "已连接";
-                            LblPLCState.BackColor = Color.LightGreen;
-                            MsgofMainFrm("PLC连接成功!", LogType.FlowLog, false);
-
-                            BtnPause.Enabled = true;
-                            BtnAlarmReset.Enabled = true;
-
-                            TmrRefresh.Enabled = true;
-                            BtnCreatConnect.Enabled = false;
-
-                        }
-                        else
-                        {
-                            LblPLCState.Text = "未连接";
-                            LblPLCState.BackColor = Color.Pink;
-                            MsgofMainFrm("PLC连接失败!", LogType.FlowLog, false);
-                        }
-
-                        //LblPLCConnState.Text = "未连接";
-                        //LblPLCConnState.BackColor = Color.Pink;
-                        //MsgofMainFrm("PLC连接失败!", LogType.FlowLog, false);
-                    }
-                }
-                else
-                {
-                    LblPLCState.Text = "未连接";
-                    LblPLCState.BackColor = Color.Pink;
-                    MsgofMainFrm("PLC连接失败!", LogType.FlowLog, false);
-                }
-                Delay(500);
-                PLC.PLCWrite(PLC.CreatConnection, false);
-            }
-            else
-            {
-                LblPLCState.Text = "未连接";
-                LblPLCState.BackColor = Color.Pink;
-                MsgofMainFrm("PLC连接失败!", LogType.FlowLog, false);
-            }
+            VisionClass.instance().DisplayWindow = hSmartWindowControl1.HalconWindow;
+            VisionClass.instance().IsPhoto = true;
+                       
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            VisionClass.instance().TakePhoto();
+           
         }
 
         private void CameraSetTSMI_Click(object sender, EventArgs e)
@@ -1005,6 +944,155 @@ namespace PhaseFraction
         private void ucConduit7_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void ValueSetTSMI_Click(object sender, EventArgs e)
+        {
+            if (ValueControl == null || ValueControl.IsDisposed)
+            {
+                ValueControl = new FormValueControl();
+            }
+            ValueControl.TopLevel = true;
+            ValueControl.Visible = true;
+            ValueControl.Show();
+        }
+
+        private void ByPassValue_Click(object sender, EventArgs e)
+        {
+            if (ByPassValue.BackColor == Color.Pink)
+            {
+                DialogResult result = MessageBox.Show(
+                   "确定要打开阀门？",  // 确认提示语
+                   "操作确认",                  // 对话框标题
+                   MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                   MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    ByPassValue.BackColor = Color.Lime;
+                    PLC.PLCWrite(PLC.ByPassValue, true);
+                }
+            }
+            else if (ByPassValue.BackColor == Color.Lime)
+            {
+                DialogResult result = MessageBox.Show(
+                     "确定要关闭阀门？",  // 确认提示语
+                     "操作确认",                  // 对话框标题
+                     MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                     MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    ByPassValue.BackColor = Color.Pink;
+                    PLC.PLCWrite(PLC.ByPassValue, false);
+                }
+            }
+        }
+
+        private void OutGasValue_Load(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void InLiquidValue_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OutGasValue_Click(object sender, EventArgs e)
+        {
+            if (OutGasValue.BackColor == Color.Pink)
+            {
+                DialogResult result = MessageBox.Show(
+                   "确定要打开阀门？",  // 确认提示语
+                   "操作确认",                  // 对话框标题
+                   MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                   MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    OutGasValue.BackColor = Color.Lime;
+                    PLC.PLCWrite(PLC.OutGasValue, true);
+                }
+            }
+            else if (OutGasValue.BackColor == Color.Lime)
+            {
+                DialogResult result = MessageBox.Show(
+                     "确定要关闭阀门？",  // 确认提示语
+                     "操作确认",                  // 对话框标题
+                     MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                     MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    OutGasValue.BackColor = Color.Pink;
+                    PLC.PLCWrite(PLC.OutGasValue, false);
+                }
+            }
+        }
+
+        private void OutLiquidValue_Click(object sender, EventArgs e)
+        {
+            if (OutLiquidValue.BackColor == Color.Pink)
+            {
+                DialogResult result = MessageBox.Show(
+                   "确定要打开阀门？",  // 确认提示语
+                   "操作确认",                  // 对话框标题
+                   MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                   MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    OutLiquidValue.BackColor = Color.Lime;
+                    PLC.PLCWrite(PLC.OutLiquidValue, true);
+                }
+            }
+            else if (OutLiquidValue.BackColor == Color.Lime)
+            {
+                DialogResult result = MessageBox.Show(
+                     "确定要关闭阀门？",  // 确认提示语
+                     "操作确认",                  // 对话框标题
+                     MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                     MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    OutLiquidValue.BackColor = Color.Pink;
+                    PLC.PLCWrite(PLC.OutLiquidValue, false);
+                }
+            }
+        }
+
+        private void InLiquidValue_Click(object sender, EventArgs e)
+        {
+            if (InLiquidValue.BackColor == Color.Pink)
+            {
+                DialogResult result = MessageBox.Show(
+                   "确定要打开阀门？",  // 确认提示语
+                   "操作确认",                  // 对话框标题
+                   MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                   MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    InLiquidValue.BackColor = Color.Lime;
+                    PLC.PLCWrite(PLC.InLiquidValue, true);
+                }
+            }
+            else if (InLiquidValue.BackColor == Color.Lime)
+            {
+                DialogResult result = MessageBox.Show(
+                     "确定要关闭阀门？",  // 确认提示语
+                     "操作确认",                  // 对话框标题
+                     MessageBoxButtons.OKCancel,  // 显示“确定”和“取消”按钮
+                     MessageBoxIcon.Question);    // 显示问号图标
+
+                if (result == DialogResult.OK)
+                {
+                    InLiquidValue.BackColor = Color.Pink;
+                    PLC.PLCWrite(PLC.InLiquidValue, false);
+                }
+            }
         }
     }
     }
