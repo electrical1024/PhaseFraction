@@ -166,8 +166,18 @@ namespace PhaseFraction
             GenROI();
         }
 
-      
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
 
+        }
+
+        private void BtnSaveParam_Click(object sender, EventArgs e)
+        {
+            HTuple hv_WindowHandle = new HTuple();
+            HOperatorSet.SetWindowAttr("background_color", "black");
+            HOperatorSet.OpenWindow(0, 0, 500, 500, 0, "visible", "", out hv_WindowHandle);
+            HDevWindowStack.Push(hv_WindowHandle);
+        }
     }
 }
 
