@@ -18,13 +18,13 @@ namespace PhaseFraction
             InitializeComponent();
         }
         HDrawingObject DoRoi = null;
-        HObject m_SrcImage = new HObject();
+        HObject srcImage = new HObject();
         HSmartWindowControl SmartWindowControl = null;
         private void BtnPhoto_Click(object sender, EventArgs e)
         {
-            VisionClass.instance().DisplayWindow=FormMain.MainFrm.hSmartWindowControl1.HalconWindow;    
-            VisionClass.instance().IsPhoto=true;
-                    }
+            VisionClass.instance().DisplayWindow = FormMain.MainFrm.hSmartWindowControl1.HalconWindow;
+            VisionClass.instance().IsPhoto = true;
+        }
 
         private void Btnvideo_Click(object sender, EventArgs e)
         {
@@ -34,17 +34,17 @@ namespace PhaseFraction
                 VisionClass.instance().DisplayWindow = FormMain.MainFrm.hSmartWindowControl1.HalconWindow;
                 VisionClass.instance().IsVideo = true;
             }
-            else 
+            else
             {
                 Btnvideo.Text = "开始录像";
-                VisionClass.instance().IsVideo =  false;
+                VisionClass.instance().IsVideo = false;
             }
         }
 
         private void FormCameraSet_Load(object sender, EventArgs e)
         {
             Btnvideo.Text = "开始录像";
-            SmartWindowControl= FormMain.MainFrm.hSmartWindowControl1;
+            SmartWindowControl = FormMain.MainFrm.hSmartWindowControl1;
         }
 
         private void FormCameraSet_FormClosing(object sender, FormClosingEventArgs e)
@@ -58,11 +58,12 @@ namespace PhaseFraction
             dialog.Filter = "images|*.tiff;*.tif;*.bmp;*.jpg";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                HOperatorSet.ReadImage(out m_SrcImage, dialog.FileName);
+                HOperatorSet.ReadImage(out srcImage, dialog.FileName);
                 //HTuple width, height;
                 //HOperatorSet.GetImageSize(m_SrcImage, out width, out height);
                 //HOperatorSet.DispObj(m_SrcImage, hSmartWindowControl1.HalconWindow);
-                ShowImage(m_SrcImage);
+                ShowImage(srcImage);
+                VisionClass.instance().CurrentImage = srcImage;
             }
         }
         private void BtnSaveImage_Click(object sender, EventArgs e)
@@ -152,7 +153,7 @@ namespace PhaseFraction
 
             //生成ROI
             HOperatorSet.GenRectangle1(out HObject roi, val[0], val[1], val[2], val[3]);
-            HOperatorSet.ReduceDomain(m_SrcImage, roi, out HObject imageROI);
+            HOperatorSet.ReduceDomain(srcImage, roi, out HObject imageROI);
             ShowImage(imageROI);
         }
 
@@ -166,7 +167,7 @@ namespace PhaseFraction
             GenROI();
         }
 
-      
+
 
         private void BtnSaveParam_Click(object sender, EventArgs e)
         {
@@ -176,15 +177,7 @@ namespace PhaseFraction
             HDevWindowStack.Push(hv_WindowHandle);
         }
 
-        private void TBrThreshold_ValueChanged(object sender, EventArgs e)
-        {
-            VisionClass.instance().AmpThr=TBrThreshold.Value/100.0;
-        }
-
-        private void TBrSigma_ValueChanged(object sender, EventArgs e)
-        {
-            VisionClass.instance().AmpThr = TBrSigma.Value;
-        }
+     
 
         private void CBSelect_TextChanged(object sender, EventArgs e)
         {
@@ -199,6 +192,38 @@ namespace PhaseFraction
         private void CBTransition_SelectedIndexChanged(object sender, EventArgs e)
         {
             VisionClass.instance().Transition = CBTransition.Text.Trim();
+        }
+
+        private void ChkBSelect_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkBSelect.Checked)
+            {
+                VisionClass.instance().FindEdge = true;
+            }
+            else
+            {
+                VisionClass.instance().FindEdge = false;
+            }
+        }
+
+        private void BtnProcessImage_Click(object sender, EventArgs e)
+        {
+            VisionClass.instance().action2(VisionClass.instance().CurrentImage);
+        }
+
+              private void NUDThreshold_ValueChanged(object sender, EventArgs e)
+        {
+            VisionClass.instance().AmpThr = (HTuple)NUDThreshold.Value;
+        }
+
+        private void NUDSigma_ValueChanged(object sender, EventArgs e)
+        {
+            VisionClass.instance().AmpThr = (HTuple)NUDSigma.Value;
+        }
+
+        private void BtnBorder_Click(object sender, EventArgs e)
+        {
+            VisionClass.instance().DrawEdge(VisionClass.instance().CurrentImage);
         }
     }
 }
