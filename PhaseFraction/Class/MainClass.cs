@@ -1,8 +1,10 @@
-﻿using System;
+﻿using HalconDotNet;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Net;
@@ -455,12 +457,44 @@ namespace PhaseFraction
             LogClass.SingletonInstance.LogRecord();
           
             bool ret = InitCommunicationParam();
-            //if (ret) ret = ConnectToDAM();
+            if (ret) ret = InitCalibrationParam();
+            if (ret) ret = InitVisionParam();
             // if (ret) StartTimer();
             //if (ret) RunMainClass();
         }
+        public bool InitCalibrationParam()
+        {
+            try
+            {
+                HOperatorSet.ReadCamPar(Directory.GetCurrentDirectory() + "\\db\\result.cal", out VisionClass.instance().CamPar);
+                HOperatorSet.ReadPose(Directory.GetCurrentDirectory() + "\\db\\result.dat", out VisionClass.instance().CamPose);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MsgofMain("标定参数设置错误，请检查配置文件后重启程序！" + ex.Message, LogType.FlowLog, true);
+                return false;
+            }
+        }
 
-        
+        public bool InitVisionParam()
+        {
+            try
+            {
+                ConfigClass config = new ConfigClass();
+                VisionClass.instance().AmpThr = Convert.ToDouble(config.ReadINIConfig("AmpThr"));
+                VisionClass.instance().Sigma = Convert.ToInt32(config.ReadINIConfig("Sigma"));
+                VisionClass.instance().Select = config.ReadINIConfig("Select");
+                VisionClass.instance().Transition = config.ReadINIConfig("Transition");
+               
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MsgofMain("视觉参数设置错误，请检查配置文件后重启程序！" + ex.Message, LogType.FlowLog, true);
+                return false;
+            }
+        }
 
 
         public bool InitCommunicationParam()

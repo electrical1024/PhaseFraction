@@ -166,10 +166,7 @@ namespace PhaseFraction
             GenROI();
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void BtnSaveParam_Click(object sender, EventArgs e)
         {
@@ -177,6 +174,31 @@ namespace PhaseFraction
             HOperatorSet.SetWindowAttr("background_color", "black");
             HOperatorSet.OpenWindow(0, 0, 500, 500, 0, "visible", "", out hv_WindowHandle);
             HDevWindowStack.Push(hv_WindowHandle);
+        }
+
+        private void TBrThreshold_ValueChanged(object sender, EventArgs e)
+        {
+            VisionClass.instance().AmpThr=TBrThreshold.Value/100.0;
+        }
+
+        private void TBrSigma_ValueChanged(object sender, EventArgs e)
+        {
+            VisionClass.instance().AmpThr = TBrSigma.Value;
+        }
+
+        private void CBSelect_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CBSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            VisionClass.instance().Select = CBSelect.Text.Trim();
+        }
+
+        private void CBTransition_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            VisionClass.instance().Transition = CBTransition.Text.Trim();
         }
     }
 }

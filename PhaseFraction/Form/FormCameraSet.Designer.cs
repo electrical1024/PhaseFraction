@@ -52,7 +52,7 @@
             // 
             this.BtnPhoto.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.BtnPhoto.Location = new System.Drawing.Point(32, 34);
-            this.BtnPhoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnPhoto.Margin = new System.Windows.Forms.Padding(4);
             this.BtnPhoto.Name = "BtnPhoto";
             this.BtnPhoto.Size = new System.Drawing.Size(177, 38);
             this.BtnPhoto.TabIndex = 39;
@@ -64,7 +64,7 @@
             // 
             this.Btnvideo.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Btnvideo.Location = new System.Drawing.Point(32, 103);
-            this.Btnvideo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btnvideo.Margin = new System.Windows.Forms.Padding(4);
             this.Btnvideo.Name = "Btnvideo";
             this.Btnvideo.Size = new System.Drawing.Size(177, 38);
             this.Btnvideo.TabIndex = 38;
@@ -76,7 +76,7 @@
             // 
             this.BtnCalib.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.BtnCalib.Location = new System.Drawing.Point(32, 371);
-            this.BtnCalib.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnCalib.Margin = new System.Windows.Forms.Padding(4);
             this.BtnCalib.Name = "BtnCalib";
             this.BtnCalib.Size = new System.Drawing.Size(177, 38);
             this.BtnCalib.TabIndex = 40;
@@ -87,7 +87,7 @@
             // 
             this.BtnOpen.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.BtnOpen.Location = new System.Drawing.Point(32, 170);
-            this.BtnOpen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnOpen.Margin = new System.Windows.Forms.Padding(4);
             this.BtnOpen.Name = "BtnOpen";
             this.BtnOpen.Size = new System.Drawing.Size(177, 38);
             this.BtnOpen.TabIndex = 41;
@@ -99,7 +99,7 @@
             // 
             this.BtnDrawRoi.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.BtnDrawRoi.Location = new System.Drawing.Point(32, 237);
-            this.BtnDrawRoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnDrawRoi.Margin = new System.Windows.Forms.Padding(4);
             this.BtnDrawRoi.Name = "BtnDrawRoi";
             this.BtnDrawRoi.Size = new System.Drawing.Size(177, 38);
             this.BtnDrawRoi.TabIndex = 42;
@@ -111,7 +111,7 @@
             // 
             this.BtnGenRoi.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.BtnGenRoi.Location = new System.Drawing.Point(32, 304);
-            this.BtnGenRoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnGenRoi.Margin = new System.Windows.Forms.Padding(4);
             this.BtnGenRoi.Name = "BtnGenRoi";
             this.BtnGenRoi.Size = new System.Drawing.Size(177, 38);
             this.BtnGenRoi.TabIndex = 43;
@@ -123,7 +123,7 @@
             // 
             this.BtnSaveImage.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.BtnSaveImage.Location = new System.Drawing.Point(32, 438);
-            this.BtnSaveImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnSaveImage.Margin = new System.Windows.Forms.Padding(4);
             this.BtnSaveImage.Name = "BtnSaveImage";
             this.BtnSaveImage.Size = new System.Drawing.Size(177, 38);
             this.BtnSaveImage.TabIndex = 44;
@@ -133,17 +133,20 @@
             // 
             // TBrThreshold
             // 
+            this.TBrThreshold.LargeChange = 1;
             this.TBrThreshold.Location = new System.Drawing.Point(251, 68);
             this.TBrThreshold.Maximum = 255;
             this.TBrThreshold.Name = "TBrThreshold";
             this.TBrThreshold.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.TBrThreshold.Size = new System.Drawing.Size(56, 392);
             this.TBrThreshold.TabIndex = 45;
-            this.TBrThreshold.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.TBrThreshold.TickFrequency = 10;
+            this.TBrThreshold.ValueChanged += new System.EventHandler(this.TBrThreshold_ValueChanged);
             // 
             // TBrSigma
             // 
             this.TBrSigma.Cursor = System.Windows.Forms.Cursors.Default;
+            this.TBrSigma.LargeChange = 1;
             this.TBrSigma.Location = new System.Drawing.Point(352, 68);
             this.TBrSigma.Maximum = 320;
             this.TBrSigma.Minimum = 40;
@@ -151,7 +154,9 @@
             this.TBrSigma.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.TBrSigma.Size = new System.Drawing.Size(56, 392);
             this.TBrSigma.TabIndex = 46;
+            this.TBrSigma.TickFrequency = 10;
             this.TBrSigma.Value = 40;
+            this.TBrSigma.ValueChanged += new System.EventHandler(this.TBrSigma_ValueChanged);
             // 
             // label1
             // 
@@ -184,6 +189,7 @@
             this.CBTransition.Name = "CBTransition";
             this.CBTransition.Size = new System.Drawing.Size(121, 23);
             this.CBTransition.TabIndex = 49;
+            this.CBTransition.SelectedIndexChanged += new System.EventHandler(this.CBTransition_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -216,6 +222,8 @@
             this.CBSelect.Name = "CBSelect";
             this.CBSelect.Size = new System.Drawing.Size(121, 23);
             this.CBSelect.TabIndex = 51;
+            this.CBSelect.SelectedIndexChanged += new System.EventHandler(this.CBSelect_SelectedIndexChanged);
+            this.CBSelect.TextChanged += new System.EventHandler(this.CBSelect_TextChanged);
             // 
             // BtnSaveParam
             // 
