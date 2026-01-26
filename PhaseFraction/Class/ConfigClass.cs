@@ -69,7 +69,7 @@ namespace PhaseFraction
 
        
 
-        public  bool WriteINIConfig( string key, string value, string section="Move")
+        public  bool WriteINIConfig( string key, string value, string section= "Communication")
         {
             try
             {

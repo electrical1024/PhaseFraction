@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,6 +21,7 @@ namespace PhaseFraction
         HDrawingObject DoRoi = null;
         HObject srcImage = new HObject();
         HSmartWindowControl SmartWindowControl = null;
+        bool FormCameraSetLoad = false;
         private void BtnPhoto_Click(object sender, EventArgs e)
         {
             VisionClass.instance().DisplayWindow = FormMain.MainFrm.hSmartWindowControl1.HalconWindow;
@@ -43,8 +45,15 @@ namespace PhaseFraction
 
         private void FormCameraSet_Load(object sender, EventArgs e)
         {
+            FormCameraSetLoad= true;
             Btnvideo.Text = "开始录像";
             SmartWindowControl = FormMain.MainFrm.hSmartWindowControl1;
+            NUDThreshold.Value= Convert.ToDecimal(VisionClass.instance().AmpThr.ToString());
+            NUDSigma.Value= Convert.ToDecimal(VisionClass.instance().Sigma.ToString());
+            CBSelect.Text = VisionClass.instance().Select;
+            CBTransition.Text = VisionClass.instance().Transition;
+            Thread.Sleep(500);
+            FormCameraSetLoad = false;
         }
 
         private void FormCameraSet_FormClosing(object sender, FormClosingEventArgs e)
@@ -186,12 +195,21 @@ namespace PhaseFraction
 
         private void CBSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (FormCameraSetLoad) return;
             VisionClass.instance().Select = CBSelect.Text.Trim();
+            ConfigClass config = new ConfigClass();
+            config.WriteINIConfig("Select", CBSelect.Text.Trim());
+            VisionClass.instance().EdgeDisplay(VisionClass.instance().CurrentImage);
         }
 
         private void CBTransition_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (FormCameraSetLoad) return;
             VisionClass.instance().Transition = CBTransition.Text.Trim();
+            ConfigClass config = new ConfigClass();
+            VisionClass.instance().Transition = config.ReadINIConfig("Transition");
+            config.WriteINIConfig("Transition", CBSelect.Text.Trim());
+            VisionClass.instance().EdgeDisplay(VisionClass.instance().CurrentImage);
         }
 
         private void ChkBSelect_CheckedChanged(object sender, EventArgs e)
@@ -208,17 +226,25 @@ namespace PhaseFraction
 
         private void BtnProcessImage_Click(object sender, EventArgs e)
         {
-            VisionClass.instance().action2(VisionClass.instance().CurrentImage);
+            VisionClass.instance().EdgeDisplay(VisionClass.instance().CurrentImage);
         }
 
-              private void NUDThreshold_ValueChanged(object sender, EventArgs e)
+        private void NUDThreshold_ValueChanged(object sender, EventArgs e)
         {
+            if (FormCameraSetLoad) return;
             VisionClass.instance().AmpThr = (HTuple)NUDThreshold.Value;
+            ConfigClass config = new ConfigClass();
+            config.WriteINIConfig("AmpThr", Convert.ToString(NUDThreshold.Value));
+            VisionClass.instance().EdgeDisplay(VisionClass.instance().CurrentImage);
         }
 
         private void NUDSigma_ValueChanged(object sender, EventArgs e)
         {
-            VisionClass.instance().AmpThr = (HTuple)NUDSigma.Value;
+            if (FormCameraSetLoad) return;
+            VisionClass.instance().Sigma = (HTuple)NUDSigma.Value;
+            ConfigClass config = new ConfigClass();
+            config.WriteINIConfig("Sigma", Convert.ToString(NUDSigma.Value));
+            VisionClass.instance().EdgeDisplay(VisionClass.instance().CurrentImage);
         }
 
         private void BtnBorder_Click(object sender, EventArgs e)
