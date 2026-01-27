@@ -646,7 +646,7 @@ namespace PhaseFraction
             {
                 HOperatorSet.GetImageSize(ho_Image, out ImageW, out ImageH);
                 HOperatorSet.SetWindowAttr("background_color", "black");
-                HOperatorSet.OpenWindow(0, 0, ImageW / 5, ImageH / 5, 0, "visible", "", out WinH);
+                HOperatorSet.OpenWindow(0, 0, ImageW / 4, ImageH / 4, 0, "visible", "", out WinH);
                 HDevWindowStack.Push(WinH);
                 HOperatorSet.SetSystem("int_zooming", "true");
                 SetDisplayFont(WinH, 9, "mono", "true", "false");
@@ -691,7 +691,7 @@ namespace PhaseFraction
                 HOperatorSet.SetColor(HDevWindowStack.GetActive(), "blue");
                 HOperatorSet.MeasurePos(ho_Image, hv_MsrH, 1, AmpThr, Transition, Select, out hv_RowM, out hv_ColM, out hv_AmpM, out hv_DisM);
                 HOperatorSet.DispCross(WinH, hv_RowM, hv_ColM, 16, 0);
-
+                CurrentImage=ho_Image;
             }
             catch (HalconException HDevExpDefaultException)
             {
@@ -699,9 +699,9 @@ namespace PhaseFraction
             }
         }
 
-             public void CalculateDistance(HObject ho_Image)
+        public void CalculateDistance(HObject ho_Image)
         {
-           
+
             HTuple hv_RowLine = new HTuple(), hv_ColLine = new HTuple(), hv_RoiWLen2 = new HTuple(), hv_LRS = new HTuple(), hv_DisWM1 = new HTuple(), hv_CamParOut = new HTuple();
             HTuple hv_MsrH = new HTuple(), hv_RowM = new HTuple(), hv_ColM = new HTuple(), hv_AmpM = new HTuple(), hv_DisM = new HTuple(), hv_ColWM = new HTuple(), hv_RowWM = new HTuple();
             HTuple hv_ColW1 = new HTuple(), hv_RowW1 = new HTuple(), hv_TmpLen = new HTuple(), hv_TmpRF = new HTuple(), hv_TmpCF = new HTuple(), hv_TmpRT = new HTuple(), hv_TmpCT = new HTuple(), hv_DisWM = new HTuple();
@@ -741,23 +741,9 @@ namespace PhaseFraction
                     hv_DisWM.Dispose();
                     HOperatorSet.DistancePp(hv_TmpRF, hv_TmpCF, hv_TmpRT, hv_TmpCT, out hv_DisWM);
                 }
-                using (HDevDisposeHelper dh = new HDevDisposeHelper())
-                {
-                    hv_DisWM1.Dispose();
-                    HOperatorSet.DistancePp(hv_RowW1.TupleSelect(0), hv_ColW1.TupleSelect(0), hv_RowW1.TupleSelect(
-                        2), hv_ColW1.TupleSelect(2), out hv_DisWM1);
-                }
-                using (HDevDisposeHelper dh = new HDevDisposeHelper())
-                {
-                    disp_message(WinH, ("距离:" + hv_DisWM) + "mm", "image", ((hv_RowM.TupleSelect(
-                        0)) + (hv_RowM.TupleSelect(1))) / 2, (hv_ColM.TupleSelect(1)) + 20, "yellow",
-                        "false");
-                }
-                using (HDevDisposeHelper dh = new HDevDisposeHelper())
-                {
-                    disp_message(WinH, ("距离:" + hv_DisWM1) + "mm", "image", (LineR1 + LineR11) / 2,
-                        LineC1 - 400, "yellow", "false");
-                }
+                HOperatorSet.DistancePp(hv_RowW1.TupleSelect(0), hv_ColW1.TupleSelect(0), hv_RowW1.TupleSelect(2), hv_ColW1.TupleSelect(2), out hv_DisWM1);
+                disp_message(WinH, ("距离:" + hv_DisWM) + "mm", "image", ((hv_RowM.TupleSelect(0)) + (hv_RowM.TupleSelect(1))) / 2, (hv_ColM.TupleSelect(1)) + 20, "yellow", "false");
+                disp_message(WinH, ("距离:" + hv_DisWM1) + "mm", "image", (LineR1 + LineR11) / 2, LineC1 - 400, "yellow", "false");
             }
             catch (HalconException HDevExpDefaultException)
             {

@@ -47,6 +47,7 @@
             this.NUDThreshold = new System.Windows.Forms.NumericUpDown();
             this.NUDSigma = new System.Windows.Forms.NumericUpDown();
             this.BtnBorder = new System.Windows.Forms.Button();
+            this.BtnCalculateDistance = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NUDThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDSigma)).BeginInit();
             this.SuspendLayout();
@@ -54,9 +55,10 @@
             // BtnPhoto
             // 
             this.BtnPhoto.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnPhoto.Location = new System.Drawing.Point(24, 27);
+            this.BtnPhoto.Location = new System.Drawing.Point(32, 34);
+            this.BtnPhoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnPhoto.Name = "BtnPhoto";
-            this.BtnPhoto.Size = new System.Drawing.Size(133, 30);
+            this.BtnPhoto.Size = new System.Drawing.Size(177, 38);
             this.BtnPhoto.TabIndex = 39;
             this.BtnPhoto.Text = "拍照";
             this.BtnPhoto.UseVisualStyleBackColor = true;
@@ -65,9 +67,10 @@
             // Btnvideo
             // 
             this.Btnvideo.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Btnvideo.Location = new System.Drawing.Point(207, 27);
+            this.Btnvideo.Location = new System.Drawing.Point(276, 34);
+            this.Btnvideo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Btnvideo.Name = "Btnvideo";
-            this.Btnvideo.Size = new System.Drawing.Size(133, 30);
+            this.Btnvideo.Size = new System.Drawing.Size(177, 38);
             this.Btnvideo.TabIndex = 38;
             this.Btnvideo.Text = "录像";
             this.Btnvideo.UseVisualStyleBackColor = true;
@@ -76,9 +79,10 @@
             // BtnCalib
             // 
             this.BtnCalib.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnCalib.Location = new System.Drawing.Point(24, 159);
+            this.BtnCalib.Location = new System.Drawing.Point(503, 204);
+            this.BtnCalib.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnCalib.Name = "BtnCalib";
-            this.BtnCalib.Size = new System.Drawing.Size(133, 30);
+            this.BtnCalib.Size = new System.Drawing.Size(177, 38);
             this.BtnCalib.TabIndex = 40;
             this.BtnCalib.Text = "标定";
             this.BtnCalib.UseVisualStyleBackColor = true;
@@ -86,9 +90,10 @@
             // BtnOpen
             // 
             this.BtnOpen.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnOpen.Location = new System.Drawing.Point(377, 27);
+            this.BtnOpen.Location = new System.Drawing.Point(503, 34);
+            this.BtnOpen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnOpen.Name = "BtnOpen";
-            this.BtnOpen.Size = new System.Drawing.Size(133, 30);
+            this.BtnOpen.Size = new System.Drawing.Size(177, 38);
             this.BtnOpen.TabIndex = 41;
             this.BtnOpen.Text = "打开图像";
             this.BtnOpen.UseVisualStyleBackColor = true;
@@ -97,9 +102,10 @@
             // BtnDrawRoi
             // 
             this.BtnDrawRoi.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnDrawRoi.Location = new System.Drawing.Point(207, 71);
+            this.BtnDrawRoi.Location = new System.Drawing.Point(276, 89);
+            this.BtnDrawRoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnDrawRoi.Name = "BtnDrawRoi";
-            this.BtnDrawRoi.Size = new System.Drawing.Size(133, 30);
+            this.BtnDrawRoi.Size = new System.Drawing.Size(177, 38);
             this.BtnDrawRoi.TabIndex = 42;
             this.BtnDrawRoi.Text = "画ROI";
             this.BtnDrawRoi.UseVisualStyleBackColor = true;
@@ -108,9 +114,10 @@
             // BtnGenRoi
             // 
             this.BtnGenRoi.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnGenRoi.Location = new System.Drawing.Point(377, 72);
+            this.BtnGenRoi.Location = new System.Drawing.Point(503, 90);
+            this.BtnGenRoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnGenRoi.Name = "BtnGenRoi";
-            this.BtnGenRoi.Size = new System.Drawing.Size(133, 30);
+            this.BtnGenRoi.Size = new System.Drawing.Size(177, 38);
             this.BtnGenRoi.TabIndex = 43;
             this.BtnGenRoi.Text = "生成ROI";
             this.BtnGenRoi.UseVisualStyleBackColor = true;
@@ -119,9 +126,10 @@
             // BtnSaveImage
             // 
             this.BtnSaveImage.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnSaveImage.Location = new System.Drawing.Point(207, 115);
+            this.BtnSaveImage.Location = new System.Drawing.Point(276, 144);
+            this.BtnSaveImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnSaveImage.Name = "BtnSaveImage";
-            this.BtnSaveImage.Size = new System.Drawing.Size(133, 30);
+            this.BtnSaveImage.Size = new System.Drawing.Size(177, 38);
             this.BtnSaveImage.TabIndex = 44;
             this.BtnSaveImage.Text = "保存图像";
             this.BtnSaveImage.UseVisualStyleBackColor = true;
@@ -131,10 +139,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(20, 272);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(27, 340);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 19);
+            this.label1.Size = new System.Drawing.Size(58, 23);
             this.label1.TabIndex = 47;
             this.label1.Text = "幅度";
             // 
@@ -142,10 +149,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(309, 274);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(412, 342);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 19);
+            this.label2.Size = new System.Drawing.Size(58, 23);
             this.label2.TabIndex = 48;
             this.label2.Text = "平滑";
             // 
@@ -156,10 +162,10 @@
             "all",
             "positive",
             "negative"});
-            this.CBTransition.Location = new System.Drawing.Point(371, 315);
-            this.CBTransition.Margin = new System.Windows.Forms.Padding(2);
+            this.CBTransition.Location = new System.Drawing.Point(495, 394);
+            this.CBTransition.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CBTransition.Name = "CBTransition";
-            this.CBTransition.Size = new System.Drawing.Size(92, 20);
+            this.CBTransition.Size = new System.Drawing.Size(121, 23);
             this.CBTransition.TabIndex = 49;
             this.CBTransition.SelectedIndexChanged += new System.EventHandler(this.CBTransition_SelectedIndexChanged);
             // 
@@ -167,10 +173,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(318, 316);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(424, 395);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 19);
+            this.label3.Size = new System.Drawing.Size(58, 23);
             this.label3.TabIndex = 50;
             this.label3.Text = "变换";
             // 
@@ -178,10 +183,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(20, 315);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(27, 394);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 19);
+            this.label4.Size = new System.Drawing.Size(58, 23);
             this.label4.TabIndex = 52;
             this.label4.Text = "位置";
             // 
@@ -192,10 +196,10 @@
             "all",
             "first",
             "last"});
-            this.CBSelect.Location = new System.Drawing.Point(73, 315);
-            this.CBSelect.Margin = new System.Windows.Forms.Padding(2);
+            this.CBSelect.Location = new System.Drawing.Point(97, 394);
+            this.CBSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CBSelect.Name = "CBSelect";
-            this.CBSelect.Size = new System.Drawing.Size(92, 20);
+            this.CBSelect.Size = new System.Drawing.Size(121, 23);
             this.CBSelect.TabIndex = 51;
             this.CBSelect.SelectedIndexChanged += new System.EventHandler(this.CBSelect_SelectedIndexChanged);
             this.CBSelect.TextChanged += new System.EventHandler(this.CBSelect_TextChanged);
@@ -203,9 +207,10 @@
             // BtnSaveParam
             // 
             this.BtnSaveParam.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnSaveParam.Location = new System.Drawing.Point(377, 115);
+            this.BtnSaveParam.Location = new System.Drawing.Point(503, 144);
+            this.BtnSaveParam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnSaveParam.Name = "BtnSaveParam";
-            this.BtnSaveParam.Size = new System.Drawing.Size(133, 30);
+            this.BtnSaveParam.Size = new System.Drawing.Size(177, 38);
             this.BtnSaveParam.TabIndex = 53;
             this.BtnSaveParam.Text = "保存参数";
             this.BtnSaveParam.UseVisualStyleBackColor = true;
@@ -215,9 +220,10 @@
             // 
             this.ChkBSelect.AutoSize = true;
             this.ChkBSelect.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ChkBSelect.Location = new System.Drawing.Point(24, 374);
+            this.ChkBSelect.Location = new System.Drawing.Point(32, 468);
+            this.ChkBSelect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ChkBSelect.Name = "ChkBSelect";
-            this.ChkBSelect.Size = new System.Drawing.Size(68, 23);
+            this.ChkBSelect.Size = new System.Drawing.Size(80, 27);
             this.ChkBSelect.TabIndex = 54;
             this.ChkBSelect.Text = "边缘";
             this.ChkBSelect.UseVisualStyleBackColor = true;
@@ -226,46 +232,63 @@
             // BtnProcessImage
             // 
             this.BtnProcessImage.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnProcessImage.Location = new System.Drawing.Point(24, 115);
+            this.BtnProcessImage.Location = new System.Drawing.Point(32, 144);
+            this.BtnProcessImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnProcessImage.Name = "BtnProcessImage";
-            this.BtnProcessImage.Size = new System.Drawing.Size(133, 30);
+            this.BtnProcessImage.Size = new System.Drawing.Size(177, 38);
             this.BtnProcessImage.TabIndex = 55;
-            this.BtnProcessImage.Text = "处理图像";
+            this.BtnProcessImage.Text = "显示边缘";
             this.BtnProcessImage.UseVisualStyleBackColor = true;
             this.BtnProcessImage.Click += new System.EventHandler(this.BtnProcessImage_Click);
             // 
             // NUDThreshold
             // 
-            this.NUDThreshold.Location = new System.Drawing.Point(93, 272);
+            this.NUDThreshold.Location = new System.Drawing.Point(124, 340);
+            this.NUDThreshold.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NUDThreshold.Name = "NUDThreshold";
-            this.NUDThreshold.Size = new System.Drawing.Size(120, 21);
+            this.NUDThreshold.Size = new System.Drawing.Size(160, 25);
             this.NUDThreshold.TabIndex = 57;
             this.NUDThreshold.ValueChanged += new System.EventHandler(this.NUDThreshold_ValueChanged);
             // 
             // NUDSigma
             // 
-            this.NUDSigma.Location = new System.Drawing.Point(382, 272);
+            this.NUDSigma.Location = new System.Drawing.Point(509, 340);
+            this.NUDSigma.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.NUDSigma.Name = "NUDSigma";
-            this.NUDSigma.Size = new System.Drawing.Size(120, 21);
+            this.NUDSigma.Size = new System.Drawing.Size(160, 25);
             this.NUDSigma.TabIndex = 58;
             this.NUDSigma.ValueChanged += new System.EventHandler(this.NUDSigma_ValueChanged);
             // 
             // BtnBorder
             // 
             this.BtnBorder.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnBorder.Location = new System.Drawing.Point(24, 71);
+            this.BtnBorder.Location = new System.Drawing.Point(32, 89);
+            this.BtnBorder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnBorder.Name = "BtnBorder";
-            this.BtnBorder.Size = new System.Drawing.Size(133, 30);
+            this.BtnBorder.Size = new System.Drawing.Size(177, 38);
             this.BtnBorder.TabIndex = 59;
             this.BtnBorder.Text = "设置检测框";
             this.BtnBorder.UseVisualStyleBackColor = true;
             this.BtnBorder.Click += new System.EventHandler(this.BtnBorder_Click);
             // 
+            // BtnCalculateDistance
+            // 
+            this.BtnCalculateDistance.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.BtnCalculateDistance.Location = new System.Drawing.Point(31, 204);
+            this.BtnCalculateDistance.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnCalculateDistance.Name = "BtnCalculateDistance";
+            this.BtnCalculateDistance.Size = new System.Drawing.Size(177, 38);
+            this.BtnCalculateDistance.TabIndex = 60;
+            this.BtnCalculateDistance.Text = "计算距离";
+            this.BtnCalculateDistance.UseVisualStyleBackColor = true;
+            this.BtnCalculateDistance.Click += new System.EventHandler(this.BtnCalculateDistance_Click);
+            // 
             // FormCameraSet
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 428);
+            this.ClientSize = new System.Drawing.Size(737, 535);
+            this.Controls.Add(this.BtnCalculateDistance);
             this.Controls.Add(this.BtnBorder);
             this.Controls.Add(this.NUDSigma);
             this.Controls.Add(this.NUDThreshold);
@@ -285,7 +308,7 @@
             this.Controls.Add(this.BtnCalib);
             this.Controls.Add(this.BtnPhoto);
             this.Controls.Add(this.Btnvideo);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormCameraSet";
             this.Text = "FormCameraSet";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormCameraSet_FormClosing);
@@ -318,5 +341,6 @@
         private System.Windows.Forms.NumericUpDown NUDThreshold;
         private System.Windows.Forms.NumericUpDown NUDSigma;
         public System.Windows.Forms.Button BtnBorder;
+        public System.Windows.Forms.Button BtnCalculateDistance;
     }
 }

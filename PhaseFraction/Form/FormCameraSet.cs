@@ -251,6 +251,11 @@ namespace PhaseFraction
         {
             VisionClass.instance().DrawEdge(VisionClass.instance().CurrentImage);
         }
+
+        private void BtnCalculateDistance_Click(object sender, EventArgs e)
+        {
+            VisionClass.instance().CalculateDistance(VisionClass.instance().CurrentImage);
+        }
     }
 }
 
