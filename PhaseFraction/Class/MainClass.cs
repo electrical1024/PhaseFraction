@@ -486,7 +486,22 @@ namespace PhaseFraction
                 VisionClass.instance().Sigma = Convert.ToInt32(config.ReadINIConfig("Sigma"));
                 VisionClass.instance().Select = config.ReadINIConfig("Select");
                 VisionClass.instance().Transition = config.ReadINIConfig("Transition");
-               
+
+                VisionClass.instance().TmpR = Convert.ToDouble(config.ReadINIConfig("TmpR"));
+                VisionClass.instance().TmpC = Convert.ToDouble(config.ReadINIConfig("TmpC"));
+                VisionClass.instance().TmpPhi = Convert.ToDouble(config.ReadINIConfig("TmpPhi"));
+                VisionClass.instance().TmpLen1 = Convert.ToDouble(config.ReadINIConfig("TmpLen1"));
+                VisionClass.instance().TmpLen2 = Convert.ToDouble(config.ReadINIConfig("TmpLen2"));
+                VisionClass.instance().LineR1 = Convert.ToDouble(config.ReadINIConfig("LineR1"));
+                VisionClass.instance().LineC1 = Convert.ToDouble(config.ReadINIConfig("LineC1"));
+                VisionClass.instance().LineR2 = Convert.ToDouble(config.ReadINIConfig("LineR2"));
+                VisionClass.instance().LineC2 = Convert.ToDouble(config.ReadINIConfig("LineC2"));
+                VisionClass.instance().LineR21 = Convert.ToDouble(config.ReadINIConfig("LineR21"));
+                VisionClass.instance().LineC21 = Convert.ToDouble(config.ReadINIConfig("LineC21"));
+                VisionClass.instance().LineR11 = Convert.ToDouble(config.ReadINIConfig("LineR11"));
+                VisionClass.instance().LineC11 = Convert.ToDouble(config.ReadINIConfig("LineC11"));
+             
+
                 return true;
             }
             catch (Exception ex)

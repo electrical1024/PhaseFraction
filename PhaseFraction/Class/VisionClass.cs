@@ -25,12 +25,12 @@ namespace PhaseFraction
         public bool IsVideo = false;
         public bool IsPhoto = false;
         public bool FindEdge = false;
+        public HTuple TmpR = new HTuple(), TmpC = new HTuple(), TmpPhi = new HTuple(), TmpLen1 = new HTuple(), TmpLen2 = new HTuple();
         public HTuple LineR1 = new HTuple(), LineC1 = new HTuple(), LineR2 = new HTuple(), LineC2 = new HTuple();
         public HTuple LineR21 = new HTuple(), LineC21 = new HTuple(), LineR11 = new HTuple(), LineC11 = new HTuple();
         public HTuple CamPar = new HTuple(), CamPose = new HTuple(), AmpThr = new HTuple(), Sigma = new HTuple(), WinH = new HTuple();
         public string Transition = "all", Select = "all";
-        public HTuple TmpR = new HTuple(), TmpC = new HTuple(), TmpPhi = new HTuple(), TmpLen1 = new HTuple(),TmpLen2 = new HTuple() ;
-        public HTuple ImageW = new HTuple(), ImageH = new HTuple();
+        public HTuple RowM = new HTuple(), ColM = new HTuple(), AmpM = new HTuple(), DisM = new HTuple();
         public bool ConnectCamera()
         {
             try
@@ -158,7 +158,6 @@ namespace PhaseFraction
             try
             {
 
-                if (FindEdge) DrawEdge(image);
             }
             catch (Exception exp)
             {
@@ -166,7 +165,7 @@ namespace PhaseFraction
             }
         }
 
-        public void disp_message(HTuple hv_WindowHandle, HTuple hv_String, HTuple hv_CoordSystem, HTuple hv_Row, HTuple hv_Column, HTuple hv_Color, HTuple hv_Box)
+        public void DispMessage(HTuple hv_WindowHandle, HTuple hv_String, HTuple hv_CoordSystem, HTuple hv_Row, HTuple hv_Column, HTuple hv_Color, HTuple hv_Box)
 
         {
 
@@ -640,17 +639,18 @@ namespace PhaseFraction
             }
         }
 
-        public void DrawEdge(HObject ho_Image)
+        public void DrawEdge(HObject image)
         {
+              HTuple imageW = new HTuple(), imageH = new HTuple();
             try
             {
-                HOperatorSet.GetImageSize(ho_Image, out ImageW, out ImageH);
+                HOperatorSet.GetImageSize(image, out imageW, out imageH);
                 HOperatorSet.SetWindowAttr("background_color", "black");
-                HOperatorSet.OpenWindow(0, 0, ImageW / 4, ImageH / 4, 0, "visible", "", out WinH);
+                HOperatorSet.OpenWindow(0, 0, imageW / 4, imageH / 4, 0, "visible", "", out WinH);
                 HDevWindowStack.Push(WinH);
                 HOperatorSet.SetSystem("int_zooming", "true");
                 SetDisplayFont(WinH, 9, "mono", "true", "false");
-                HOperatorSet.DispObj(ho_Image, HDevWindowStack.GetActive());
+                HOperatorSet.DispObj(image, HDevWindowStack.GetActive());
                 HOperatorSet.SetDraw(HDevWindowStack.GetActive(), "fill");
                 HOperatorSet.SetLineWidth(HDevWindowStack.GetActive(), 1);
                 HOperatorSet.SetColor(HDevWindowStack.GetActive(), "green");
@@ -661,6 +661,20 @@ namespace PhaseFraction
                 HOperatorSet.DrawRectangle2(WinH, out TmpR, out TmpC, out TmpPhi, out TmpLen1, out TmpLen2);
                 HOperatorSet.GenRectangle2ContourXld(out CheckRect, TmpR, TmpC, TmpPhi, TmpLen1, TmpLen2);
                 HOperatorSet.DispXld(CheckRect, WinH);
+                ConfigClass config = new ConfigClass();
+                config.WriteINIConfig("LineR1", Convert.ToString((double)LineR1));
+                config.WriteINIConfig("LineC1", Convert.ToString((double)LineC1));
+                config.WriteINIConfig("LineR2", Convert.ToString((double)LineR2));
+                config.WriteINIConfig("LineC2", Convert.ToString((double)LineC2));
+                config.WriteINIConfig("LineR11", Convert.ToString((double)LineR11));
+                config.WriteINIConfig("LineC11", Convert.ToString((double)LineC11));
+                config.WriteINIConfig("LineR21", Convert.ToString((double)LineR21));
+                config.WriteINIConfig("LineC21", Convert.ToString((double)LineC21));
+                config.WriteINIConfig("TmpR", Convert.ToString((double)TmpR));
+                config.WriteINIConfig("TmpC", Convert.ToString((double)TmpC));
+                config.WriteINIConfig("TmpPhi", Convert.ToString((double)TmpPhi));
+                config.WriteINIConfig("TmpLen1", Convert.ToString((double)TmpLen1));
+                config.WriteINIConfig("TmpLen2", Convert.ToString((double)TmpLen2));
             }
             catch (HalconException HDevExpDefaultException)
             {
@@ -670,28 +684,31 @@ namespace PhaseFraction
         }
 
 
-        public void EdgeDisplay(HObject ho_Image)
+        public void EdgeDisplay(HObject image)
         {
+            HTuple imageW = new HTuple(), imageH = new HTuple();
             HObject ho_Map, ho_ImageMap;
-            HTuple hv_MsrH = new HTuple(), hv_RowM = new HTuple(), hv_ColM = new HTuple(), hv_AmpM = new HTuple(), hv_DisM = new HTuple(), hv_CamParOut = new HTuple();
+            HTuple hv_MsrH = new HTuple(),  hv_CamParOut = new HTuple();
             try
             {
+              
+                HOperatorSet.GetImageSize(image, out imageW, out imageH);
                 HOperatorSet.ClearWindow(WinH);
-                HOperatorSet.DispImage(ho_Image, WinH);
+                HOperatorSet.DispImage(image, WinH);
                 HOperatorSet.SetColor(HDevWindowStack.GetActive(), "green");
                 HOperatorSet.DispLine(WinH, LineR1, LineC1, LineR2, LineC2);
                 HOperatorSet.DispLine(WinH, LineR11, LineC11, LineR21, LineC21);
                 HOperatorSet.DispXld(CheckRect, WinH);
               
-                HOperatorSet.GenMeasureRectangle2(TmpR, TmpC, TmpPhi, TmpLen1, TmpLen2, ImageW, ImageH, "nearest_neighbor", out hv_MsrH);
+                HOperatorSet.GenMeasureRectangle2(TmpR, TmpC, TmpPhi, TmpLen1, TmpLen2, imageW, imageH, "nearest_neighbor", out hv_MsrH);
                 hv_CamParOut = new HTuple(CamPar);
                 HOperatorSet.GenRadialDistortionMap(out ho_Map, CamPar, hv_CamParOut, "bilinear");
-                HOperatorSet.MapImage(ho_Image, ho_Map, out ho_ImageMap);
-                ho_Image = new HObject(ho_ImageMap);
+                HOperatorSet.MapImage(image, ho_Map, out ho_ImageMap);
+                image = new HObject(ho_ImageMap);
                 HOperatorSet.SetColor(HDevWindowStack.GetActive(), "blue");
-                HOperatorSet.MeasurePos(ho_Image, hv_MsrH, 1, AmpThr, Transition, Select, out hv_RowM, out hv_ColM, out hv_AmpM, out hv_DisM);
-                HOperatorSet.DispCross(WinH, hv_RowM, hv_ColM, 16, 0);
-                CurrentImage=ho_Image;
+                HOperatorSet.MeasurePos(image, hv_MsrH, 1, AmpThr, Transition, Select, out RowM, out ColM, out AmpM, out DisM);
+                HOperatorSet.DispCross(WinH, RowM, ColM, 16, 0);
+                CurrentImage=image;
             }
             catch (HalconException HDevExpDefaultException)
             {
@@ -699,56 +716,97 @@ namespace PhaseFraction
             }
         }
 
-        public void CalculateDistance(HObject ho_Image)
+        public void CalculateDistance(HObject image)
         {
-
-            HTuple hv_RowLine = new HTuple(), hv_ColLine = new HTuple(), hv_RoiWLen2 = new HTuple(), hv_LRS = new HTuple(), hv_DisWM1 = new HTuple(), hv_CamParOut = new HTuple();
-            HTuple hv_MsrH = new HTuple(), hv_RowM = new HTuple(), hv_ColM = new HTuple(), hv_AmpM = new HTuple(), hv_DisM = new HTuple(), hv_ColWM = new HTuple(), hv_RowWM = new HTuple();
-            HTuple hv_ColW1 = new HTuple(), hv_RowW1 = new HTuple(), hv_TmpLen = new HTuple(), hv_TmpRF = new HTuple(), hv_TmpCF = new HTuple(), hv_TmpRT = new HTuple(), hv_TmpCT = new HTuple(), hv_DisWM = new HTuple();
+            HTuple hv_DisPL1 = new HTuple(), hv_DisPL2 = new HTuple(), hv_ColW2 = new HTuple(), hv_RowW2 = new HTuple();
+            HTuple hv_ColW11 = new HTuple(), hv_RowW11 = new HTuple(), hv_ColW21 = new HTuple(), hv_RowW21 = new HTuple();
+            HTuple  hv_ColWM = new HTuple(), hv_RowWM = new HTuple(), hv_DisWM = new HTuple(), hv_ColW1 = new HTuple(), hv_RowW1 = new HTuple();
             try
             {
 
                 HOperatorSet.SetColor(HDevWindowStack.GetActive(), "yellow");
-                HOperatorSet.DispLine(WinH, hv_RowM.TupleSelect(0), hv_ColM.TupleSelect(0), hv_RowM.TupleSelect(1), hv_ColM.TupleSelect(1));
-                HOperatorSet.DispLine(WinH, LineR1, LineC1, LineR2, LineC2);
-                HOperatorSet.DispLine(WinH, LineR11, LineC11, LineR21, LineC21);
-                HOperatorSet.DispLine(WinH, LineR1, LineC1, LineR11, LineC11);
-                HOperatorSet.ImagePointsToWorldPlane(CamPar, CamPose, hv_RowM, hv_ColM, 0.001, out hv_ColWM, out hv_RowWM);
-                HOperatorSet.ImagePointsToWorldPlane(CamPar, CamPose, hv_RowLine, hv_ColLine, 0.001, out hv_ColW1, out hv_RowW1);
-                hv_TmpLen = new HTuple(hv_RowWM.TupleLength());
-                if ((int)(new HTuple(hv_TmpLen.TupleGreater(0))) != 0)
-                {
-                    using (HDevDisposeHelper dh = new HDevDisposeHelper())
-                    {
-                        hv_TmpRF.Dispose();
-                        HOperatorSet.TupleSelectRange(hv_RowWM, 0, hv_TmpLen - 2, out hv_TmpRF);
-                    }
-                    using (HDevDisposeHelper dh = new HDevDisposeHelper())
-                    {
-                        hv_TmpCF.Dispose();
-                        HOperatorSet.TupleSelectRange(hv_ColWM, 0, hv_TmpLen - 2, out hv_TmpCF);
-                    }
-                    using (HDevDisposeHelper dh = new HDevDisposeHelper())
-                    {
-                        hv_TmpRT.Dispose();
-                        HOperatorSet.TupleSelectRange(hv_RowWM, 1, hv_TmpLen - 1, out hv_TmpRT);
-                    }
-                    using (HDevDisposeHelper dh = new HDevDisposeHelper())
-                    {
-                        hv_TmpCT.Dispose();
-                        HOperatorSet.TupleSelectRange(hv_ColWM, 1, hv_TmpLen - 1, out hv_TmpCT);
-                    }
-                    hv_DisWM.Dispose();
-                    HOperatorSet.DistancePp(hv_TmpRF, hv_TmpCF, hv_TmpRT, hv_TmpCT, out hv_DisWM);
-                }
-                HOperatorSet.DistancePp(hv_RowW1.TupleSelect(0), hv_ColW1.TupleSelect(0), hv_RowW1.TupleSelect(2), hv_ColW1.TupleSelect(2), out hv_DisWM1);
-                disp_message(WinH, ("距离:" + hv_DisWM) + "mm", "image", ((hv_RowM.TupleSelect(0)) + (hv_RowM.TupleSelect(1))) / 2, (hv_ColM.TupleSelect(1)) + 20, "yellow", "false");
-                disp_message(WinH, ("距离:" + hv_DisWM1) + "mm", "image", (LineR1 + LineR11) / 2, LineC1 - 400, "yellow", "false");
+                HOperatorSet.DispLine(WinH, RowM.TupleSelect(0), ColM.TupleSelect(0), RowM.TupleSelect(1), ColM.TupleSelect(1));
+                HOperatorSet.SetColor(HDevWindowStack.GetActive(), "blue");
+                HOperatorSet.DispLine(WinH, RowM.TupleSelect(0), ColM.TupleSelect(0), LineR2, ColM.TupleSelect(0));
+                HOperatorSet.SetColor(HDevWindowStack.GetActive(), "red");
+                HOperatorSet.DispLine(WinH, RowM.TupleSelect(1), ColM.TupleSelect(1), LineR21, ColM.TupleSelect(1));
+              
+                HOperatorSet.ImagePointsToWorldPlane(CamPar, CamPose, RowM, ColM, 0.001, out hv_ColWM, out hv_RowWM);
+                HOperatorSet.ImagePointsToWorldPlane(CamPar, CamPose, LineR1, LineC1, 0.001, out hv_ColW1, out hv_RowW1);
+                HOperatorSet.ImagePointsToWorldPlane(CamPar, CamPose, LineR2, LineC2, 0.001, out hv_ColW2, out hv_RowW2);
+                HOperatorSet.ImagePointsToWorldPlane(CamPar, CamPose, LineR11, LineC11, 0.001, out hv_ColW11, out hv_RowW11);
+                HOperatorSet.ImagePointsToWorldPlane(CamPar, CamPose, LineR21, LineC21, 0.001, out hv_ColW21, out hv_RowW21);
+                HOperatorSet.DistancePp(hv_RowWM.TupleSelect(0), hv_ColWM.TupleSelect(0), hv_RowWM.TupleSelect(1), hv_ColWM.TupleSelect(1), out hv_DisWM);
+                HOperatorSet.DistancePl(hv_RowWM.TupleSelect(0), hv_ColWM.TupleSelect(0), hv_RowW1,hv_ColW1, hv_RowW2, hv_ColW2, out hv_DisPL1);
+                HOperatorSet.DistancePl(hv_RowWM.TupleSelect(1), hv_ColWM.TupleSelect(1), hv_RowW11, hv_ColW11, hv_RowW21, hv_ColW21, out hv_DisPL2);
+
+                DispMessage(WinH, ("距离:" + hv_DisWM) + "mm", "image", ((RowM.TupleSelect(0)) + (RowM.TupleSelect(1))) / 2, (ColM.TupleSelect(1)) + 20, "yellow", "false");
+                DispMessage(WinH, ("距离:" + hv_DisPL1) + "mm", "image", (RowM.TupleSelect(0) + LineR2) / 2, ColM.TupleSelect(0) + 20, "blue", "false");
+                DispMessage(WinH, ("距离:" + hv_DisPL2) + "mm", "image", (RowM.TupleSelect(1) + LineR21) / 2, ColM.TupleSelect(1) + 20, "red", "false");
             }
             catch (HalconException HDevExpDefaultException)
             {
                 MsgofVision("图像处理错误：" + HDevExpDefaultException.Message, LogType.ListShow, true);
-                         }
+            }
+        }
+
+        public void AutoCalLevel2(HObject image)
+        {
+            HObject ho_Map, ho_ImageMap;
+            HTuple hv_MsrH = new HTuple(), hv_CamParOut = new HTuple(), imageW = new HTuple(), imageH = new HTuple();
+            HTuple hv_DisPL1 = new HTuple(), hv_DisPL2 = new HTuple(), hv_ColW2 = new HTuple(), hv_RowW2 = new HTuple();
+            HTuple hv_ColW11 = new HTuple(), hv_RowW11 = new HTuple(), hv_ColW21 = new HTuple(), hv_RowW21 = new HTuple();
+            HTuple hv_ColWM = new HTuple(), hv_RowWM = new HTuple(), hv_DisWM = new HTuple(), hv_ColW1 = new HTuple(), hv_RowW1 = new HTuple();
+            HTuple rowM = new HTuple(), colM = new HTuple(), ampM = new HTuple(), disM = new HTuple();
+            try
+            {
+                HOperatorSet.GetImageSize(image, out imageW, out imageH);
+                HOperatorSet.GenMeasureRectangle2(TmpR, TmpC, TmpPhi, TmpLen1, TmpLen2, imageW, imageH, "nearest_neighbor", out hv_MsrH);
+                hv_CamParOut = new HTuple(CamPar);
+                HOperatorSet.GenRadialDistortionMap(out ho_Map, CamPar, hv_CamParOut, "bilinear");
+                HOperatorSet.MapImage(image, ho_Map, out ho_ImageMap);
+                image = new HObject(ho_ImageMap);
+                HOperatorSet.MeasurePos(image, hv_MsrH, 1, AmpThr, Transition, Select, out rowM, out colM, out ampM, out disM);
+
+                HOperatorSet.SetColor(HDevWindowStack.GetActive(), "yellow");
+                HOperatorSet.DispLine(WinH, rowM.TupleSelect(0), colM.TupleSelect(0), rowM.TupleSelect(1), colM.TupleSelect(1));
+                HOperatorSet.SetColor(HDevWindowStack.GetActive(), "blue");
+                HOperatorSet.DispLine(WinH, rowM.TupleSelect(0), colM.TupleSelect(0), LineR2, colM.TupleSelect(0));
+                HOperatorSet.SetColor(HDevWindowStack.GetActive(), "red");
+                HOperatorSet.DispLine(WinH, rowM.TupleSelect(1), colM.TupleSelect(1), LineR21, colM.TupleSelect(1));
+
+                HOperatorSet.ImagePointsToWorldPlane(CamPar, CamPose, RowM, ColM, 0.001, out hv_ColWM, out hv_RowWM);
+                HOperatorSet.ImagePointsToWorldPlane(CamPar, CamPose, LineR1, LineC1, 0.001, out hv_ColW1, out hv_RowW1);
+                HOperatorSet.ImagePointsToWorldPlane(CamPar, CamPose, LineR2, LineC2, 0.001, out hv_ColW2, out hv_RowW2);
+                HOperatorSet.ImagePointsToWorldPlane(CamPar, CamPose, LineR11, LineC11, 0.001, out hv_ColW11, out hv_RowW11);
+                HOperatorSet.ImagePointsToWorldPlane(CamPar, CamPose, LineR21, LineC21, 0.001, out hv_ColW21, out hv_RowW21);
+                HOperatorSet.DistancePp(hv_RowWM.TupleSelect(0), hv_ColWM.TupleSelect(0), hv_RowWM.TupleSelect(1), hv_ColWM.TupleSelect(1), out hv_DisWM);
+                HOperatorSet.DistancePl(hv_RowWM.TupleSelect(0), hv_ColWM.TupleSelect(0), hv_RowW1, hv_ColW1, hv_RowW2, hv_ColW2, out hv_DisPL1);
+                HOperatorSet.DistancePl(hv_RowWM.TupleSelect(1), hv_ColWM.TupleSelect(1), hv_RowW11, hv_ColW11, hv_RowW21, hv_ColW21, out hv_DisPL2);
+
+                DispMessage(WinH, ("距离:" + hv_DisWM) + "mm", "image", ((rowM.TupleSelect(0)) + (rowM.TupleSelect(1))) / 2, (colM.TupleSelect(1)) + 20, "yellow", "false");
+                DispMessage(WinH, ("距离:" + hv_DisPL1) + "mm", "image", (rowM.TupleSelect(0) + LineR2) / 2, colM.TupleSelect(0) + 20, "blue", "false");
+                DispMessage(WinH, ("距离:" + hv_DisPL2) + "mm", "image", (rowM.TupleSelect(1) + LineR21) / 2, colM.TupleSelect(1) + 20, "red", "false");
+            }
+            catch (HalconException HDevExpDefaultException)
+            {
+                MsgofVision("图像处理错误：" + HDevExpDefaultException.Message, LogType.ListShow, true);
+            }
+        }
+
+        public void CloseWindow()
+        {
+            try
+            {
+                HalconAPI.CancelDraw();
+              
+                HOperatorSet.CloseWindow(WinH);
+                       
+            }
+            catch (HalconException HDevExpDefaultException)
+            {
+                MsgofVision("图像处理错误：" + HDevExpDefaultException.Message, LogType.ListShow, true);
+            }
         }
     }
 }

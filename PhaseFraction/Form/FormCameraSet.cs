@@ -204,10 +204,10 @@ namespace PhaseFraction
 
         private void CBTransition_SelectedIndexChanged(object sender, EventArgs e)
         {
+          
             if (FormCameraSetLoad) return;
             VisionClass.instance().Transition = CBTransition.Text.Trim();
             ConfigClass config = new ConfigClass();
-            VisionClass.instance().Transition = config.ReadINIConfig("Transition");
             config.WriteINIConfig("Transition", CBSelect.Text.Trim());
             VisionClass.instance().EdgeDisplay(VisionClass.instance().CurrentImage);
         }
@@ -255,6 +255,11 @@ namespace PhaseFraction
         private void BtnCalculateDistance_Click(object sender, EventArgs e)
         {
             VisionClass.instance().CalculateDistance(VisionClass.instance().CurrentImage);
+        }
+
+        private void BtnCloseWin_Click(object sender, EventArgs e)
+        {
+            VisionClass.instance().CloseWindow();
         }
     }
 }
