@@ -295,7 +295,7 @@ namespace PhaseFraction
           
             BtnPause.Enabled = false;
             BtnAlarmReset.Enabled = false;
-         
+            VisionClass.instance().HSmartWindowControl = hSmartWindowControl1;
         }
 
         public void FormMainMouseWheel(object sender, MouseEventArgs e)

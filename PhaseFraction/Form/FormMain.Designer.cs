@@ -455,11 +455,11 @@
             this.OutLiquidValue.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.OutLiquidValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutLiquidValue.LiquidSpeed = 100;
-            this.OutLiquidValue.Location = new System.Drawing.Point(509, 569);
+            this.OutLiquidValue.Location = new System.Drawing.Point(509, 579);
             this.OutLiquidValue.Margin = new System.Windows.Forms.Padding(2);
             this.OutLiquidValue.Name = "OutLiquidValue";
             this.OutLiquidValue.Opened = true;
-            this.OutLiquidValue.Size = new System.Drawing.Size(90, 64);
+            this.OutLiquidValue.Size = new System.Drawing.Size(90, 54);
             this.OutLiquidValue.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
             this.OutLiquidValue.TabIndex = 2171;
             this.OutLiquidValue.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
@@ -474,7 +474,7 @@
             this.OutLiquidConduit1.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.OutLiquidConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutLiquidConduit1.LiquidSpeed = 100;
-            this.OutLiquidConduit1.Location = new System.Drawing.Point(441, 562);
+            this.OutLiquidConduit1.Location = new System.Drawing.Point(442, 562);
             this.OutLiquidConduit1.Margin = new System.Windows.Forms.Padding(2);
             this.OutLiquidConduit1.Name = "OutLiquidConduit1";
             this.OutLiquidConduit1.Size = new System.Drawing.Size(22, 63);
@@ -579,11 +579,11 @@
             this.InLiquidValue.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.InLiquidValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.InLiquidValue.LiquidSpeed = 100;
-            this.InLiquidValue.Location = new System.Drawing.Point(132, 562);
+            this.InLiquidValue.Location = new System.Drawing.Point(132, 567);
             this.InLiquidValue.Margin = new System.Windows.Forms.Padding(2);
             this.InLiquidValue.Name = "InLiquidValue";
             this.InLiquidValue.Opened = true;
-            this.InLiquidValue.Size = new System.Drawing.Size(90, 64);
+            this.InLiquidValue.Size = new System.Drawing.Size(90, 53);
             this.InLiquidValue.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
             this.InLiquidValue.TabIndex = 2163;
             this.InLiquidValue.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));

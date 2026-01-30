@@ -186,7 +186,7 @@ namespace PhaseFraction
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 HOperatorSet.ReadImage(out srcImage, dialog.FileName);
-                VisionClass.instance().test(srcImage,FormMain.MainFrm.hSmartWindowControl1);
+                VisionClass.instance().AutoCalLevel1(srcImage,FormMain.MainFrm.hSmartWindowControl1);
             }
        
         }
@@ -259,7 +259,14 @@ namespace PhaseFraction
 
         private void BtnCalculateDistance_Click(object sender, EventArgs e)
         {
-            VisionClass.instance().CalculateDistance(VisionClass.instance().CurrentImage);
+            if (ChkBSelect.Checked)
+            {
+                VisionClass.instance().CalculateDistance3(VisionClass.instance().CurrentImage);
+            }
+            else
+            {
+                VisionClass.instance().CalculateDistance2(VisionClass.instance().CurrentImage);
+            }
         }
 
         private void BtnCloseWin_Click(object sender, EventArgs e)

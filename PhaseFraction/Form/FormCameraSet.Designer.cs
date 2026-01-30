@@ -159,7 +159,7 @@
             "positive",
             "negative"});
             this.CBTransition.Location = new System.Drawing.Point(390, 256);
-            this.CBTransition.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CBTransition.Margin = new System.Windows.Forms.Padding(2);
             this.CBTransition.Name = "CBTransition";
             this.CBTransition.Size = new System.Drawing.Size(120, 20);
             this.CBTransition.TabIndex = 49;
@@ -195,7 +195,7 @@
             "first",
             "last"});
             this.CBSelect.Location = new System.Drawing.Point(73, 256);
-            this.CBSelect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CBSelect.Margin = new System.Windows.Forms.Padding(2);
             this.CBSelect.Name = "CBSelect";
             this.CBSelect.Size = new System.Drawing.Size(120, 20);
             this.CBSelect.TabIndex = 51;
@@ -216,12 +216,14 @@
             // ChkBSelect
             // 
             this.ChkBSelect.AutoSize = true;
+            this.ChkBSelect.Checked = true;
+            this.ChkBSelect.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChkBSelect.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ChkBSelect.Location = new System.Drawing.Point(24, 301);
             this.ChkBSelect.Name = "ChkBSelect";
-            this.ChkBSelect.Size = new System.Drawing.Size(108, 23);
+            this.ChkBSelect.Size = new System.Drawing.Size(88, 23);
             this.ChkBSelect.TabIndex = 54;
-            this.ChkBSelect.Text = "设定参数";
+            this.ChkBSelect.Text = "多相流";
             this.ChkBSelect.UseVisualStyleBackColor = true;
             this.ChkBSelect.CheckedChanged += new System.EventHandler(this.ChkBSelect_CheckedChanged);
             // 
@@ -311,8 +313,9 @@
             this.Controls.Add(this.BtnCalib);
             this.Controls.Add(this.BtnPhoto);
             this.Controls.Add(this.Btnvideo);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormCameraSet";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FormCameraSet";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormCameraSet_FormClosing);
             this.Load += new System.EventHandler(this.FormCameraSet_Load);
