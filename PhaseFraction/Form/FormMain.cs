@@ -875,6 +875,7 @@ namespace PhaseFraction
                 {
                     MainClass.instance().StopTimer();
                   
+
                     PLCClass.FinsUDP.UDPClose();
                 }
                 catch { }
