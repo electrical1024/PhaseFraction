@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PhaseFraction
 {
@@ -180,10 +181,14 @@ namespace PhaseFraction
 
         private void BtnSaveParam_Click(object sender, EventArgs e)
         {
-            HTuple hv_WindowHandle = new HTuple();
-            HOperatorSet.SetWindowAttr("background_color", "black");
-            HOperatorSet.OpenWindow(0, 0, 500, 500, 0, "visible", "", out hv_WindowHandle);
-            HDevWindowStack.Push(hv_WindowHandle);
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "images|*.tiff;*.tif;*.bmp;*.jpg";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                HOperatorSet.ReadImage(out srcImage, dialog.FileName);
+                VisionClass.instance().test(srcImage,FormMain.MainFrm.hSmartWindowControl1);
+            }
+       
         }
 
      
