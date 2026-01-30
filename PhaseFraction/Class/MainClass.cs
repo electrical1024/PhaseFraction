@@ -35,6 +35,7 @@ namespace PhaseFraction
         private readonly TimeoutUtilsClass TimeChk1 = new TimeoutUtilsClass();
         private readonly TimeoutUtilsClass TimeChk2 = new TimeoutUtilsClass();
         
+
         public static SerialPort SerialPortScaner = new SerialPort();
         public delegate void delegateDisplay(byte[] inputByte);
         public static delegateDisplay DeleReceive;
