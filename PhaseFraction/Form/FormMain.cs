@@ -1095,6 +1095,11 @@ namespace PhaseFraction
                 }
             }
         }
+
+        private void BtnStart_Click(object sender, EventArgs e)
+        {
+           MainClass.instance(). RunTimer();
+        }
     }
     }
 

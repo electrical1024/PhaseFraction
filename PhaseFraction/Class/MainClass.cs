@@ -12,6 +12,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace PhaseFraction
@@ -20,6 +21,7 @@ namespace PhaseFraction
     class MainClass
     {
         public static System.Timers.Timer Maintimer;
+        public static int ImageAcqInterval=1000;
         private readonly Stopwatch ProgramCycleTime = new Stopwatch();
         private readonly Stopwatch MachineCycleTime = new Stopwatch();
         public Thread ReadPLCThread;
@@ -34,7 +36,11 @@ namespace PhaseFraction
         private static readonly AutoResetEvent EventMain = new AutoResetEvent(false);
         private readonly TimeoutUtilsClass TimeChk1 = new TimeoutUtilsClass();
         private readonly TimeoutUtilsClass TimeChk2 = new TimeoutUtilsClass();
-        
+        private readonly TimeoutUtilsClass LayerTimer = new TimeoutUtilsClass(); // 分层等待定时器
+        private readonly TimeoutUtilsClass MeasureTimer = new TimeoutUtilsClass(); // 测量超时定时器
+        private const int LayerTimeout = 60000; // 分层等待超时（60秒）
+        private const int MeasureTimeout = 180000; // 测量总超时（3分钟）
+
 
         public static SerialPort SerialPortScaner = new SerialPort();
         public delegate void delegateDisplay(byte[] inputByte);
@@ -46,7 +52,7 @@ namespace PhaseFraction
         public static int AutoLocationRunStep;
         public static int AutoBackRunStep;
         public static int AutoAccRunStep;
-        public static int AutoDecRunStep;
+        public static int AutoMeasureStep;
         public static bool GoHomeStart;
         public static bool GoHomeFinish;
         public static bool GoHomeTimeout;
@@ -63,6 +69,10 @@ namespace PhaseFraction
         public static bool DecRunFinish;
         public static bool DecRunTimeout;
         public static bool PressureArrival;
+        public static bool IsOilGasInterfaceBottom;
+        public static bool IsLiquidLayered;
+        public static bool IsPhotoing;
+
         public static float CurPressure;
         public static float SetPressure;
         public Thread ProcessThread = null;
@@ -109,13 +119,22 @@ namespace PhaseFraction
 
         const Int32 MAX_PATH = 260;
 
+        public void RunTimer()
+        {
+            Maintimer = new System.Timers.Timer(ImageAcqInterval);
+            Maintimer.Elapsed += new System.Timers.ElapsedEventHandler(OnTimerElapsed);
+            Maintimer.AutoReset = true;
+            Maintimer.Enabled = true;
+        }
+
+        private static void OnTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+           if(!VisionClass.instance().IsPhoto) VisionClass.instance().IsPhoto=true;
+        }
+
         public void RunMainClass()
         {
-
-            //Maintimer = new System.Timers.Timer(100);
-            //Maintimer.Elapsed += new System.Timers.ElapsedEventHandler(Main);
-            //Maintimer.AutoReset = true;
-            //Maintimer.Enabled = true;
+            RunTimer();
 
             MainThread = new Thread(Main)
             {
@@ -124,13 +143,13 @@ namespace PhaseFraction
             };
             MainThread.Start();
 
-            ReadPLCThread = new Thread(ReadPLC)
-            {
-                IsBackground = true,
-                Priority = ThreadPriority.Normal
-            };
-            ReadPLCThread.Start();
-            EventReadPLC.Set();
+            //ReadPLCThread = new Thread(ReadPLC)
+            //{
+            //    IsBackground = true,
+            //    Priority = ThreadPriority.Normal
+            //};
+            //ReadPLCThread.Start();
+            //EventReadPLC.Set();
         }
 
         public void Main()
@@ -147,39 +166,121 @@ namespace PhaseFraction
                 //ProgramCycleTime.Start();
                 Application.DoEvents();
                 //Locker.AcquireReaderLock(1000);
-                EventMain.WaitOne();
+                // EventMain.WaitOne();
 
-                if (GoHomeStart)
-                {
-                    AutoGoHomeStep = GoHome(ref AutoGoHomeStep);
-                }
-
-                if (LocationRunStart)
-                {
-                    AutoLocationRunStep = LocationRun(ref AutoLocationRunStep);
-                }
-
-                if (BackRunStart)
-                {
-                    AutoBackRunStep = BackRun(ref AutoBackRunStep);
-                }
-
-                if (AccRunStart)
-                {
-                    AutoAccRunStep = AccRun(ref AutoAccRunStep);
-                }
 
                 if (DecRunStart)
                 {
-                    AutoDecRunStep = DecRun(ref AutoDecRunStep);
+                    AutoMeasureStep = AutoMeasure(ref AutoMeasureStep);
                 }
                 //log.WriteLog("ReadMain" + Convert.ToString(ProgramCycleTime.ElapsedMilliseconds), "FlowLog");
                 //ProgramCycleTime.Reset();
-                EventReadPLC.Set();
+                // EventReadPLC.Set();
                 //Locker.ReleaseReaderLock();
 
             }
             //}
+        }
+
+        public int AutoMeasure(ref int step)
+        {
+            int returnValue = step;
+            PLCClass plc = PLCClass.SingletonInstance;
+
+            switch (step)
+            {
+                // 步骤0：初始化，切换至测量模式（阀门状态切换）
+                case 0:
+                    MsgofMain("开始自动测量，切换阀门状态...", LogType.FlowLog, false);
+                  
+                    plc.PLCWrite(plc.ByPassValue, false);       // 关闭旁路阀
+                    plc.PLCWrite(plc.InLiquidValue, true);      // 打开进液阀
+                    plc.PLCWrite(plc.OutLiquidValue, true);     // 打开出液/循环阀
+                    plc.PLCWrite(plc.OutGasValue, false);       // 初始关闭排气/回流阀
+                    LayerTimer.Reset(); // 启动分层等待定时器
+                    step++;
+                    break;
+
+                // 步骤1：等待多相流静置分层
+                case 1:
+                    if (IsLiquidLayered)
+                    {
+                        MsgofMain("多相流分层完成，启动液位检测...", LogType.FlowLog, false);
+                     
+                        MeasureTimer.Reset();
+                        step++;
+                    }
+                    else if (LayerTimer.IsTimeout(LayerTimeout, false))
+                    {
+                        StopTimer();
+                        MsgofMain("分层等待超时（60秒），测量失败！", LogType.AlarmLog, true);
+                        // 恢复阀门初始状态
+                        plc.PLCWrite(plc.InLiquidValue, false);    // 关闭进液阀
+                        plc.PLCWrite(plc.OutLiquidValue, false);   // 关闭出液阀
+                        plc.PLCWrite(plc.ByPassValue, true);       // 打开旁路阀
+                        step = 0; // 重置流程
+                    }
+                    break;
+
+                // 步骤2：传感器移动检测，记录分相界面信号
+                case 2:
+                    if (!IsPhotoing)
+                    {
+                        MsgofMain("伺服电机运行完成，开始分相界面计算...", LogType.FlowLog, false);
+                        // 此处省略：信号处理单元分析信号跳变位置
+                        step++;
+                    }
+                    else if (MeasureTimer.IsTimeout(MeasureTimeout, false))
+                    {
+                        StopTimer();
+                   
+                        MsgofMain("测量超时（3分钟），停止拍照！", LogType.AlarmLog, true);
+                        // 恢复阀门初始状态
+                        plc.PLCWrite(plc.InLiquidValue, false);    // 关闭进液阀
+                        plc.PLCWrite(plc.OutLiquidValue, false);   // 关闭出液阀
+                        plc.PLCWrite(plc.ByPassValue, true);       // 打开旁路阀
+                        step = 0;
+                    }
+                    break;
+
+                // 步骤3：计算气相含率
+                case 3:
+                    if (IsOilGasInterfaceBottom)
+                    {
+                        MsgofMain("油气界面到达底部，开始气相流量计算...", LogType.FlowLog, false);
+                        // 打开排气/回流阀排出气相，关闭出液阀
+                        plc.PLCWrite(plc.OutGasValue, true);       // 打开排气阀
+                        plc.PLCWrite(plc.OutLiquidValue, false);   // 关闭出液阀
+                                                                   // 此处省略：气相含率计算（Q0 = Qgas * (Pm*T0)/(P0*Tm)）
+                        step++;
+                    }
+                    break;
+
+                // 步骤4：计算油水相含率
+                case 4:
+                    MsgofMain("开始计算油水相含率...", LogType.FlowLog, false);
+                    // 此处省略：水相/油相含率计算逻辑
+                    step++;
+                    break;
+
+                // 步骤5：测量完成，恢复系统状态
+                case 5:
+                    StopTimer();
+                
+                    // 写入测量完成信号到PLC
+                    plc.PLCWrite(plc.FlowFinish, true);
+                    // 恢复阀门初始状态（非测量模式）
+                    plc.PLCWrite(plc.InLiquidValue, false);    // 关闭进液阀
+                    plc.PLCWrite(plc.OutLiquidValue, false);   // 关闭出液阀
+                    plc.PLCWrite(plc.OutGasValue, false);      // 关闭排气阀
+                    plc.PLCWrite(plc.ByPassValue, true);       // 打开旁路阀
+                    MsgofMain("分相含率测量完成，系统恢复待机状态！", LogType.FlowLog, false);
+                    step = 0; // 重置流程，等待下一次测量
+                    break;
+            }
+
+            returnValue = step;
+            return returnValue;
         }
 
         public void ReadPLC()
@@ -337,47 +438,6 @@ namespace PhaseFraction
             return returnValue;
         }
 
-        public int DecRun(ref int step)
-        {
-            int returnValue;
-            switch (step)
-            {
-                case 0:
-                    TimeChk1.Reset();
-                    step++;
-                    break;
-                case 1:
-                    if ( PressureArrival)
-                    {
-                       StopTimer();
-                        PLCClass.SingletonInstance.PLCWrite(PLCClass.SingletonInstance.FlowFinish, true);
-                        MsgofMain("到达压力设定值，写入PLCW1.05,加速运行完成！", LogType.FlowLog, false);
-                        DecRunFinish = true;
-                        DecRunStart = false;
-                        step = 0;
-                    }
-                    else if (PLCClass.SingletonInstance.PLCW10.Data[14] )
-                    {
-                        StopTimer();
-                        MsgofMain("检测到PLCW10.14，减速运行完成！", LogType.FlowLog, false);
-                        DecRunFinish = true;
-                        DecRunStart = false;
-                        step = 0;
-                    }
-                    else if (TimeChk1.IsTimeout(180000, false))
-                    {
-                        StopTimer();
-                        DecRunTimeout = true;
-                        DecRunStart = false;
-                        DecRunFinish = false;
-                        MsgofMain("3分钟未收到减速运行完成信号！", LogType.FlowLog, false);
-                        step = 0;
-                    }
-                    break;
-            }
-            returnValue = step;
-            return returnValue;
-        }
 
         public static string[] GetMacAddress()
         {
@@ -483,6 +543,7 @@ namespace PhaseFraction
             try
             {
                 ConfigClass config = new ConfigClass();
+                ImageAcqInterval = Convert.ToInt32(config.ReadINIConfig("ImageAcqInterval"));
                 VisionClass.instance().AmpThr = Convert.ToDouble(config.ReadINIConfig("AmpThr"));
                 VisionClass.instance().Sigma = Convert.ToInt32(config.ReadINIConfig("Sigma"));
                 VisionClass.instance().Select = config.ReadINIConfig("Select");
