@@ -270,7 +270,7 @@ namespace PhaseFraction
                     // 写入测量完成信号到PLC
                     plc.PLCWrite(plc.FlowFinish, true);
                     // 恢复阀门初始状态（非测量模式）
-                    plc.PLCWrite(plc.InLiquidValue, false);    // 关闭进液阀
+                    plc.PLCWrite(plc.InLiquidValue, false);     // 关闭进液阀
                     plc.PLCWrite(plc.OutLiquidValue, false);   // 关闭出液阀
                     plc.PLCWrite(plc.OutGasValue, false);      // 关闭排气阀
                     plc.PLCWrite(plc.ByPassValue, true);       // 打开旁路阀
