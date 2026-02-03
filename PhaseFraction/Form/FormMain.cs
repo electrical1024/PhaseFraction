@@ -293,8 +293,6 @@ namespace PhaseFraction
             this.Text = "多相流分相含率在线测量系统，版本：" + version;
             BtnCreatConnect.Enabled = true;
           
-            BtnPause.Enabled = false;
-            BtnAlarmReset.Enabled = false;
             VisionClass.instance().HSmartWindowControl = hSmartWindowControl1;
         }
 
@@ -709,7 +707,7 @@ namespace PhaseFraction
                 LblCameraState.Text = "未连接";
                 LblCameraState.BackColor = Color.Pink;
                 MsgofMainFrm("相机连接失败!", LogType.FlowLog, true);
-                 return;
+                
             }
             ret = socket.SocketServerStart(MainClass.WLANIP, MainClass.WLANPort);
             if (ret)
@@ -721,7 +719,7 @@ namespace PhaseFraction
             {
                 LblSensorState.Text = "未连接";
                 LblSensorState.BackColor = Color.Pink;
-                return;
+               
             }
             ret = MainClass.instance().CreateConnectionToPLC();
             if (ret)
@@ -737,7 +735,7 @@ namespace PhaseFraction
                         LblPLCState.Text = "已连接";
                         LblPLCState.BackColor = Color.LightGreen;
                         MsgofMainFrm("PLC连接成功!", LogType.FlowLog, false);
-                        BtnPause.Enabled = true;
+                     
                         TmrRefresh.Enabled = true;
                         BtnCreatConnect.Enabled = false;
                       
@@ -754,10 +752,7 @@ namespace PhaseFraction
                             LblPLCState.Text = "已连接";
                             LblPLCState.BackColor = Color.LightGreen;
                             MsgofMainFrm("PLC连接成功!", LogType.FlowLog, false);
-                          
-                            BtnPause.Enabled = true;
-                            BtnAlarmReset.Enabled = true;
-                          
+
                             TmrRefresh.Enabled = true;
                             BtnCreatConnect.Enabled = false;
                           
@@ -921,14 +916,20 @@ namespace PhaseFraction
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            VisionClass.instance().DisplayWindow = hSmartWindowControl1.HalconWindow;
-            VisionClass.instance().IsPhoto = true;
-                       
+            PLCClass plc = PLCClass.SingletonInstance;
+            plc.PLCWrite(plc.InLiquidValue, false);     // 关闭进液阀
+            plc.PLCWrite(plc.OutLiquidValue, false);   // 关闭出液阀
+            plc.PLCWrite(plc.OutGasValue, false);      // 关闭排气阀
+            plc.PLCWrite(plc.ByPassValue, true);       // 打开旁路阀
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            PLCClass plc = PLCClass.SingletonInstance;
+            plc.PLCWrite(plc.ByPassValue, false);       // 关闭旁路阀
+            plc.PLCWrite(plc.InLiquidValue, true);      // 打开进液阀
+            plc.PLCWrite(plc.OutLiquidValue, true);     // 打开出液阀
+            plc.PLCWrite(plc.OutGasValue, false);       // 关闭排气阀
         }
 
         private void CameraSetTSMI_Click(object sender, EventArgs e)
@@ -1099,6 +1100,20 @@ namespace PhaseFraction
         private void BtnStart_Click(object sender, EventArgs e)
         {
            MainClass.instance(). RunTimer();
+            MainClass.AutoMeasureFlag = true;
+            MsgofMainFrm("开始测量!", LogType.FlowLog, false);
+        }
+
+        private void BtnPause_Click(object sender, EventArgs e)
+        {
+            PLCClass plc = PLCClass.SingletonInstance;
+            MainClass.AutoMeasureFlag = false;
+            MainClass.AutoMeasureStep=0;
+            plc.PLCWrite(plc.InLiquidValue, false);     // 关闭进液阀
+            plc.PLCWrite(plc.OutLiquidValue, false);   // 关闭出液阀
+            plc.PLCWrite(plc.OutGasValue, false);      // 关闭排气阀
+            plc.PLCWrite(plc.ByPassValue, true);       // 打开旁路阀
+            MsgofMainFrm("停止测量，阀门状态复位!", LogType.FlowLog, false);
         }
     }
     }

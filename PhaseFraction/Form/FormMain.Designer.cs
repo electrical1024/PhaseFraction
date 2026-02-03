@@ -115,10 +115,9 @@
             this.lstMessage.GridLines = true;
             this.lstMessage.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstMessage.HideSelection = false;
-            this.lstMessage.Location = new System.Drawing.Point(19, 31);
-            this.lstMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstMessage.Location = new System.Drawing.Point(14, 25);
             this.lstMessage.Name = "lstMessage";
-            this.lstMessage.Size = new System.Drawing.Size(572, 388);
+            this.lstMessage.Size = new System.Drawing.Size(430, 311);
             this.lstMessage.TabIndex = 1653;
             this.lstMessage.UseCompatibleStateImageBehavior = false;
             this.lstMessage.View = System.Windows.Forms.View.Details;
@@ -142,11 +141,9 @@
             this.groupBox1.Controls.Add(this.lstMessage);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox1.Location = new System.Drawing.Point(969, 400);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(727, 320);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(600, 432);
+            this.groupBox1.Size = new System.Drawing.Size(450, 346);
             this.groupBox1.TabIndex = 2110;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "运行记录";
@@ -155,10 +152,9 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label25.Location = new System.Drawing.Point(2480, 0);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label25.Location = new System.Drawing.Point(1860, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(43, 25);
+            this.label25.Size = new System.Drawing.Size(36, 20);
             this.label25.TabIndex = 2124;
             this.label25.Text = "test";
             this.label25.Visible = false;
@@ -174,19 +170,19 @@
             this.WhLocking,
             this.WhUnlock});
             this.CmsChangeState.Name = "contextMenuStrip1";
-            this.CmsChangeState.Size = new System.Drawing.Size(165, 114);
+            this.CmsChangeState.Size = new System.Drawing.Size(143, 114);
             // 
             // AddBarcode
             // 
             this.AddBarcode.Name = "AddBarcode";
-            this.AddBarcode.Size = new System.Drawing.Size(164, 22);
+            this.AddBarcode.Size = new System.Drawing.Size(142, 22);
             this.AddBarcode.Text = "添加";
             this.AddBarcode.Click += new System.EventHandler(this.AddBarcode_Click);
             // 
             // DeleteBarcode
             // 
             this.DeleteBarcode.Name = "DeleteBarcode";
-            this.DeleteBarcode.Size = new System.Drawing.Size(164, 22);
+            this.DeleteBarcode.Size = new System.Drawing.Size(142, 22);
             this.DeleteBarcode.Text = "刪除";
             this.DeleteBarcode.Click += new System.EventHandler(this.DeleteBarcode_Click);
             // 
@@ -197,40 +193,40 @@
             this.ToComon,
             this.ToNonEmergency});
             this.ChangeState.Name = "ChangeState";
-            this.ChangeState.Size = new System.Drawing.Size(164, 22);
+            this.ChangeState.Size = new System.Drawing.Size(142, 22);
             this.ChangeState.Text = "改變倉庫狀態";
             this.ChangeState.Visible = false;
             // 
             // ToEmergency
             // 
             this.ToEmergency.Name = "ToEmergency";
-            this.ToEmergency.Size = new System.Drawing.Size(163, 26);
+            this.ToEmergency.Size = new System.Drawing.Size(130, 22);
             this.ToEmergency.Text = "轉為緊急";
             // 
             // ToComon
             // 
             this.ToComon.Name = "ToComon";
-            this.ToComon.Size = new System.Drawing.Size(163, 26);
+            this.ToComon.Size = new System.Drawing.Size(130, 22);
             this.ToComon.Text = "轉為一般";
             // 
             // ToNonEmergency
             // 
             this.ToNonEmergency.Name = "ToNonEmergency";
-            this.ToNonEmergency.Size = new System.Drawing.Size(163, 26);
+            this.ToNonEmergency.Size = new System.Drawing.Size(130, 22);
             this.ToNonEmergency.Text = "轉為非緊急";
             this.ToNonEmergency.Visible = false;
             // 
             // WhLocking
             // 
             this.WhLocking.Name = "WhLocking";
-            this.WhLocking.Size = new System.Drawing.Size(164, 22);
+            this.WhLocking.Size = new System.Drawing.Size(142, 22);
             this.WhLocking.Text = "鎖定";
             this.WhLocking.Visible = false;
             // 
             // WhUnlock
             // 
             this.WhUnlock.Name = "WhUnlock";
-            this.WhUnlock.Size = new System.Drawing.Size(164, 22);
+            this.WhUnlock.Size = new System.Drawing.Size(142, 22);
             this.WhUnlock.Text = "解鎖";
             this.WhUnlock.Visible = false;
             // 
@@ -250,8 +246,8 @@
             this.MnsMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.MnsMain.Location = new System.Drawing.Point(0, 0);
             this.MnsMain.Name = "MnsMain";
-            this.MnsMain.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.MnsMain.Size = new System.Drawing.Size(1581, 54);
+            this.MnsMain.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.MnsMain.Size = new System.Drawing.Size(1186, 43);
             this.MnsMain.TabIndex = 2111;
             this.MnsMain.Text = "MenuStrip1";
             // 
@@ -259,7 +255,7 @@
             // 
             this.CameraSetTSMI.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.CameraSetTSMI.Name = "CameraSetTSMI";
-            this.CameraSetTSMI.Size = new System.Drawing.Size(120, 50);
+            this.CameraSetTSMI.Size = new System.Drawing.Size(101, 39);
             this.CameraSetTSMI.Text = "相机设定";
             this.CameraSetTSMI.Click += new System.EventHandler(this.CameraSetTSMI_Click);
             // 
@@ -267,7 +263,7 @@
             // 
             this.ValueSetTSMI.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ValueSetTSMI.Name = "ValueSetTSMI";
-            this.ValueSetTSMI.Size = new System.Drawing.Size(144, 50);
+            this.ValueSetTSMI.Size = new System.Drawing.Size(121, 39);
             this.ValueSetTSMI.Text = "电磁阀控制";
             this.ValueSetTSMI.Visible = false;
             this.ValueSetTSMI.Click += new System.EventHandler(this.ValueSetTSMI_Click);
@@ -276,7 +272,7 @@
             // 
             this.TempCurveTSMI.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TempCurveTSMI.Name = "TempCurveTSMI";
-            this.TempCurveTSMI.Size = new System.Drawing.Size(120, 50);
+            this.TempCurveTSMI.Size = new System.Drawing.Size(101, 39);
             this.TempCurveTSMI.Text = "温度曲线";
             this.TempCurveTSMI.Visible = false;
             this.TempCurveTSMI.Click += new System.EventHandler(this.TempCurveTSMI_Click);
@@ -287,7 +283,7 @@
             this.PressureCurveTSMI.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.PressureCurveTSMI.Image = ((System.Drawing.Image)(resources.GetObject("PressureCurveTSMI.Image")));
             this.PressureCurveTSMI.Name = "PressureCurveTSMI";
-            this.PressureCurveTSMI.Size = new System.Drawing.Size(120, 50);
+            this.PressureCurveTSMI.Size = new System.Drawing.Size(101, 39);
             this.PressureCurveTSMI.Text = "压力曲线";
             this.PressureCurveTSMI.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.PressureCurveTSMI.Visible = false;
@@ -297,7 +293,7 @@
             // 
             this.TorqueCurveTSMI.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TorqueCurveTSMI.Name = "TorqueCurveTSMI";
-            this.TorqueCurveTSMI.Size = new System.Drawing.Size(120, 50);
+            this.TorqueCurveTSMI.Size = new System.Drawing.Size(101, 39);
             this.TorqueCurveTSMI.Text = "液位曲线";
             this.TorqueCurveTSMI.Visible = false;
             this.TorqueCurveTSMI.Click += new System.EventHandler(this.TorqueCurveTSMI_Click);
@@ -308,7 +304,7 @@
             this.LoginTSMI.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.LoginTSMI.Image = ((System.Drawing.Image)(resources.GetObject("LoginTSMI.Image")));
             this.LoginTSMI.Name = "LoginTSMI";
-            this.LoginTSMI.Size = new System.Drawing.Size(127, 50);
+            this.LoginTSMI.Size = new System.Drawing.Size(102, 39);
             this.LoginTSMI.Text = "登陆权限";
             this.LoginTSMI.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.LoginTSMI.Visible = false;
@@ -320,11 +316,9 @@
             this.groupBox2.Controls.Add(this.BtnAlarmReset);
             this.groupBox2.Controls.Add(this.BtnPause);
             this.groupBox2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox2.Location = new System.Drawing.Point(969, 252);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(727, 202);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(600, 135);
+            this.groupBox2.Size = new System.Drawing.Size(450, 108);
             this.groupBox2.TabIndex = 2112;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "基本操作";
@@ -332,10 +326,9 @@
             // BtnStart
             // 
             this.BtnStart.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnStart.Location = new System.Drawing.Point(11, 82);
-            this.BtnStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnStart.Location = new System.Drawing.Point(8, 66);
             this.BtnStart.Name = "BtnStart";
-            this.BtnStart.Size = new System.Drawing.Size(177, 38);
+            this.BtnStart.Size = new System.Drawing.Size(133, 30);
             this.BtnStart.TabIndex = 38;
             this.BtnStart.Text = "开始测量";
             this.BtnStart.UseVisualStyleBackColor = true;
@@ -344,10 +337,9 @@
             // BtnCreatConnect
             // 
             this.BtnCreatConnect.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnCreatConnect.Location = new System.Drawing.Point(11, 36);
-            this.BtnCreatConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnCreatConnect.Location = new System.Drawing.Point(8, 29);
             this.BtnCreatConnect.Name = "BtnCreatConnect";
-            this.BtnCreatConnect.Size = new System.Drawing.Size(177, 38);
+            this.BtnCreatConnect.Size = new System.Drawing.Size(133, 30);
             this.BtnCreatConnect.TabIndex = 37;
             this.BtnCreatConnect.Text = "建立通讯";
             this.BtnCreatConnect.UseVisualStyleBackColor = true;
@@ -356,10 +348,9 @@
             // BtnAlarmReset
             // 
             this.BtnAlarmReset.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnAlarmReset.Location = new System.Drawing.Point(399, 36);
-            this.BtnAlarmReset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnAlarmReset.Location = new System.Drawing.Point(299, 29);
             this.BtnAlarmReset.Name = "BtnAlarmReset";
-            this.BtnAlarmReset.Size = new System.Drawing.Size(177, 38);
+            this.BtnAlarmReset.Size = new System.Drawing.Size(133, 30);
             this.BtnAlarmReset.TabIndex = 31;
             this.BtnAlarmReset.Text = "报警复位";
             this.BtnAlarmReset.UseVisualStyleBackColor = true;
@@ -368,13 +359,13 @@
             // BtnPause
             // 
             this.BtnPause.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.BtnPause.Location = new System.Drawing.Point(399, 82);
-            this.BtnPause.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnPause.Location = new System.Drawing.Point(299, 66);
             this.BtnPause.Name = "BtnPause";
-            this.BtnPause.Size = new System.Drawing.Size(177, 38);
+            this.BtnPause.Size = new System.Drawing.Size(133, 30);
             this.BtnPause.TabIndex = 34;
             this.BtnPause.Text = "停止测量";
             this.BtnPause.UseVisualStyleBackColor = true;
+            this.BtnPause.Click += new System.EventHandler(this.BtnPause_Click);
             // 
             // TmrRefresh
             // 
@@ -389,11 +380,11 @@
             this.ByPassValue.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.ByPassValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.ByPassValue.LiquidSpeed = 100;
-            this.ByPassValue.Location = new System.Drawing.Point(421, 759);
-            this.ByPassValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ByPassValue.Location = new System.Drawing.Point(316, 607);
+            this.ByPassValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ByPassValue.Name = "ByPassValue";
             this.ByPassValue.Opened = true;
-            this.ByPassValue.Size = new System.Drawing.Size(115, 80);
+            this.ByPassValue.Size = new System.Drawing.Size(86, 64);
             this.ByPassValue.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
             this.ByPassValue.TabIndex = 2159;
             this.ByPassValue.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
@@ -404,9 +395,10 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("宋体", 12F);
-            this.label13.Location = new System.Drawing.Point(445, 739);
+            this.label13.Location = new System.Drawing.Point(334, 591);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(69, 20);
+            this.label13.Size = new System.Drawing.Size(55, 16);
             this.label13.TabIndex = 2175;
             this.label13.Text = "直通阀";
             // 
@@ -414,9 +406,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("宋体", 12F);
-            this.label9.Location = new System.Drawing.Point(87, 711);
+            this.label9.Location = new System.Drawing.Point(65, 569);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 20);
+            this.label9.Size = new System.Drawing.Size(55, 16);
             this.label9.TabIndex = 2174;
             this.label9.Text = "进液阀";
             // 
@@ -424,9 +417,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("宋体", 12F);
-            this.label8.Location = new System.Drawing.Point(696, 172);
+            this.label8.Location = new System.Drawing.Point(522, 138);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 20);
+            this.label8.Size = new System.Drawing.Size(55, 16);
             this.label8.TabIndex = 2173;
             this.label8.Text = "排气阀";
             // 
@@ -434,9 +428,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("宋体", 12F);
-            this.label7.Location = new System.Drawing.Point(708, 685);
+            this.label7.Location = new System.Drawing.Point(531, 548);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 20);
+            this.label7.Size = new System.Drawing.Size(55, 16);
             this.label7.TabIndex = 2158;
             this.label7.Text = "出液阀";
             // 
@@ -448,10 +443,10 @@
             this.OutGasConduit2.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.OutGasConduit2.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutGasConduit2.LiquidSpeed = 100;
-            this.OutGasConduit2.Location = new System.Drawing.Point(617, 131);
-            this.OutGasConduit2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OutGasConduit2.Location = new System.Drawing.Point(463, 105);
+            this.OutGasConduit2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OutGasConduit2.Name = "OutGasConduit2";
-            this.OutGasConduit2.Size = new System.Drawing.Size(225, 19);
+            this.OutGasConduit2.Size = new System.Drawing.Size(169, 15);
             this.OutGasConduit2.TabIndex = 2172;
             // 
             // OutLiquidValue
@@ -462,11 +457,11 @@
             this.OutLiquidValue.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.OutLiquidValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutLiquidValue.LiquidSpeed = 100;
-            this.OutLiquidValue.Location = new System.Drawing.Point(679, 724);
-            this.OutLiquidValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OutLiquidValue.Location = new System.Drawing.Point(509, 579);
+            this.OutLiquidValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OutLiquidValue.Name = "OutLiquidValue";
             this.OutLiquidValue.Opened = true;
-            this.OutLiquidValue.Size = new System.Drawing.Size(120, 68);
+            this.OutLiquidValue.Size = new System.Drawing.Size(90, 54);
             this.OutLiquidValue.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
             this.OutLiquidValue.TabIndex = 2171;
             this.OutLiquidValue.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
@@ -481,10 +476,10 @@
             this.OutLiquidConduit1.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.OutLiquidConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutLiquidConduit1.LiquidSpeed = 100;
-            this.OutLiquidConduit1.Location = new System.Drawing.Point(589, 702);
-            this.OutLiquidConduit1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OutLiquidConduit1.Location = new System.Drawing.Point(442, 562);
+            this.OutLiquidConduit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OutLiquidConduit1.Name = "OutLiquidConduit1";
-            this.OutLiquidConduit1.Size = new System.Drawing.Size(29, 79);
+            this.OutLiquidConduit1.Size = new System.Drawing.Size(22, 63);
             this.OutLiquidConduit1.TabIndex = 2170;
             // 
             // OutGasConduit3
@@ -495,10 +490,10 @@
             this.OutGasConduit3.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.OutGasConduit3.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutGasConduit3.LiquidSpeed = 100;
-            this.OutGasConduit3.Location = new System.Drawing.Point(839, 130);
-            this.OutGasConduit3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OutGasConduit3.Location = new System.Drawing.Point(629, 104);
+            this.OutGasConduit3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OutGasConduit3.Name = "OutGasConduit3";
-            this.OutGasConduit3.Size = new System.Drawing.Size(20, 629);
+            this.OutGasConduit3.Size = new System.Drawing.Size(15, 503);
             this.OutGasConduit3.TabIndex = 2167;
             this.OutGasConduit3.Load += new System.EventHandler(this.ucConduit7_Load);
             // 
@@ -510,10 +505,10 @@
             this.OutLiquidConduit2.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.OutLiquidConduit2.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutLiquidConduit2.LiquidSpeed = 100;
-            this.OutLiquidConduit2.Location = new System.Drawing.Point(617, 759);
-            this.OutLiquidConduit2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OutLiquidConduit2.Location = new System.Drawing.Point(463, 607);
+            this.OutLiquidConduit2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OutLiquidConduit2.Name = "OutLiquidConduit2";
-            this.OutLiquidConduit2.Size = new System.Drawing.Size(297, 22);
+            this.OutLiquidConduit2.Size = new System.Drawing.Size(223, 18);
             this.OutLiquidConduit2.TabIndex = 2169;
             // 
             // OutGasValue
@@ -524,11 +519,11 @@
             this.OutGasValue.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.OutGasValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutGasValue.LiquidSpeed = 100;
-            this.OutGasValue.Location = new System.Drawing.Point(668, 96);
-            this.OutGasValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OutGasValue.Location = new System.Drawing.Point(501, 77);
+            this.OutGasValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OutGasValue.Name = "OutGasValue";
             this.OutGasValue.Opened = true;
-            this.OutGasValue.Size = new System.Drawing.Size(131, 66);
+            this.OutGasValue.Size = new System.Drawing.Size(98, 53);
             this.OutGasValue.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
             this.OutGasValue.TabIndex = 2166;
             this.OutGasValue.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
@@ -544,10 +539,10 @@
             this.OutLiquidConduit3.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.OutLiquidConduit3.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutLiquidConduit3.LiquidSpeed = 100;
-            this.OutLiquidConduit3.Location = new System.Drawing.Point(885, 768);
-            this.OutLiquidConduit3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OutLiquidConduit3.Location = new System.Drawing.Point(664, 614);
+            this.OutLiquidConduit3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OutLiquidConduit3.Name = "OutLiquidConduit3";
-            this.OutLiquidConduit3.Size = new System.Drawing.Size(29, 46);
+            this.OutLiquidConduit3.Size = new System.Drawing.Size(22, 37);
             this.OutLiquidConduit3.TabIndex = 2168;
             // 
             // OutGasConduit1
@@ -558,10 +553,10 @@
             this.OutGasConduit1.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.OutGasConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Backward;
             this.OutGasConduit1.LiquidSpeed = 100;
-            this.OutGasConduit1.Location = new System.Drawing.Point(597, 130);
-            this.OutGasConduit1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OutGasConduit1.Location = new System.Drawing.Point(448, 104);
+            this.OutGasConduit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OutGasConduit1.Name = "OutGasConduit1";
-            this.OutGasConduit1.Size = new System.Drawing.Size(20, 61);
+            this.OutGasConduit1.Size = new System.Drawing.Size(15, 49);
             this.OutGasConduit1.TabIndex = 2165;
             // 
             // InLiquidConduit3
@@ -572,10 +567,10 @@
             this.InLiquidConduit3.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.InLiquidConduit3.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Backward;
             this.InLiquidConduit3.LiquidSpeed = 100;
-            this.InLiquidConduit3.Location = new System.Drawing.Point(385, 702);
-            this.InLiquidConduit3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InLiquidConduit3.Location = new System.Drawing.Point(289, 562);
+            this.InLiquidConduit3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.InLiquidConduit3.Name = "InLiquidConduit3";
-            this.InLiquidConduit3.Size = new System.Drawing.Size(29, 44);
+            this.InLiquidConduit3.Size = new System.Drawing.Size(22, 35);
             this.InLiquidConduit3.TabIndex = 2164;
             // 
             // InLiquidValue
@@ -586,11 +581,11 @@
             this.InLiquidValue.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.InLiquidValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.InLiquidValue.LiquidSpeed = 100;
-            this.InLiquidValue.Location = new System.Drawing.Point(176, 709);
-            this.InLiquidValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InLiquidValue.Location = new System.Drawing.Point(132, 567);
+            this.InLiquidValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.InLiquidValue.Name = "InLiquidValue";
             this.InLiquidValue.Opened = true;
-            this.InLiquidValue.Size = new System.Drawing.Size(120, 66);
+            this.InLiquidValue.Size = new System.Drawing.Size(90, 53);
             this.InLiquidValue.SwitchColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(30)))), ((int)(((byte)(99)))));
             this.InLiquidValue.TabIndex = 2163;
             this.InLiquidValue.ValveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
@@ -606,10 +601,10 @@
             this.InLiquidConduit2.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.InLiquidConduit2.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.InLiquidConduit2.LiquidSpeed = 100;
-            this.InLiquidConduit2.Location = new System.Drawing.Point(79, 742);
-            this.InLiquidConduit2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InLiquidConduit2.Location = new System.Drawing.Point(59, 594);
+            this.InLiquidConduit2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.InLiquidConduit2.Name = "InLiquidConduit2";
-            this.InLiquidConduit2.Size = new System.Drawing.Size(336, 22);
+            this.InLiquidConduit2.Size = new System.Drawing.Size(252, 18);
             this.InLiquidConduit2.TabIndex = 2162;
             // 
             // ByPassConduit1
@@ -620,10 +615,10 @@
             this.ByPassConduit1.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.ByPassConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.ByPassConduit1.LiquidSpeed = 100;
-            this.ByPassConduit1.Location = new System.Drawing.Point(19, 799);
-            this.ByPassConduit1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ByPassConduit1.Location = new System.Drawing.Point(14, 639);
+            this.ByPassConduit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ByPassConduit1.Name = "ByPassConduit1";
-            this.ByPassConduit1.Size = new System.Drawing.Size(921, 30);
+            this.ByPassConduit1.Size = new System.Drawing.Size(691, 24);
             this.ByPassConduit1.TabIndex = 2161;
             // 
             // InLiquidConduit1
@@ -634,10 +629,10 @@
             this.InLiquidConduit1.LiquidColor = System.Drawing.Color.FromArgb(((int)(((byte)(3)))), ((int)(((byte)(169)))), ((int)(((byte)(243)))));
             this.InLiquidConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Backward;
             this.InLiquidConduit1.LiquidSpeed = 100;
-            this.InLiquidConduit1.Location = new System.Drawing.Point(52, 741);
-            this.InLiquidConduit1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InLiquidConduit1.Location = new System.Drawing.Point(39, 593);
+            this.InLiquidConduit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.InLiquidConduit1.Name = "InLiquidConduit1";
-            this.InLiquidConduit1.Size = new System.Drawing.Size(27, 72);
+            this.InLiquidConduit1.Size = new System.Drawing.Size(20, 58);
             this.InLiquidConduit1.TabIndex = 2160;
             // 
             // groupBox4
@@ -651,11 +646,9 @@
             this.groupBox4.Controls.Add(this.LblPLCState);
             this.groupBox4.Controls.Add(this.label24);
             this.groupBox4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox4.Location = new System.Drawing.Point(969, 66);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Location = new System.Drawing.Point(727, 53);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox4.Size = new System.Drawing.Size(600, 179);
+            this.groupBox4.Size = new System.Drawing.Size(450, 143);
             this.groupBox4.TabIndex = 2127;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "设备状态显示";
@@ -665,10 +658,9 @@
             this.LblSensorState.AutoSize = true;
             this.LblSensorState.BackColor = System.Drawing.Color.Pink;
             this.LblSensorState.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LblSensorState.Location = new System.Drawing.Point(436, 106);
-            this.LblSensorState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSensorState.Location = new System.Drawing.Point(327, 85);
             this.LblSensorState.Name = "LblSensorState";
-            this.LblSensorState.Size = new System.Drawing.Size(69, 20);
+            this.LblSensorState.Size = new System.Drawing.Size(55, 16);
             this.LblSensorState.TabIndex = 43;
             this.LblSensorState.Text = "未连接";
             // 
@@ -677,10 +669,9 @@
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.SystemColors.Control;
             this.label16.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label16.Location = new System.Drawing.Point(13, 106);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(10, 85);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(169, 20);
+            this.label16.Size = new System.Drawing.Size(135, 16);
             this.label16.TabIndex = 42;
             this.label16.Text = "传感器连接状态：";
             // 
@@ -689,10 +680,9 @@
             this.LblCameraState.AutoSize = true;
             this.LblCameraState.BackColor = System.Drawing.Color.Pink;
             this.LblCameraState.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LblCameraState.Location = new System.Drawing.Point(437, 72);
-            this.LblCameraState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblCameraState.Location = new System.Drawing.Point(328, 58);
             this.LblCameraState.Name = "LblCameraState";
-            this.LblCameraState.Size = new System.Drawing.Size(69, 20);
+            this.LblCameraState.Size = new System.Drawing.Size(55, 16);
             this.LblCameraState.TabIndex = 41;
             this.LblCameraState.Text = "未连接";
             // 
@@ -701,10 +691,9 @@
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.SystemColors.Control;
             this.label14.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label14.Location = new System.Drawing.Point(33, 72);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(25, 58);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(149, 20);
+            this.label14.Size = new System.Drawing.Size(119, 16);
             this.label14.TabIndex = 40;
             this.label14.Text = "相机连接状态：";
             // 
@@ -712,10 +701,9 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label19.Location = new System.Drawing.Point(73, 140);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Location = new System.Drawing.Point(55, 112);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(109, 20);
+            this.label19.Size = new System.Drawing.Size(87, 16);
             this.label19.TabIndex = 39;
             this.label19.Text = "报警状态：";
             // 
@@ -724,10 +712,9 @@
             this.label20.AutoSize = true;
             this.label20.BackColor = System.Drawing.Color.LightGreen;
             this.label20.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.Location = new System.Drawing.Point(436, 140);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Location = new System.Drawing.Point(327, 112);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(109, 20);
+            this.label20.Size = new System.Drawing.Size(87, 16);
             this.label20.TabIndex = 38;
             this.label20.Text = "未发生报警";
             // 
@@ -736,10 +723,9 @@
             this.LblPLCState.AutoSize = true;
             this.LblPLCState.BackColor = System.Drawing.Color.Pink;
             this.LblPLCState.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LblPLCState.Location = new System.Drawing.Point(436, 38);
-            this.LblPLCState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblPLCState.Location = new System.Drawing.Point(327, 30);
             this.LblPLCState.Name = "LblPLCState";
-            this.LblPLCState.Size = new System.Drawing.Size(69, 20);
+            this.LblPLCState.Size = new System.Drawing.Size(55, 16);
             this.LblPLCState.TabIndex = 3;
             this.LblPLCState.Text = "未连接";
             // 
@@ -748,10 +734,9 @@
             this.label24.AutoSize = true;
             this.label24.BackColor = System.Drawing.SystemColors.Control;
             this.label24.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label24.Location = new System.Drawing.Point(43, 38);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Location = new System.Drawing.Point(32, 30);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(139, 20);
+            this.label24.Size = new System.Drawing.Size(111, 16);
             this.label24.TabIndex = 0;
             this.label24.Text = "PLC连接状态：";
             // 
@@ -765,20 +750,21 @@
             this.hSmartWindowControl1.HKeepAspectRatio = true;
             this.hSmartWindowControl1.HMoveContent = true;
             this.hSmartWindowControl1.HZoomContent = HalconDotNet.HSmartWindowControl.ZoomContent.WheelForwardZoomsIn;
-            this.hSmartWindowControl1.Location = new System.Drawing.Point(343, 165);
+            this.hSmartWindowControl1.Location = new System.Drawing.Point(208, 132);
             this.hSmartWindowControl1.Margin = new System.Windows.Forms.Padding(0);
             this.hSmartWindowControl1.Name = "hSmartWindowControl1";
-            this.hSmartWindowControl1.Size = new System.Drawing.Size(295, 540);
+            this.hSmartWindowControl1.Size = new System.Drawing.Size(299, 432);
             this.hSmartWindowControl1.TabIndex = 0;
-            this.hSmartWindowControl1.WindowSize = new System.Drawing.Size(295, 540);
+            this.hSmartWindowControl1.WindowSize = new System.Drawing.Size(299, 432);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("宋体", 20F);
-            this.label11.Location = new System.Drawing.Point(169, 66);
+            this.label11.Location = new System.Drawing.Point(127, 53);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(457, 34);
+            this.label11.Size = new System.Drawing.Size(363, 27);
             this.label11.TabIndex = 2179;
             this.label11.Text = "多相流分相含率在线测量系统";
             // 
@@ -786,9 +772,10 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("宋体", 12F);
-            this.label12.Location = new System.Drawing.Point(463, 139);
+            this.label12.Location = new System.Drawing.Point(347, 111);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(69, 20);
+            this.label12.Size = new System.Drawing.Size(55, 16);
             this.label12.TabIndex = 2180;
             this.label12.Text = "分离器";
             // 
@@ -801,11 +788,9 @@
             this.groupBox3.Controls.Add(this.LblTemp);
             this.groupBox3.Controls.Add(this.label33);
             this.groupBox3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox3.Location = new System.Drawing.Point(79, 165);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Location = new System.Drawing.Point(59, 132);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Size = new System.Drawing.Size(153, 471);
+            this.groupBox3.Size = new System.Drawing.Size(115, 377);
             this.groupBox3.TabIndex = 2128;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "分离器参数";
@@ -815,10 +800,9 @@
             this.LblLevel.AutoSize = true;
             this.LblLevel.BackColor = System.Drawing.Color.Yellow;
             this.LblLevel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LblLevel.Location = new System.Drawing.Point(17, 302);
-            this.LblLevel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblLevel.Location = new System.Drawing.Point(13, 242);
             this.LblLevel.Name = "LblLevel";
-            this.LblLevel.Size = new System.Drawing.Size(49, 20);
+            this.LblLevel.Size = new System.Drawing.Size(39, 16);
             this.LblLevel.TabIndex = 43;
             this.LblLevel.Text = "####";
             // 
@@ -827,10 +811,9 @@
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.SystemColors.Control;
             this.label17.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label17.Location = new System.Drawing.Point(13, 239);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Location = new System.Drawing.Point(10, 191);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(69, 20);
+            this.label17.Size = new System.Drawing.Size(55, 16);
             this.label17.TabIndex = 42;
             this.label17.Text = "液位：";
             // 
@@ -839,10 +822,9 @@
             this.LblPressure.AutoSize = true;
             this.LblPressure.BackColor = System.Drawing.Color.Yellow;
             this.LblPressure.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LblPressure.Location = new System.Drawing.Point(17, 198);
-            this.LblPressure.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblPressure.Location = new System.Drawing.Point(13, 158);
             this.LblPressure.Name = "LblPressure";
-            this.LblPressure.Size = new System.Drawing.Size(49, 20);
+            this.LblPressure.Size = new System.Drawing.Size(39, 16);
             this.LblPressure.TabIndex = 41;
             this.LblPressure.Text = "####";
             // 
@@ -851,10 +833,9 @@
             this.label21.AutoSize = true;
             this.label21.BackColor = System.Drawing.SystemColors.Control;
             this.label21.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label21.Location = new System.Drawing.Point(13, 139);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Location = new System.Drawing.Point(10, 111);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(69, 20);
+            this.label21.Size = new System.Drawing.Size(55, 16);
             this.label21.TabIndex = 40;
             this.label21.Text = "压力：";
             // 
@@ -863,10 +844,9 @@
             this.LblTemp.AutoSize = true;
             this.LblTemp.BackColor = System.Drawing.Color.Yellow;
             this.LblTemp.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LblTemp.Location = new System.Drawing.Point(17, 92);
-            this.LblTemp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblTemp.Location = new System.Drawing.Point(13, 74);
             this.LblTemp.Name = "LblTemp";
-            this.LblTemp.Size = new System.Drawing.Size(49, 20);
+            this.LblTemp.Size = new System.Drawing.Size(39, 16);
             this.LblTemp.TabIndex = 3;
             this.LblTemp.Text = "####";
             // 
@@ -875,19 +855,18 @@
             this.label33.AutoSize = true;
             this.label33.BackColor = System.Drawing.SystemColors.Control;
             this.label33.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label33.Location = new System.Drawing.Point(13, 46);
-            this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label33.Location = new System.Drawing.Point(10, 37);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(69, 20);
+            this.label33.Size = new System.Drawing.Size(55, 16);
             this.label33.TabIndex = 0;
             this.label33.Text = "温度：";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(679, 382);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Location = new System.Drawing.Point(534, 306);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 41);
+            this.button1.Size = new System.Drawing.Size(82, 33);
             this.button1.TabIndex = 2181;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -895,10 +874,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(679, 468);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Location = new System.Drawing.Point(534, 374);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 41);
+            this.button2.Size = new System.Drawing.Size(82, 33);
             this.button2.TabIndex = 2182;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
@@ -906,9 +885,9 @@
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1581, 852);
+            this.ClientSize = new System.Drawing.Size(1186, 682);
             this.Controls.Add(this.hSmartWindowControl1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -937,7 +916,6 @@
             this.Controls.Add(this.MnsMain);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.OutLiquidConduit3);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "多相流分相含率在线测量系统";

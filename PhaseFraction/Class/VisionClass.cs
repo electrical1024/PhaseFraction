@@ -87,13 +87,17 @@ namespace PhaseFraction
                 {
                     Application.DoEvents();
                     HOperatorSet.GrabImageAsync(out image, AcqHandle, -1);
+                    HObject rotateImage = null;
+                    HOperatorSet.RotateImage(image, out rotateImage, 270, "bilinear");
+                    CurrentImage = rotateImage;
                     if (IsPhoto)
                     {
-                        TakePhoto(image, DisplayWindow);
+                        ProcessImage(rotateImage);
+                        IsPhoto = false;
                     }
                     else if (IsVideo)
                     {
-                        TakeVideo(image, DisplayWindow);
+                        ShowImage(rotateImage, HSmartWindowControl);
                     }
                 }
             }
@@ -129,12 +133,7 @@ namespace PhaseFraction
         {
             try
             {
-                HTuple heightWin, widthWin;
-                HOperatorSet.GetImageSize(image, out heightWin, out widthWin);// 获取输入图像的尺寸
-                HOperatorSet.SetPart(displayWindow, 0, 0, widthWin, heightWin);//将获得的图像铺满整个窗口
-                HOperatorSet.ClearWindow(displayWindow);
-                HOperatorSet.DispObj(image, displayWindow);   //视频显示 
-                image.Dispose();
+                ShowImage(image, HSmartWindowControl);
             }
             catch (Exception exp)
             {

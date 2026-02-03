@@ -38,8 +38,8 @@ namespace PhaseFraction
         private readonly TimeoutUtilsClass TimeChk2 = new TimeoutUtilsClass();
         private readonly TimeoutUtilsClass LayerTimer = new TimeoutUtilsClass(); // 分层等待定时器
         private readonly TimeoutUtilsClass MeasureTimer = new TimeoutUtilsClass(); // 测量超时定时器
-        private const int LayerTimeout = 60000; // 分层等待超时（60秒）
-        private const int MeasureTimeout = 180000; // 测量总超时（3分钟）
+        private const int LayerTimeout = 600000; // 分层等待超时（600秒）
+        private const int MeasureTimeout = 1800000; // 测量总超时（30分钟）
 
 
         public static SerialPort SerialPortScaner = new SerialPort();
@@ -72,6 +72,7 @@ namespace PhaseFraction
         public static bool IsOilGasInterfaceBottom;
         public static bool IsLiquidLayered;
         public static bool IsPhotoing;
+        public static bool AutoMeasureFlag;
 
         public static float CurPressure;
         public static float SetPressure;
@@ -169,7 +170,7 @@ namespace PhaseFraction
                 // EventMain.WaitOne();
 
 
-                if (DecRunStart)
+                if (AutoMeasureFlag)
                 {
                     AutoMeasureStep = AutoMeasure(ref AutoMeasureStep);
                 }
@@ -195,8 +196,8 @@ namespace PhaseFraction
                   
                     plc.PLCWrite(plc.ByPassValue, false);       // 关闭旁路阀
                     plc.PLCWrite(plc.InLiquidValue, true);      // 打开进液阀
-                    plc.PLCWrite(plc.OutLiquidValue, true);     // 打开出液/循环阀
-                    plc.PLCWrite(plc.OutGasValue, false);       // 初始关闭排气/回流阀
+                    plc.PLCWrite(plc.OutLiquidValue, true);     // 打开出液阀
+                    plc.PLCWrite(plc.OutGasValue, false);       // 关闭排气阀
                     LayerTimer.Reset(); // 启动分层等待定时器
                     step++;
                     break;
@@ -219,14 +220,15 @@ namespace PhaseFraction
                         plc.PLCWrite(plc.OutLiquidValue, false);   // 关闭出液阀
                         plc.PLCWrite(plc.ByPassValue, true);       // 打开旁路阀
                         step = 0; // 重置流程
+                        AutoMeasureFlag = false;
                     }
                     break;
 
-                // 步骤2：传感器移动检测，记录分相界面信号
+                // 步骤2：记录分相界面位置
                 case 2:
                     if (!IsPhotoing)
                     {
-                        MsgofMain("伺服电机运行完成，开始分相界面计算...", LogType.FlowLog, false);
+                        MsgofMain("开始分相界面计算...", LogType.FlowLog, false);
                         // 此处省略：信号处理单元分析信号跳变位置
                         step++;
                     }
@@ -240,6 +242,7 @@ namespace PhaseFraction
                         plc.PLCWrite(plc.OutLiquidValue, false);   // 关闭出液阀
                         plc.PLCWrite(plc.ByPassValue, true);       // 打开旁路阀
                         step = 0;
+                        AutoMeasureFlag = false;    
                     }
                     break;
 
@@ -266,9 +269,7 @@ namespace PhaseFraction
                 // 步骤5：测量完成，恢复系统状态
                 case 5:
                     StopTimer();
-                
-                    // 写入测量完成信号到PLC
-                    plc.PLCWrite(plc.FlowFinish, true);
+                                   
                     // 恢复阀门初始状态（非测量模式）
                     plc.PLCWrite(plc.InLiquidValue, false);     // 关闭进液阀
                     plc.PLCWrite(plc.OutLiquidValue, false);   // 关闭出液阀
@@ -276,6 +277,7 @@ namespace PhaseFraction
                     plc.PLCWrite(plc.ByPassValue, true);       // 打开旁路阀
                     MsgofMain("分相含率测量完成，系统恢复待机状态！", LogType.FlowLog, false);
                     step = 0; // 重置流程，等待下一次测量
+                    AutoMeasureFlag = false;
                     break;
             }
 

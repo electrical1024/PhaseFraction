@@ -115,6 +115,7 @@
     <Compile Include="Class\AutoSizeFormClass.cs" />
     <Compile Include="Class\PLCClass.cs" />
     <Compile Include="Class\SocketClass.cs" />
+    <Compile Include="Class\ThreePhaseSeparatorFlowCalculator.cs" />
     <Compile Include="Class\TimeoutUtilsClass.cs" />
     <Compile Include="Class\AlgorithmClass.cs" />
     <Compile Include="Class\VisionClass.cs" />
