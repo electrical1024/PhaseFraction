@@ -735,7 +735,7 @@ namespace PhaseFraction
                         LblPLCState.Text = "已连接";
                         LblPLCState.BackColor = Color.LightGreen;
                         MsgofMainFrm("PLC连接成功!", LogType.FlowLog, false);
-                     
+                      
                         TmrRefresh.Enabled = true;
                         BtnCreatConnect.Enabled = false;
                       
