@@ -20,7 +20,7 @@ namespace PhaseFraction
             InitializeComponent();
         }
         HDrawingObject DoRoi = null;
-        HObject srcImage = new HObject();
+        HObject SrcImage = new HObject();
         HSmartWindowControl SmartWindowControl = null;
         bool FormCameraSetLoad = false;
         private void BtnPhoto_Click(object sender, EventArgs e)
@@ -68,12 +68,12 @@ namespace PhaseFraction
             dialog.Filter = "images|*.tiff;*.tif;*.bmp;*.jpg";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                HOperatorSet.ReadImage(out srcImage, dialog.FileName);
+                HOperatorSet.ReadImage(out SrcImage, dialog.FileName);
                 //HTuple width, height;
                 //HOperatorSet.GetImageSize(m_SrcImage, out width, out height);
                 //HOperatorSet.DispObj(m_SrcImage, hSmartWindowControl1.HalconWindow);
-                ShowImage(srcImage);
-                VisionClass.instance().CurrentImage = srcImage;
+                ShowImage(SrcImage);
+                VisionClass.instance().CurrentImage = SrcImage;
             }
         }
         private void BtnSaveImage_Click(object sender, EventArgs e)
@@ -163,7 +163,7 @@ namespace PhaseFraction
 
             //生成ROI
             HOperatorSet.GenRectangle1(out HObject roi, val[0], val[1], val[2], val[3]);
-            HOperatorSet.ReduceDomain(srcImage, roi, out HObject imageROI);
+            HOperatorSet.ReduceDomain(SrcImage, roi, out HObject imageROI);
             ShowImage(imageROI);
         }
 
@@ -185,8 +185,8 @@ namespace PhaseFraction
             dialog.Filter = "images|*.tiff;*.tif;*.bmp;*.jpg";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                HOperatorSet.ReadImage(out srcImage, dialog.FileName);
-                VisionClass.instance().AutoCalLevel1(srcImage,FormMain.MainFrm.hSmartWindowControl1);
+                HOperatorSet.ReadImage(out SrcImage, dialog.FileName);
+                VisionClass.instance().AutoCalLevel1(SrcImage,FormMain.MainFrm.hSmartWindowControl1);
             }
        
         }

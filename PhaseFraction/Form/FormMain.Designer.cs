@@ -97,6 +97,7 @@
             this.label33 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.CmsChangeState.SuspendLayout();
             this.MnsMain.SuspendLayout();
@@ -265,7 +266,6 @@
             this.ValueSetTSMI.Name = "ValueSetTSMI";
             this.ValueSetTSMI.Size = new System.Drawing.Size(121, 39);
             this.ValueSetTSMI.Text = "电磁阀控制";
-            this.ValueSetTSMI.Visible = false;
             this.ValueSetTSMI.Click += new System.EventHandler(this.ValueSetTSMI_Click);
             // 
             // TempCurveTSMI
@@ -381,7 +381,7 @@
             this.ByPassValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.ByPassValue.LiquidSpeed = 100;
             this.ByPassValue.Location = new System.Drawing.Point(316, 607);
-            this.ByPassValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ByPassValue.Margin = new System.Windows.Forms.Padding(2);
             this.ByPassValue.Name = "ByPassValue";
             this.ByPassValue.Opened = true;
             this.ByPassValue.Size = new System.Drawing.Size(86, 64);
@@ -444,7 +444,7 @@
             this.OutGasConduit2.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutGasConduit2.LiquidSpeed = 100;
             this.OutGasConduit2.Location = new System.Drawing.Point(463, 105);
-            this.OutGasConduit2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OutGasConduit2.Margin = new System.Windows.Forms.Padding(2);
             this.OutGasConduit2.Name = "OutGasConduit2";
             this.OutGasConduit2.Size = new System.Drawing.Size(169, 15);
             this.OutGasConduit2.TabIndex = 2172;
@@ -458,7 +458,7 @@
             this.OutLiquidValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutLiquidValue.LiquidSpeed = 100;
             this.OutLiquidValue.Location = new System.Drawing.Point(509, 579);
-            this.OutLiquidValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OutLiquidValue.Margin = new System.Windows.Forms.Padding(2);
             this.OutLiquidValue.Name = "OutLiquidValue";
             this.OutLiquidValue.Opened = true;
             this.OutLiquidValue.Size = new System.Drawing.Size(90, 54);
@@ -477,7 +477,7 @@
             this.OutLiquidConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutLiquidConduit1.LiquidSpeed = 100;
             this.OutLiquidConduit1.Location = new System.Drawing.Point(442, 562);
-            this.OutLiquidConduit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OutLiquidConduit1.Margin = new System.Windows.Forms.Padding(2);
             this.OutLiquidConduit1.Name = "OutLiquidConduit1";
             this.OutLiquidConduit1.Size = new System.Drawing.Size(22, 63);
             this.OutLiquidConduit1.TabIndex = 2170;
@@ -491,7 +491,7 @@
             this.OutGasConduit3.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutGasConduit3.LiquidSpeed = 100;
             this.OutGasConduit3.Location = new System.Drawing.Point(629, 104);
-            this.OutGasConduit3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OutGasConduit3.Margin = new System.Windows.Forms.Padding(2);
             this.OutGasConduit3.Name = "OutGasConduit3";
             this.OutGasConduit3.Size = new System.Drawing.Size(15, 503);
             this.OutGasConduit3.TabIndex = 2167;
@@ -506,7 +506,7 @@
             this.OutLiquidConduit2.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutLiquidConduit2.LiquidSpeed = 100;
             this.OutLiquidConduit2.Location = new System.Drawing.Point(463, 607);
-            this.OutLiquidConduit2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OutLiquidConduit2.Margin = new System.Windows.Forms.Padding(2);
             this.OutLiquidConduit2.Name = "OutLiquidConduit2";
             this.OutLiquidConduit2.Size = new System.Drawing.Size(223, 18);
             this.OutLiquidConduit2.TabIndex = 2169;
@@ -520,7 +520,7 @@
             this.OutGasValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutGasValue.LiquidSpeed = 100;
             this.OutGasValue.Location = new System.Drawing.Point(501, 77);
-            this.OutGasValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OutGasValue.Margin = new System.Windows.Forms.Padding(2);
             this.OutGasValue.Name = "OutGasValue";
             this.OutGasValue.Opened = true;
             this.OutGasValue.Size = new System.Drawing.Size(98, 53);
@@ -540,7 +540,7 @@
             this.OutLiquidConduit3.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.OutLiquidConduit3.LiquidSpeed = 100;
             this.OutLiquidConduit3.Location = new System.Drawing.Point(664, 614);
-            this.OutLiquidConduit3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OutLiquidConduit3.Margin = new System.Windows.Forms.Padding(2);
             this.OutLiquidConduit3.Name = "OutLiquidConduit3";
             this.OutLiquidConduit3.Size = new System.Drawing.Size(22, 37);
             this.OutLiquidConduit3.TabIndex = 2168;
@@ -554,7 +554,7 @@
             this.OutGasConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Backward;
             this.OutGasConduit1.LiquidSpeed = 100;
             this.OutGasConduit1.Location = new System.Drawing.Point(448, 104);
-            this.OutGasConduit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OutGasConduit1.Margin = new System.Windows.Forms.Padding(2);
             this.OutGasConduit1.Name = "OutGasConduit1";
             this.OutGasConduit1.Size = new System.Drawing.Size(15, 49);
             this.OutGasConduit1.TabIndex = 2165;
@@ -568,7 +568,7 @@
             this.InLiquidConduit3.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Backward;
             this.InLiquidConduit3.LiquidSpeed = 100;
             this.InLiquidConduit3.Location = new System.Drawing.Point(289, 562);
-            this.InLiquidConduit3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InLiquidConduit3.Margin = new System.Windows.Forms.Padding(2);
             this.InLiquidConduit3.Name = "InLiquidConduit3";
             this.InLiquidConduit3.Size = new System.Drawing.Size(22, 35);
             this.InLiquidConduit3.TabIndex = 2164;
@@ -582,7 +582,7 @@
             this.InLiquidValue.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.InLiquidValue.LiquidSpeed = 100;
             this.InLiquidValue.Location = new System.Drawing.Point(132, 567);
-            this.InLiquidValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InLiquidValue.Margin = new System.Windows.Forms.Padding(2);
             this.InLiquidValue.Name = "InLiquidValue";
             this.InLiquidValue.Opened = true;
             this.InLiquidValue.Size = new System.Drawing.Size(90, 53);
@@ -602,7 +602,7 @@
             this.InLiquidConduit2.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.InLiquidConduit2.LiquidSpeed = 100;
             this.InLiquidConduit2.Location = new System.Drawing.Point(59, 594);
-            this.InLiquidConduit2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InLiquidConduit2.Margin = new System.Windows.Forms.Padding(2);
             this.InLiquidConduit2.Name = "InLiquidConduit2";
             this.InLiquidConduit2.Size = new System.Drawing.Size(252, 18);
             this.InLiquidConduit2.TabIndex = 2162;
@@ -616,7 +616,7 @@
             this.ByPassConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Forward;
             this.ByPassConduit1.LiquidSpeed = 100;
             this.ByPassConduit1.Location = new System.Drawing.Point(14, 639);
-            this.ByPassConduit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ByPassConduit1.Margin = new System.Windows.Forms.Padding(2);
             this.ByPassConduit1.Name = "ByPassConduit1";
             this.ByPassConduit1.Size = new System.Drawing.Size(691, 24);
             this.ByPassConduit1.TabIndex = 2161;
@@ -630,7 +630,7 @@
             this.InLiquidConduit1.LiquidDirection = HZH_Controls.Controls.LiquidDirection.Backward;
             this.InLiquidConduit1.LiquidSpeed = 100;
             this.InLiquidConduit1.Location = new System.Drawing.Point(39, 593);
-            this.InLiquidConduit1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InLiquidConduit1.Margin = new System.Windows.Forms.Padding(2);
             this.InLiquidConduit1.Name = "InLiquidConduit1";
             this.InLiquidConduit1.Size = new System.Drawing.Size(20, 58);
             this.InLiquidConduit1.TabIndex = 2160;
@@ -864,30 +864,45 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(534, 306);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(82, 33);
             this.button1.TabIndex = 2181;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(534, 374);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(82, 33);
             this.button2.TabIndex = 2182;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(534, 432);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(82, 33);
+            this.button3.TabIndex = 2183;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1186, 682);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.hSmartWindowControl1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -1008,6 +1023,7 @@
         private System.Windows.Forms.Button button2;
         public HalconDotNet.HSmartWindowControl hSmartWindowControl1;
         private System.Windows.Forms.ToolStripMenuItem ValueSetTSMI;
+        private System.Windows.Forms.Button button3;
     }
 }
 

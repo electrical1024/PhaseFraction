@@ -1115,6 +1115,23 @@ namespace PhaseFraction
             plc.PLCWrite(plc.ByPassValue, true);       // 打开旁路阀
             MsgofMainFrm("停止测量，阀门状态复位!", LogType.FlowLog, false);
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            HObject srcImage = new HObject();
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "images|*.tiff;*.tif;*.bmp;*.jpg";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                HOperatorSet.ReadImage(out srcImage, dialog.FileName);
+                //HTuple width, height;
+                //HOperatorSet.GetImageSize(m_SrcImage, out width, out height);
+                //HOperatorSet.DispObj(m_SrcImage, hSmartWindowControl1.HalconWindow);
+                ShowImage(srcImage);
+                VisionClass.instance().CurrentImage = srcImage;
+            }
+            VisionClass.instance().AutoCalLevel2(srcImage,hSmartWindowControl1);
+        }
     }
     }
 

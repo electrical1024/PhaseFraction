@@ -72,5 +72,37 @@ namespace PhaseFraction
                 PLC.PLCWrite(PLC.OutLiquidValue, false);
             }
         }
+
+        private void BtnLiquidUp_Click(object sender, EventArgs e)
+        {
+            PLC.PLCWrite(PLC.ByPassValue, false);
+            PLC.PLCWrite(PLC.OutLiquidValue, false);
+            PLC.PLCWrite(PLC.InLiquidValue, true);
+            PLC.PLCWrite(PLC.OutGasValue, true);
+        }
+
+        private void BtnLiquidDown_Click(object sender, EventArgs e)
+        {
+            PLC.PLCWrite(PLC.ByPassValue, false);
+            PLC.PLCWrite(PLC.OutLiquidValue, true);
+            PLC.PLCWrite(PLC.InLiquidValue, true);
+            PLC.PLCWrite(PLC.OutGasValue, false);
+        }
+
+        private void BtnCloseAllValue_Click(object sender, EventArgs e)
+        {
+            PLC.PLCWrite(PLC.ByPassValue, false);
+            PLC.PLCWrite(PLC.OutLiquidValue, false);
+            PLC.PLCWrite(PLC.InLiquidValue, false);
+            PLC.PLCWrite(PLC.OutGasValue, false);
+        }
+
+        private void BtnOpenAllValue_Click(object sender, EventArgs e)
+        {
+            PLC.PLCWrite(PLC.ByPassValue, true);
+            PLC.PLCWrite(PLC.OutLiquidValue, true);
+            PLC.PLCWrite(PLC.InLiquidValue, true);
+            PLC.PLCWrite(PLC.OutGasValue, true);
+        }
     }
 }
